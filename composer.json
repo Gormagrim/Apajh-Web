@@ -1,0 +1,10 @@
+{
+    "name": "apajh/web",
+    "description" : "Site web Apajh",
+    "require": {
+        "php": "^7.3|^8.0",
+        "guzzlehttp/guzzle": "^7.2",
+        "altorouter/altorouter": "^2.0",
+        "vlucas/valitron": "^1.4"
+    }
+}
