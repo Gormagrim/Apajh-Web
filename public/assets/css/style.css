@@ -44,6 +44,10 @@ img.logo {
     margin-left: 5px;
 }
 
+.navbar.navbar-expand-lg.navbar-light {
+    background-color: #fff;
+}
+
 .navbar-light .navbar-nav .nav-link {
     color: #1B2021;
 }
@@ -74,7 +78,6 @@ footer {
 
 .footer a {
     color: #677DB7;
-    font-weight: bold;
     text-decoration: none;
 }
 
@@ -241,6 +244,7 @@ button.btn-close.closer {
         background-position-x: 1.6vh;
         background-attachment: fixed;
         padding-top: 100px;
+        min-height: 100vh;
     }
     .civility {
         text-align: center;

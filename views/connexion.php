@@ -1,13 +1,10 @@
-<?php
-include_once "header.php";
-include_once "api.php";
-?>
+
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
             <h1>Connexion</h1>
-            <p>Vous n'avez pas encore de compte ? cliquez <a href="/webapp/inscription.php">ici</a> pour vous inscrire.</p>
+            <p>Vous n'avez pas encore de compte ? cliquez <a href="/webapp/public/register">ici</a> pour vous inscrire.</p>
         </div>
     </div>
     <div class="row">
@@ -25,21 +22,8 @@ include_once "api.php";
                         <span class="smallText"><a href="/">Mot de pass oublié ?</a></span>
                         <button type="submit" class="btn btn-primary connexionButton">Valider</button>
                     </form>
-                    <?php 
-                    if(!empty($_POST['mail']) && !empty($_POST['password'])){
-                        $login = ([
-                            'mail' => $_POST['mail'],
-                            'password' => $_POST['password']
-                            ]);
-                            callAPI('POST', 'http://localhost/apiApajhv0/public/v1', $login);
-                            echo $result;
-                    }
-                    ?>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<?php
-include_once "footer.php";
-?>

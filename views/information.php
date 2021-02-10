@@ -1,6 +1,4 @@
-<?php
-include_once "header.php";
-?>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
@@ -64,6 +62,3 @@ include_once "header.php";
         </div>
     </div>
 </div>
-<?php
-include_once "footer.php";
-?>

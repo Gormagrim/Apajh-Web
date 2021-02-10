@@ -13,9 +13,9 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/webapp"><img class="logo" src="assets/img/logo.svg" alt="Logo de l'Apajh"></a>
+            <a class="navbar-brand" href="/webapp/public"><img class="logo" src="assets/img/logo.svg" alt="Logo de l'Apajh"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -25,22 +25,22 @@
                         <a class="nav-link" href="#">Qui sommes-nous ?</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/webapp/blogIndex.php">IME</a>
+                        <a class="nav-link" href="/webapp/views/blogIndex.php">IME</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">SESAD</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             Pôles sensoriels
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/webapp/auditif.php">Pôle Auditif</a></li>
+                            <li><a class="dropdown-item" href="/webapp/views/auditif.php">Pôle Auditif</a></li>
                             <li><a class="dropdown-item" href="#">Pôle Visuel</a></li>
                         </ul>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Satisfaction</a>
-                    </li>
                 </ul>
-                <a href="/webapp/connexion.php" type="button" class="btn btn-primary">Se connecter</a>
+                <a href="/webapp/public/connexion" type="button" class="btn btn-primary">Se connecter</a>
             </div>
         </div>
     </nav>
