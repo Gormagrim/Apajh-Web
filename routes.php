@@ -10,7 +10,7 @@ try{
    $router->map('GET', '/webapp/public/acount', function() { require '../views/acount.php'; });
    $router->map('GET', '/webapp/public/blog', function() { require '../views/article.php'; });
    $router->map('GET', '/webapp/public/connexion', function() { require '../views/connexion.php'; });
-   $router->map('POST', '/webapp/public/register', function() { require '../views/register.php'; }, 'UserController#register');
+   $router->map('POST', '/webapp/public/register', 'UserController#register');
 
 }catch (\Exception $e){
     echo $e->getMessage();

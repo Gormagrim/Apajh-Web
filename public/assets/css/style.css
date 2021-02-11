@@ -147,6 +147,10 @@ label.condition {
     ;
 }
 
+.invalid-feedback {
+    display: block;
+}
+
 /* ACOUNT */
 
 .acount {

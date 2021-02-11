@@ -1,6 +1,6 @@
 <?php
 require_once '../controllers/UserController.php';
-    if(count($_POST) == 0 ){ ?>
+    if(count($_POST) == 0 || count($formErrors) > 0){ ?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
@@ -26,9 +26,14 @@ require_once '../controllers/UserController.php';
                         <div class="form-group">
                             <label for="password" class="form-label">Mot de passe</label>
                             <div class="input-group" id="show_hide_password">
-                                <input type="password" class="form-control" id="password" name="password" placeholder="Votre mot de passe" />
+                                <input type="password" class="form-control" id="password" value="<?= isset($_POST['password']) ? $_POST['password'] : '' ?>" name="password" placeholder="Votre mot de passe" />
                                 <span class="input-group-text" id="basic-addon1"><a class="eye" href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
                             </div>
+                            <?php if (isset($formErrors['password'])) { ?>
+                                <div class="invalid-feedback">
+                                    <p><?= $formErrors['password'] ?></p>
+                                </div>
+                            <?php } ?>
                         </div>
                         <div class="form-group">
                             <label for="password_validation" class="form-label">Valider votre mot de passe</label>
@@ -50,5 +55,7 @@ require_once '../controllers/UserController.php';
         </div>
     </div>
 </div>
-   <?php }
+   <?php }else{
+       echo 'test';
+   }
 ?>
