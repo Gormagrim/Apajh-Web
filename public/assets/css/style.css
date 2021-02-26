@@ -83,7 +83,7 @@ footer {
 
 /* INDEX */
 
-.indexText {
+ .indexText {
     background: rgba(0, 0, 0, 0.4);
     z-index: 1;
     position: absolute;
@@ -95,12 +95,12 @@ footer {
     top: 30%;
     color: white;
     width: 60%;
-}
+} 
 
 /* CONNEXION / INSCRIPTION */
 
 .connexion {
-    margin-top: 15vh;
+    margin-top: 5vh;
     background-color: rgba(250, 220, 230, 0.8);
     border-radius: 4vh;
     box-shadow: 5px 5px 5px grey;
@@ -111,7 +111,7 @@ a.eye {
 }
 
 label {
-    margin-top: 2vh;
+    margin-top: 4vh;
 }
 
 .formConnexion {
@@ -121,7 +121,7 @@ label {
 
 .connexionButton {
     display: block;
-    margin: 0 auto;
+    margin: 3vh auto;
 }
 
 .smallText a {
@@ -129,12 +129,16 @@ label {
     color: #677DB7;
 }
 
+div.smallText a {
+    margin-top: 3vh;
+}
+
 label.condition {
     font-size: 10px;
 }
 
-.form-switch .form-check-input {
-    margin-top: 2vh;
+.form-check-input {
+    margin-top: 3.8vh;
 }
 
 .form-check-input:checked[type=checkbox] {
@@ -144,11 +148,16 @@ label.condition {
 
 .fa.fa-eye-slash, .fa.fa-eye {
     color: #677DB7;
-    ;
 }
 
 .invalid-feedback {
     display: block;
+    margin-bottom: 0;
+    position: absolute;
+}
+
+.invalid-feedback p {
+    margin-bottom: 0;
 }
 
 /* ACOUNT */
@@ -189,7 +198,7 @@ a.addPhoto i:hover {
 }
 
 div.mail {
-    margin-top: -10vh;
+    margin-top: -15vh;
     margin-bottom: -10vh;
 }
 
@@ -198,12 +207,24 @@ div.mail span {
 }
 
 .btn-secondary {
+    margin-top: 2vh;
+    background-color: #CF4D6F;
+    border-color: #CF4D6F;
+    box-shadow: 5px 5px 5px grey;
+}
+
+.btn-secondary:hover {
+    background-color: #FFE2AD;
+    border-color: #FFE2AD;
+}
+
+.btn-secondary.modification {
     background-color: #FFD485;
     border-color: #FFD485;
     box-shadow: 5px 5px 5px grey;
 }
 
-.btn-secondary:hover {
+.btn-secondary.modification:hover {
     background-color: #FFE2AD;
     border-color: #FFE2AD;
 }
@@ -224,14 +245,19 @@ div.mail span {
 }
 
 .modification {
-    margin-top: 5vh;
-    margin-bottom: 5vh;
+    margin-top: 1vh;
+    margin-bottom: 2vh;
 }
 
 button.btn-close.closer {
     float: right;
     margin-top: 10px;
     margin-right: 25px;
+}
+
+.fas.fa-pen {
+    color: #677DB7;
+    margin-left: 4vh;
 }
 
 /* INFORMATION */
@@ -282,6 +308,10 @@ button.btn-close.closer {
         margin-top: 0vh;
         margin-bottom: 0vh;
     }
+}
+
+#modificationValidation {
+    visibility: hidden;
 }
 
 /* BLOG */

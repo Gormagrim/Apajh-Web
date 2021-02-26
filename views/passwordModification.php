@@ -1,4 +1,5 @@
-
+<?php
+require_once '../controllers/UserController.php'; ?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
@@ -13,7 +14,7 @@
                 </div>
             </div>
             <img class="avatar" src="assets/img/flower.svg" alt="..." class="img-thumbnail">
-            <span type="button" class="btn btn-info addPhoto" title="Changer votre photo de profil">+</span>
+            <a class="addPhoto" title="Changer votre photo de profil"><i class="fas fa-camera"></i></a>
             <div class="row">
                 <div class="col-12 offset-sm-2 col-sm-8 offset-md-2 col-md-8 offset-lg-2 col-lg-8 offset-xl-2 col-xl-8 text-center mail">
                     <span class="">exemple-mail@mail.fr</span>
@@ -26,25 +27,42 @@
             </div>
             <div class="row">
                 <div class="col-12 offset-sm-3 col-sm-6 offset-md-3 col-md-6 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6">
-                    <form action="">
-                        <label for="mail" class="form-label">Mot de passe actuel</label>
-                        <input type="password" class="form-control" id="mail" placeholder="Votre mot de passe actuel" />
+                    <form action="/webapp/public/password" method="POST">
+                        <label for="current_password" class="form-label">Mot de passe actuel</label>
+                        <div class="input-group" id="show_hide_password_current">
+                            <input type="password" class="form-control <?= isset($formErrors['current_password']) ? 'is-invalid' : (isset($current_password) ? 'is-valid' : '') ?>" id="show_hide_password_current" name="current_password" placeholder="Votre nouveau mot de passe" />
+                            <span class="input-group-text" id="basic-addon1"><a class="eye" href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
+                        </div>
+                        <?php if (isset($formErrors['current_password'])) { ?>
+                            <div class="invalid-feedback">
+                                <p><?= $formErrors['current_password'] ?></p>
+                            </div>
+                        <?php } ?>
                         <label for="password" class="form-label">Nouveau mot de passe</label>
                         <div class="input-group" id="show_hide_password">
-                            <input type="password" class="form-control" id="password" placeholder="Votre nouveau mot de passe" />
+                            <input type="password" class="form-control <?= isset($formErrors['password']) ? 'is-invalid' : (isset($password) ? 'is-valid' : '') ?>" id="password" name="password" placeholder="Votre nouveau mot de passe" />
                             <span class="input-group-text" id="basic-addon1"><a class="eye" href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
                         </div>
-                        <label for="password_validation" class="form-label">Confirmer votre nouveau mot de passe</label>
-                        <div class="input-group" id="show_hide_password">
-                            <input type="password_validation" class="form-control" id="password_validation" placeholder="Confirmer votre nouveau mot de passe" />
+                        <?php if (isset($formErrors['password'])) { ?>
+                            <div class="invalid-feedback">
+                                <p><?= $formErrors['password'] ?></p>
+                            </div>
+                        <?php } ?>
+                        <label for="password_confirmation" class="form-label">Confirmer votre nouveau mot de passe</label>
+                        <div class="input-group" id="show_hide_password_verification">
+                            <input type="password" class="form-control <?= isset($formErrors['password_confirmation']) ? 'is-invalid' : (isset($password_confirmation) ? 'is-valid' : '') ?>" id="password_confirmation" name="password_confirmation" placeholder="Confirmer votre nouveau mot de passe" />
                             <span class="input-group-text" id="basic-addon1"><a class="eye" href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
                         </div>
+                        <?php if (isset($formErrors['password_confirmation'])) { ?>
+                            <div class="invalid-feedback">
+                                <p><?= $formErrors['password_confirmation'] ?></p>
+                            </div>
+                        <?php } ?>
                         <div class="row">
                             <div class="col-12 offset-sm-2 col-sm-8 offset-md-2 col-md-8 offset-lg-2 col-lg-8 offset-xl-2 col-xl-8 text-center">
-                                <a class="btn btn-secondary modification" href="">Valider</a>
+                                <button type="submit" class="btn btn-secondary modification">Valider</button>
                             </div>
                         </div>
-
                     </form>
                 </div>
             </div>

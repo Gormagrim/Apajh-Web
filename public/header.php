@@ -1,3 +1,6 @@
+<?php
+$page = $_SERVER['PHP_SELF'];
+?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
 
@@ -35,12 +38,16 @@
                             Pôles sensoriels
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/webapp/views/auditif.php">Pôle Auditif</a></li>
+                            <li><a class="dropdown-item" href="/webapp/public/auditif">Pôle Auditif</a></li>
                             <li><a class="dropdown-item" href="#">Pôle Visuel</a></li>
                         </ul>
                     </li>
                 </ul>
-                <a href="/webapp/public/connexion" type="button" class="btn btn-primary">Se connecter</a>
+                <?php if (isset($_SESSION['token'])) { ?>
+                    <a href="/webapp/public/acount" type="button"><i class="fas fa-user-circle fa-2x"></i></a>
+                <?php  } else { ?>
+                    <a href="/webapp/public/connexion" type="button" class="btn btn-primary">Se connecter</a>
+                <?php } ?>
             </div>
         </div>
     </nav>

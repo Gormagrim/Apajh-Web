@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "00dea3fce3474db1bee993ed8e2aa458",
+    "content-hash": "547d69062a8dd9ceb918c1694614a676",
     "packages": [
         {
             "name": "altorouter/altorouter",
@@ -65,6 +65,67 @@
                 "source": "https://github.com/dannyvankooten/AltoRouter/tree/2.0.1"
             },
             "time": "2019-11-23T11:01:41+00:00"
+        },
+        {
+            "name": "glicer/search",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/emmanuelroecker/js-php-real-time-search.git",
+                "reference": "801a904999bbb0f8ca688b8c9698f06523fb6047"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/emmanuelroecker/js-php-real-time-search/zipball/801a904999bbb0f8ca688b8c9698f06523fb6047",
+                "reference": "801a904999bbb0f8ca688b8c9698f06523fb6047",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4",
+                "symfony/console": "2.3.*",
+                "symfony/filesystem": "2.3.*",
+                "symfony/finder": "2.3.*",
+                "symfony/stopwatch": "2.3.*",
+                "symfony/yaml": "2.3.*"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0",
+                "symfony/process": "2.3.*"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "GlSearchEngine\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GNU"
+            ],
+            "authors": [
+                {
+                    "name": "Emmanuel ROECKER",
+                    "homepage": "http://dev.glicer.com"
+                },
+                {
+                    "name": "Rym BOUCHAGOUR",
+                    "homepage": "http://dev.glicer.com"
+                }
+            ],
+            "description": "Autocomplete, search and browsing as-you-type",
+            "homepage": "https://github.com/emmanuelroecker/js-php-real-time-search",
+            "keywords": [
+                "as-you-type",
+                "autocomplete",
+                "real-time",
+                "search"
+            ],
+            "support": {
+                "issues": "https://github.com/emmanuelroecker/js-php-real-time-search/issues",
+                "source": "https://github.com/emmanuelroecker/js-php-real-time-search/tree/master"
+            },
+            "time": "2015-10-24T11:21:26+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -448,6 +509,277 @@
             "time": "2019-03-08T08:55:37+00:00"
         },
         {
+            "name": "symfony/console",
+            "version": "v2.3.42",
+            "target-dir": "Symfony/Component/Console",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/console.git",
+                "reference": "20c12c6d6c5a087a66d4e77999451713a92a3507"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/console/zipball/20c12c6d6c5a087a66d4e77999451713a92a3507",
+                "reference": "20c12c6d6c5a087a66d4e77999451713a92a3507",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "symfony/event-dispatcher": "~2.1"
+            },
+            "suggest": {
+                "symfony/event-dispatcher": ""
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Console\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Console Component",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/console/tree/2.3"
+            },
+            "time": "2016-05-26T08:04:58+00:00"
+        },
+        {
+            "name": "symfony/filesystem",
+            "version": "v2.3.42",
+            "target-dir": "Symfony/Component/Filesystem",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/filesystem.git",
+                "reference": "8fd9cd1da0afe63f0d9d4f27875782a2b7d590d3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/8fd9cd1da0afe63f0d9d4f27875782a2b7d590d3",
+                "reference": "8fd9cd1da0afe63f0d9d4f27875782a2b7d590d3",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Filesystem\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Filesystem Component",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/filesystem/tree/2.3"
+            },
+            "time": "2016-04-12T15:20:10+00:00"
+        },
+        {
+            "name": "symfony/finder",
+            "version": "v2.3.42",
+            "target-dir": "Symfony/Component/Finder",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/finder.git",
+                "reference": "dce4b58434fc1cbd66e3006e539bb53074dfea82"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/dce4b58434fc1cbd66e3006e539bb53074dfea82",
+                "reference": "dce4b58434fc1cbd66e3006e539bb53074dfea82",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Finder\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Finder Component",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/finder/tree/2.3"
+            },
+            "time": "2016-05-13T14:58:35+00:00"
+        },
+        {
+            "name": "symfony/stopwatch",
+            "version": "v2.3.42",
+            "target-dir": "Symfony/Component/Stopwatch",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/stopwatch.git",
+                "reference": "7db42ab667cf45d27f722c8529671e315ff08ce5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/stopwatch/zipball/7db42ab667cf45d27f722c8529671e315ff08ce5",
+                "reference": "7db42ab667cf45d27f722c8529671e315ff08ce5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Stopwatch\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Stopwatch Component",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/stopwatch/tree/2.3"
+            },
+            "time": "2016-03-04T07:12:06+00:00"
+        },
+        {
+            "name": "symfony/yaml",
+            "version": "v2.3.42",
+            "target-dir": "Symfony/Component/Yaml",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "2cb5f366f9e0df014fc93de46cc416ba0a3055f8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/2cb5f366f9e0df014fc93de46cc416ba0a3055f8",
+                "reference": "2cb5f366f9e0df014fc93de46cc416ba0a3055f8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Symfony\\Component\\Yaml\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Yaml Component",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/yaml/tree/2.3"
+            },
+            "time": "2016-05-30T08:10:17+00:00"
+        },
+        {
             "name": "vlucas/valitron",
             "version": "v1.4.9",
             "source": {
@@ -510,7 +842,9 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "glicer/search": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

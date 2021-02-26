@@ -5,6 +5,7 @@
         "php": "^7.3|^8.0",
         "guzzlehttp/guzzle": "^7.2",
         "altorouter/altorouter": "^2.0",
-        "vlucas/valitron": "^1.4"
+        "vlucas/valitron": "^1.4",
+        "glicer/search": "dev-master"
     }
 }

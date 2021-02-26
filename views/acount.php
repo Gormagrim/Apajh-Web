@@ -17,7 +17,9 @@
                 </div>
             </div>
             <div class="row">
-                
+                <form action="/webapp/public/deconnexion" method="post">
+                    <button type="submit" class="btn btn-secondary">Déconnexion</button>
+                </form>
             </div>
             <div class="row">
                 <div class="col-12 offset-sm-2 col-sm-8 offset-md-2 col-md-8 offset-lg-2 col-lg-8 offset-xl-2 col-xl-8 text-center">
