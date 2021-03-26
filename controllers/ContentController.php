@@ -9,30 +9,76 @@ use GuzzleHttp\Psr7\Stream;
 
 class ContentController
 {
-    public function getContentVideos()
+    private $client;
+    public function __construct()
     {
-        if (!empty($_SESSION['token'])) {
-            require '../views/auditif.php';
-            try {
-                
-                $request = $this->client->request('GET', 'video', [
-                    'headers' => [
-                        'Authorization' => 'Bearer ' . $_SESSION['token']
+        $this->client = new Client([
+            'base_uri' => 'http://localhost/apiApajhv0/public/v1/',
+            'http_errors' => false
+        ]);
+    }
+
+    public function getVideoLds($fileName)
+    {
+        $request = $this->client->request('GET', 'video/' . $fileName);
+        $video = json_decode($request->getBody());
+        ($request->getStatusCode() == 200) ? $src = 'data:' . $video->type . ';base64,' . $video->file : $src = '';
+        return $src;
+    }
+
+    public function getCategory()
+    {
+        try {
+            $request = $this->client->request('GET', 'videos');
+            $category = json_decode($request->getBody());
+            require '../views/auditif-category.php';
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function getVideoByCat()
+    {
+        $formErrors = array();
+        if (count($_POST) > 0) {
+            if (!empty($_POST['id_category'])) {
+                $cat = htmlspecialchars($_POST['id_category']);
+            }
+            if (empty($formErrors)) {
+                $request = $this->client->request('POST', 'videos-cat', [
+                    'form_params' => [
+                        'id_category' => $cat
                     ]
                 ]);
                 $video = json_decode($request->getBody());
-                var_dump($video);
-
-                if (!empty($video->Contenu->contentTitle)) {
-                    $video['title'] = $video->Contenu->contentTitle;
-                }
-
-            } catch (\Exception $e) {
-                echo $e->getMessage();
+                require '../views/auditif-cat-video.php';
+            } else {
+                require '../views/auditif-cat-video.php';
             }
-        } else {
-            $formErrors['login'] = 'Vous devez vous reconnecter.';
-            require '../views/personnalInformation.php';
         }
     }
+
+    public function searchVideo()
+    {
+        $formErrors = array();
+        if (count($_POST) > 0) {
+            if (!empty($_POST['contentTitle'])) {
+                $title = htmlspecialchars($_POST['contentTitle']);
+            } else {
+                $formErrors['search'] = 'Merci de bien vouloir saisir le mot que vous voulez rechercher.';
+            }
+            if (empty($formErrors)) {
+                $request = $this->client->request('POST', 'rechercheVideo', [
+                    'form_params' => [
+                        'contentTitle' => $title
+                    ]
+                ]);
+                $video = json_decode($request->getBody());
+                require '../views/auditif.php';
+            } else {
+                require '../views/auditif.php';
+            }
+        }
+    }
+
 }

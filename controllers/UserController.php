@@ -126,9 +126,13 @@ class UserController
                 ])) {
                     $register = json_decode($response->getBody());
                     $_SESSION['token'] = $register->token->original->access_token;
+                    $_SESSION['id'] = $register->id;
+                    $_SESSION['logTime'] = time();
+                    $_SESSION['logOutTime'] = (time() + 3600);
+                    $_SESSION['mail'] = $mail;
                     $success['valid'] = 'Vous vous êtes correctement connecté.';
-                    require '../views/connexionValidate.php';
-                    header('refresh:1;url=http://localhost/webapp/public/');
+                    // require '../views/connexionValidate.php';
+                    header('refresh:0;url=http://localhost/webapp/public/');
                 } else {
                     $success['error'] = 'Une erreur est surevenue durant la connexion.';
                 }
@@ -143,8 +147,8 @@ class UserController
         $this->client->request('POST', 'logout');
         session_destroy();
         $success['valid'] = 'Vous vous êtes correctement déconnecté.';
-        require '../views/deconnexion.php';
-        header('refresh:1;url=http://localhost/webapp/public/');
+        //  require '../views/deconnexion.php';
+        header('refresh:0;url=http://localhost/webapp/public/');
         exit();
     }
 
@@ -289,13 +293,26 @@ class UserController
             if (count($_POST) > 0) {
                 if (!empty($_POST['current_password']) || !empty($_POST['password']) || !empty($_POST['password_confirmation'])) {
                     if ($_POST['password'] === $_POST['password_confirmation']) {
-                        if($_POST['current_password'] != $_POST['password']){
-
-                        }else{
+                        if ($_POST['current_password'] != $_POST['password']) {
+                            $request = $this->client->request('POST', 'checkPassword', [
+                                'form_params' => [
+                                    'password' => $_POST['current_password'],
+                                    'mail' => $_SESSION['mail']
+                                ]
+                            ]);
+                            $checkPassword = json_decode($request->getBody());
+                            if ($checkPassword->message === 1) {
+                                $password = htmlspecialchars($_POST['password']);
+                                $current_password = htmlspecialchars($_POST['current_password']);
+                                $password_confirmation = htmlspecialchars($_POST['password_confirmation']);
+                            } else {
+                                $formErrors['current_password'] = 'Veuillez saisir votre mot de passe actuel.';
+                            }
+                        } else {
                             $formErrors['current_password'] = 'Votre nouveau mot de passe ne peut pas être identique à l\'ancien.';
                             $formErrors['password'] = 'Votre nouveau mot de passe ne peut pas être identique à l\'ancien.';
                         }
-                    }else{
+                    } else {
                         $formErrors['password_confirmation'] = 'Vos nouveaux mots de passe ne sont pas identique.';
                         $formErrors['password'] = 'Vos nouveaux mots de passe ne sont pas identique.';
                     }
@@ -304,14 +321,12 @@ class UserController
                     $formErrors['current_password'] = 'Veuillez saisir votre mot de passe actuel.';
                     $formErrors['password_confirmation'] = 'Veuillez confirmer votre nouveau mot de passe.';
                 }
-              
-                
-                $password = htmlspecialchars($_POST['password']);
                 if (empty($formErrors)) {
-                    if ($this->client->request('PUT', 'password', [
+                    if ($this->client->request('PUT', 'user/password', [
                         'form_params' => [
-                            'password' => $password
-
+                            'password' => $password,
+                            'password_confirmation' => $password_confirmation,
+                            'current_password' => $current_password
                         ],
                         'headers' => [
                             'Authorization' => 'Bearer ' . $_SESSION['token']

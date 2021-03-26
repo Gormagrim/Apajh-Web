@@ -1,5 +1,5 @@
 <?php
-$page = $_SERVER['PHP_SELF'];
+$page = $_SERVER['REQUEST_URI'];
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -11,6 +11,7 @@ $page = $_SERVER['PHP_SELF'];
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
     <title>Apajh | SAINT-QUENTIN</title>
 </head>
@@ -31,7 +32,7 @@ $page = $_SERVER['PHP_SELF'];
                         <a class="nav-link" href="/webapp/views/blogIndex.php">IME</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/">SESAD</a>
+                        <a class="nav-link" href="/">SESSAD</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -43,7 +44,7 @@ $page = $_SERVER['PHP_SELF'];
                         </ul>
                     </li>
                 </ul>
-                <?php if (isset($_SESSION['token'])) { ?>
+                <?php if (!empty($_SESSION['token'])) { ?>
                     <a href="/webapp/public/acount" type="button"><i class="fas fa-user-circle fa-2x"></i></a>
                 <?php  } else { ?>
                     <a href="/webapp/public/connexion" type="button" class="btn btn-primary">Se connecter</a>
@@ -51,3 +52,20 @@ $page = $_SERVER['PHP_SELF'];
             </div>
         </div>
     </nav>
+    <div class="modal fade" id="myModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-header">
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h5 class="modal-title" id="exampleModalLabel">Session expirée</h5>
+                    Merci de vous connecter à nouveau !
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn modalBtn" id="modalBtn"><a href="/webapp/public/connexion">Se connecter</a></button>
+                </div>
+            </div>
+        </div>
+    </div>

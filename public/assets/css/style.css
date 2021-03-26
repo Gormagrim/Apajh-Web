@@ -13,6 +13,18 @@ body {
     padding-top: 100px;
 }
 
+body, html {
+    height: 100%;
+}
+
+.container-fluid {
+    max-width: 100%;
+    min-height: 88%;
+    margin: 0;
+    position: relative;
+    padding: 0;
+}
+
 .btn-primary {
     background-color: #677DB7;
     border-color: #677DB7;
@@ -64,26 +76,27 @@ ul li {
 }
 
 .navbar {
-    margin-bottom: 10vh;
+    margin-bottom: 0vh;
 }
 
 /* FOOTER */
 
 footer {
-    background-color: #FFD485;
+    background-color: #FADCE6;
     margin-top: 5vh;
-    height: 50px;
+    height: auto;
+    min-height: 50px;
     bottom: 0;
 }
 
 .footer a {
-    color: #677DB7;
+    color: #000;
     text-decoration: none;
 }
 
 /* INDEX */
 
- .indexText {
+.indexText {
     background: rgba(0, 0, 0, 0.4);
     z-index: 1;
     position: absolute;
@@ -95,7 +108,7 @@ footer {
     top: 30%;
     color: white;
     width: 60%;
-} 
+}
 
 /* CONNEXION / INSCRIPTION */
 
@@ -192,6 +205,9 @@ a.addPhoto i {
     background-color: #fff;
     box-shadow: 5px 5px 5px grey;
 }
+
+
+
 
 a.addPhoto i:hover {
     color: #FFE2AD;
@@ -395,9 +411,8 @@ span.date, span.autor {
     font-weight: bold;
 }
 
-.far.fa-heart.fa-2x.like, .fas.fa-heart.fa-2x.like {
+.far.fa-heart.like, .fas.fa-heart.like {
     color: red;
-    float: left;
 }
 
 span.redSmalltext {
@@ -474,10 +489,6 @@ p.smallText {
     height: auto;
 }
 
-.far.fa-heart.fa-2x.liked {
-    color: red;
-}
-
 img.smallPicture {
     width: 100vh;
     height: auto;
@@ -523,9 +534,202 @@ img.smallPicture {
 }
 
 a.socialN {
-    margin-right: 4vh;
+    margin-right: 2vh;
 }
 
 a.socialN.first {
-margin-left: 4vh;
+    margin-left: 2vh;
 }
+
+/* VIDEOS LDS */
+
+.search h4 {
+    font-style: italic;
+    margin-bottom: 0;
+}
+
+video {
+    margin: 2vh;
+}
+
+h1.auditif {
+    margin-top: 2vh;
+}
+
+.far.fa-heart, .fas.fa-heart {
+    color: red;
+}
+
+.far.fa-thumbs-up, .fas.fa-thumbs-up {
+    color: #677DB7;
+    cursor: pointer;
+}
+
+span.badge, span.category, p.category {
+    color: #000;
+    font-weight: 600;
+    font-size: 12px;
+}
+
+video {
+    display: inline-block;
+    margin: 0;
+    border-top-left-radius: 4vh;
+    border-top-right-radius: 4vh;
+}
+
+.connexion.videoss {
+    margin-top: 0;
+    border-top-left-radius: 4vh;
+    border-top-right-radius: 4vh;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.ratio>* {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+.wordListLi {
+    cursor: pointer;
+}
+
+div.wordList {
+    width: 20vh;
+}
+
+.wordListLi:hover {
+    background-color: #677DB7;
+}
+
+.wordListLi:active {
+    background-color: #677DB7;
+}
+
+div.title {
+    background-color: #677DB7;
+    height: 40px;
+    color: #fff;
+}
+
+.otherWord {
+    margin-top: 4vh;
+    border-radius: 4vh;
+}
+
+hr {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.videoDiv {
+    visibility: hidden;
+}
+
+.speed {
+    margin-top: 5vh;
+}
+
+.speedBtn {
+    margin-top: 0;
+    border-top-left-radius: 2vh;
+    border-top-right-radius: 2vh;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: #677DB7;
+    border-color: #677DB7;
+}
+
+.speedBtn:hover {
+    background-color: #677DB7;
+    border-color: #677DB7;
+}
+
+.speedBtn:active {
+    background-color: #677DB7;
+    border-color: #677DB7;
+}
+
+.dropdown-menu {
+    background-color: #677DB7;
+    color: #FADCE6;
+}
+
+.dropdown-menu li {
+    color: #FFF;
+}
+
+.connexion.category {
+    margin-top: 2vh;
+}
+
+.connexion.category span a {
+    text-decoration: none;
+    color: #677DB7;
+}
+
+p.category {
+    margin-bottom: 0;
+}
+
+p.wordText {
+    margin-top: 1vh;
+}
+
+select.catItem, select.catWord {
+    color: #677DB7;
+    border: 2px solid #677DB7;
+    border-radius: 10px;
+    outline : none;
+}
+
+h2.h2cat {
+    margin-top: 5vh;
+}
+
+h2.h2cat a {
+    color: #000;
+    text-decoration: none;
+}
+
+h2.h2cat a:hover {
+    color: #677DB7;
+}
+
+div.selectCat {
+    margin-top: 15vh;
+}
+
+h1.auditif-cat {
+    margin-top: 2vh;
+}
+
+.search h3 {
+    margin-top: 2vh;
+}
+
+/* MODAL DE RECONNEXION */
+
+button.modalBtn {
+    background-color: #677DB7;
+    color: #fff;
+}
+button.modalBtn a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.modal-content {
+    background-color: #FADCE6;
+    border-radius: 2vh;
+    border-color: #FADCE6;
+}
+
+.modal {
+    background-color: rgba(250, 220, 230, 0.8);
+}
+

@@ -4,9 +4,11 @@ require_once '../controllers/UserController.php'; ?>
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
             <h1>Mon compte</h1>
-            <?php if (isset($formErrors['login'])) {
-                echo $formErrors['login'];
-            } ?>
+            <?php if (isset($formErrors['login'])) { ?>
+                <div class="invalid-feedback">
+                    <h2><?= $formErrors['login'] ?></h2>
+                </div>
+            <?php } ?>
             <div class="row">
                 <div class="offset-1 col-10 offset-sm-2 col-sm-8 offset-md-2 col-md-8 offset-lg-2 col-lg-8 offset-xl-2 col-xl-8 connexion text-center">
                     <?php if (empty($formErrors)) { ?>
@@ -29,8 +31,13 @@ require_once '../controllers/UserController.php'; ?>
                     <button type="button" class="btn-close closer" onclick="history.go(-1)" aria-label="Close"></button>
                 </div>
             </div>
-            <img class="avatar" src="assets/img/flower.svg" alt="..." class="img-thumbnail">
-            <a class="addPhoto" title="Changer votre photo de profil"><i class="fas fa-camera"></i></a>
+            <div>
+                <img class="avatar" src="assets/img/flower.svg" alt="..." class="img-thumbnail">
+                <a class="addPhoto" title="Changer votre photo de profil"><i class="fas fa-camera"></i></a>
+                <form action="POST" id="addPhotoForm">
+                    <input class="addPhoto" id="addPhoto" name="file" type="file">
+                </form>
+            </div>
             <div class="row">
                 <div class="col-12 offset-sm-2 col-sm-8 offset-md-2 col-md-8 offset-lg-2 col-lg-8 offset-xl-2 col-xl-8 text-center mail">
                     <span class=""><?= isset($user['mail']) ? $user['mail'] : '' ?></span>

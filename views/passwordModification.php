@@ -1,5 +1,3 @@
-<?php
-require_once '../controllers/UserController.php'; ?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
@@ -17,7 +15,14 @@ require_once '../controllers/UserController.php'; ?>
             <a class="addPhoto" title="Changer votre photo de profil"><i class="fas fa-camera"></i></a>
             <div class="row">
                 <div class="col-12 offset-sm-2 col-sm-8 offset-md-2 col-md-8 offset-lg-2 col-lg-8 offset-xl-2 col-xl-8 text-center mail">
-                    <span class="">exemple-mail@mail.fr</span>
+                    <span class=""><?= $_SESSION['mail'] ?></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+                    <?php if (!empty($success['valid'])) { ?>
+                        <p><?= $success['valid'] ?></p>
+                    <?php  }  ?>
                 </div>
             </div>
             <div class="row">
@@ -30,7 +35,7 @@ require_once '../controllers/UserController.php'; ?>
                     <form action="/webapp/public/password" method="POST">
                         <label for="current_password" class="form-label">Mot de passe actuel</label>
                         <div class="input-group" id="show_hide_password_current">
-                            <input type="password" class="form-control <?= isset($formErrors['current_password']) ? 'is-invalid' : (isset($current_password) ? 'is-valid' : '') ?>" id="show_hide_password_current" name="current_password" placeholder="Votre nouveau mot de passe" />
+                            <input type="password" class="form-control <?= isset($formErrors['current_password']) ? 'is-invalid' : (isset($current_password) ? 'is-valid' : '') ?>" id="show_hide_password_current" name="current_password" placeholder="Votre mot de passe actuel" />
                             <span class="input-group-text" id="basic-addon1"><a class="eye" href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
                         </div>
                         <?php if (isset($formErrors['current_password'])) { ?>

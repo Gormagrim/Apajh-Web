@@ -1,7 +1,22 @@
+<script language="JavaScript" type="text/javascript" src="assets/js/jquery-3.6.6.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-
 <script language="JavaScript" type="text/javascript" src="assets/js/script.js"></script>
+<script language="JavaScript" type="text/javascript" src="assets/js/ajax.js"></script>
+<?php ($page == '/webapp/public/auditif') ? require '../fetch/likeMatch.php' : '' ?>
+<?php ($page == '/webapp/public/auditif-categories' || $page == '/webapp/public/auditif') ? require '../fetch/selectCategory.php' : '' ?>
+<?php ($page == '/webapp/public/acount') ? require '../fetch/addUserPhoto.php' : '' ?>
+<script>
+    $(document).ready(function() {
+        <?php if (!empty($_SESSION['token'])) {
+            if (time() >  $_SESSION['logOutTime']) { ?>
+                $('#myModal').modal('show')
+                $('#modalBtn').on('click', function(event) {
+                    <?php session_destroy(); ?>
+                });
+        <?php }
+        } ?>
+    });
+</script>
 <footer>
     <div class="row text-center footer">
         <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">

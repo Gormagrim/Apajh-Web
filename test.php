@@ -1,0 +1,1 @@
+href="/webapp/public/auditif-categorie-<?= str_replace('\'', '', strtolower(iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', str_replace(' ', '-', $cat->category)))) ?>"
