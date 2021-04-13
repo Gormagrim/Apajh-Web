@@ -19,7 +19,7 @@ $contentController = new ContentController;
                 <div class="row">
                     <div class="col-12 offset-sm-2 col-sm-8 offset-md-2 col-md-8 offset-lg-2 col-lg-8 offset-xl-2 col-xl-8 formConnexion">
                         <form class="d-flex" action="/webapp/public/auditif" method="POST">
-                            <input class="form-control me-2" type="search" name="contentTitle" placeholder="Taper un mot ici" aria-label="Search">
+                            <input class="form-control me-2" type="search" name="contentTitle" placeholder="Taper un mot ici" aria-label="Search" autofocus>
                             <button class="btn btn-primary" type="submit">Rechercher</button>
                             <?php if (isset($formErrors['search'])) { ?>
                                 <div class="invalid-feedback">

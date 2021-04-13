@@ -5,6 +5,8 @@
 <?php ($page == '/webapp/public/auditif') ? require '../fetch/likeMatch.php' : '' ?>
 <?php ($page == '/webapp/public/auditif-categories' || $page == '/webapp/public/auditif') ? require '../fetch/selectCategory.php' : '' ?>
 <?php ($page == '/webapp/public/acount') ? require '../fetch/addUserPhoto.php' : '' ?>
+<?php ($page == '/webapp/public/acount') ? require '../fetch/citiesSelect.php' : '' ?>
+<?php ($page == '/webapp/public/') ? require '../fetch/citiesSelect.php' : '' ?>
 <script>
     $(document).ready(function() {
         <?php if (!empty($_SESSION['token'])) {

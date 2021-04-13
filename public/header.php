@@ -29,7 +29,7 @@ $page = $_SERVER['REQUEST_URI'];
                         <a class="nav-link" href="#">Qui sommes-nous ?</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/webapp/views/blogIndex.php">IME</a>
+                        <a class="nav-link" href="/webapp/public/blog">IME</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/">SESSAD</a>
@@ -45,7 +45,7 @@ $page = $_SERVER['REQUEST_URI'];
                     </li>
                 </ul>
                 <?php if (!empty($_SESSION['token'])) { ?>
-                    <a href="/webapp/public/acount" type="button"><i class="fas fa-user-circle fa-2x"></i></a>
+                    <a href="/webapp/public/acount" type="button"><img class="addPhoto" src="<?= !empty($_SESSION['photo']) ? $_SESSION['photo'] : 'assets/img/flower.svg' ?>" alt=""></a>
                 <?php  } else { ?>
                     <a href="/webapp/public/connexion" type="button" class="btn btn-primary">Se connecter</a>
                 <?php } ?>

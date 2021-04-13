@@ -14,10 +14,10 @@ try {
         require '../views/register.php';
     });
     $router->map('POST', '/webapp/public/register', 'UserController#register');
+    $router->map('POST', '/webapp/public/connexion', 'UserController#login');
     $router->map('GET', '/webapp/public/connexion', function () {
         require '../views/connexion.php';
     });
-    $router->map('POST', '/webapp/public/connexion', 'UserController#login');
     $router->map('GET', '/webapp/public/acount', 'UserController#getUserDescription');
     $router->map('POST', '/webapp/public/acount', 'UserController#descriptionUpdate');
 
@@ -41,8 +41,12 @@ try {
 
     $router->map('POST', '/webapp/public/deconnexion', 'UserController#logout');
     $router->map('GET', '/webapp/public/blog', function () {
+        require '../views/blogIndex.php';
+    });
+    $router->map('GET', '/webapp/public/blog-article', function () {
         require '../views/article.php';
     });
+    
 } catch (\Exception $e) {
     echo $e->getMessage();
 }

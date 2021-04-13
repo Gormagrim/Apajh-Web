@@ -1,5 +1,8 @@
 <?php
-require_once '../controllers/UserController.php'; ?>
+require_once '../controllers/UserController.php';
+require_once '../controllers/ContentController.php';
+$contentController = new ContentController;
+?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
@@ -32,11 +35,9 @@ require_once '../controllers/UserController.php'; ?>
                 </div>
             </div>
             <div>
-                <img class="avatar" src="assets/img/flower.svg" alt="..." class="img-thumbnail">
+                <img class="avatar" src="<?= !empty($_SESSION['photo']) ? $_SESSION['photo'] : 'assets/img/flower.svg' ?>" alt="Photo de profil de <?= $user['firstname'] . ' ' . $user['lastname'] ?>" class="img-thumbnail">
                 <a class="addPhoto" title="Changer votre photo de profil"><i class="fas fa-camera"></i></a>
-                <form action="POST" id="addPhotoForm">
-                    <input class="addPhoto" id="addPhoto" name="file" type="file">
-                </form>
+                <input class="addPhoto" name="file" type="file">
             </div>
             <div class="row">
                 <div class="col-12 offset-sm-2 col-sm-8 offset-md-2 col-md-8 offset-lg-2 col-lg-8 offset-xl-2 col-xl-8 text-center mail">
@@ -100,11 +101,14 @@ require_once '../controllers/UserController.php'; ?>
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                         <?php if (!empty($formErrors)) { ?>
-                            <input type="text" class="form-control information" id="city" name="city" placeholder="Votre ville" value="<?= isset($user['city']) ? $user['city'] : (isset($_POST['city']) ? $_POST['city'] : '') ?>" />
+                            <!-- REVOIR LE SELECT DE LA VILLE QUI NE FONCTIONNE PAS BIEN -->
+                            <input list="cities" type="text" class="form-control information" data-id="" id="city" name="city" placeholder="Tapez votre code postal" value="" />
+                            <datalist id="cities" class="tata"></datalist>
                         <?php } elseif (empty($formErrors)) { ?>
                             <span id="spanCity" class="myCivility"><?= isset($user['city']) ? $user['city'] : '' ?></span>
                         <?php } ?>
-                        <input type="hidden" class="form-control information" id="city" name="city" placeholder="Votre ville" value="<?= isset($user['city']) ? $user['city'] : (isset($_POST['city']) ? $_POST['city'] : '') ?>" />
+                        <input list="cities" type="hidden" class="form-control information" data-id="" id="city" name="city" placeholder="Tapez votre code postal" value="" />
+                        <datalist id="cities" class="tata" value=""></datalist>
                         <?php if (isset($formErrors['city'])) { ?>
                             <div class="invalid-feedback">
                                 <p><?= $formErrors['city'] ?></p>

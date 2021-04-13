@@ -206,8 +206,23 @@ a.addPhoto i {
     box-shadow: 5px 5px 5px grey;
 }
 
+ img.addPhoto {
+    width: 40px;
+    line-height: 30px;
+    height: 40px;
+    border: 4px solid rgba(250, 220, 230, 0.8);
+    border-radius: 20px;
+}
 
+input.addPhoto {
+    margin-left: -5vh;
+    width: 40px;
+    line-height: 30px;
+    height: 40px;
+    border-radius: 20px;
+    opacity: 0;
 
+}
 
 a.addPhoto i:hover {
     color: #FFE2AD;
@@ -275,6 +290,8 @@ button.btn-close.closer {
     color: #677DB7;
     margin-left: 4vh;
 }
+
+
 
 /* INFORMATION */
 
@@ -733,3 +750,6 @@ button.modalBtn a {
     background-color: rgba(250, 220, 230, 0.8);
 }
 
+.tata {
+    color: #1B2021;
+}

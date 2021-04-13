@@ -1,6 +1,7 @@
 <script>
     //PREMIER SELECT
     $('.catItem').on('change', function(event) {
+        $('.catWord').empty()
         event.preventDefault();
         const getVideoByCat = async function(data) {
             try {

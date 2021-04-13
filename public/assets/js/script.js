@@ -51,6 +51,7 @@ $(document).ready(function () {
         $('#lastname').attr('type', 'text');
         $('#city').attr('type', 'text');
         $('#job').attr('type', 'text');
+        $('.selectCity').css('visibility', 'visible');
         $('#modification').css('visibility', 'hidden');
         $('#modificationValidation').css('visibility', 'visible');
     });

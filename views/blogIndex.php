@@ -29,7 +29,7 @@
                                         Nulla illum omnis inventore dolores cupiditate reprehenderit, velit ipsa deleniti molestiae quo non ut consequuntur voluptate totam animi ratione possimus odit repellat.
                                         Lorem ipsum dolor, sit amet consectetur adipisicing elit. Blanditiis, in quos eveniet quod perspiciatis id beatae quisquam maxime ab laudantium quibusdam,
                                         atque dolore tempore nulla vel minima corporis maiores facilis.</p>
-                                    <a href="/webapp/article.php" class="btn btn-info plus">Voir plus</a>
+                                    <a href="/webapp/public/blog-article" class="btn btn-info plus">Voir plus</a>
                                     <button type="button" class="btn btn-primary like">
                                         Like <span class="badge bg-secondary">27</span>
                                     </button>

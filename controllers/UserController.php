@@ -17,6 +17,15 @@ class UserController
             'http_errors' => false
         ]);
     }
+
+    public function getUserPhoto($fileName)
+    {
+        $request = $this->client->request('GET', 'user/' . $fileName);
+        $userPhoto = json_decode($request->getBody());
+        ($request->getStatusCode() == 200) ? $src = 'data:' . $userPhoto->type . ';base64,' . $userPhoto->file : $src = '';
+        return $src;
+    }
+
     public function register()
     {
         $formErrors = array();
@@ -130,6 +139,12 @@ class UserController
                     $_SESSION['logTime'] = time();
                     $_SESSION['logOutTime'] = (time() + 3600);
                     $_SESSION['mail'] = $mail;
+                    $_SESSION['fileName'] = $register->userPhoto;
+                    $req = $this->client->request('GET', 'user/' . $_SESSION['fileName']);
+                    $userPhoto = json_decode($req->getBody());
+                    ($req->getStatusCode() == 200) ? $src = 'data:' . $userPhoto->type . ';base64,' . $userPhoto->file : $src = '';
+                    $_SESSION['photo'] = $src;
+
                     $success['valid'] = 'Vous vous êtes correctement connecté.';
                     // require '../views/connexionValidate.php';
                     header('refresh:0;url=http://localhost/webapp/public/');
@@ -172,10 +187,17 @@ class UserController
                     $user['firstname'] = $userInformation->user_description->firstname;
                 }
                 if (!empty($userInformation->ville->cities)) {
-                    $user['city'] = $userInformation->ville->cities;
+                    $user['city'] = $userInformation->ville->cities . ' ' . '(' . $userInformation->ville->postalCode . ')';
                 }
                 if (!empty($userInformation->user_description->job)) {
                     $user['job'] = $userInformation->user_description->job;
+                }
+                if (!empty($userInformation->photo->fileName)) {
+                    $user['fileName'] = $userInformation->photo->fileName;
+                    $req = $this->client->request('GET', 'user/' . $user['fileName']);
+                    $userPhoto = json_decode($req->getBody());
+                    ($req->getStatusCode() == 200) ? $src = 'data:' . $userPhoto->type . ';base64,' . $userPhoto->file : $src = '';
+                    $_SESSION['photo'] = $src;
                 }
                 require '../views/personnalInformation.php';
             } catch (\Exception $e) {
