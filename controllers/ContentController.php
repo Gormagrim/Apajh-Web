@@ -29,9 +29,29 @@ class ContentController
     public function getCategory()
     {
         try {
+            $page = $_SERVER['REQUEST_URI'];
             $request = $this->client->request('GET', 'videos');
             $category = json_decode($request->getBody());
-            require '../views/auditif-category.php';
+            if ($page == '/webapp/public/auditif-categories') {
+                require '../views/auditif-category.php';
+            } else if ($page == '/webapp/public/admin') {
+                require '../views/videosLdfAdmin.php';
+            }
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function getVideosByLike()
+    {
+        try {
+            $request = $this->client->request('GET', 'likeVideos', [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $_SESSION['token']
+                ]
+            ]);
+            $likeVideo = json_decode($request->getBody());
+            require '../views/favoris.php';
         } catch (\Exception $e) {
             echo $e->getMessage();
         }
@@ -80,6 +100,4 @@ class ContentController
             }
         }
     }
-
-
 }

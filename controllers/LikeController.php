@@ -34,7 +34,6 @@ class LikeController
                 ]);
                 $isLiked = json_decode($request->getBody());
                 $likke = $isLiked->isLike;
-              //  var_dump($likke);
                 if ($isLiked->isLike == 0) {
                     $request = $this->client->request('POST', 'like', [
                         'headers' => [

@@ -21,6 +21,8 @@ try {
     $router->map('GET', '/webapp/public/acount', 'UserController#getUserDescription');
     $router->map('POST', '/webapp/public/acount', 'UserController#descriptionUpdate');
 
+    $router->map('GET', '/webapp/public/favoris', 'ContentController#getVideosByLike');
+
     $router->map('GET', '/webapp/public/password', function () {
         require '../views/passwordModification.php';
     });
@@ -31,13 +33,18 @@ try {
         require '../views/auditif.php';
     });
     $router->map('POST', '/webapp/public/auditif-like', 'LikeController#like');
-    
+
     $router->map('GET', '/webapp/public/auditif-categories', 'ContentController#getCategory');
 
-    $router->map('POST', '/webapp/public/auditif-categorie-[:format]?', function () {
-        require '../views/auditif-category.php';
+    $router->map('GET', '/webapp/public/admin', 'ContentController#getCategory');
+    $router->map('GET', '/webapp/public/admin', function () {
+        require '../views/videosLdfAdmin.php';
     });
 
+
+    $router->map('GET', '/webapp/public/admin-word', function () {
+        require '../views/admin-word.php';
+    });
 
     $router->map('POST', '/webapp/public/deconnexion', 'UserController#logout');
     $router->map('GET', '/webapp/public/blog', function () {
@@ -46,7 +53,9 @@ try {
     $router->map('GET', '/webapp/public/blog-article', function () {
         require '../views/article.php';
     });
-    
+    $router->map('GET', '/webapp/public/qui-sommes-nous', function () {
+        require '../views/us.php';
+    });
 } catch (\Exception $e) {
     echo $e->getMessage();
 }

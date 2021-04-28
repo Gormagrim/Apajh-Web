@@ -1,4 +1,48 @@
 <script>
+    // Nombre de mots
+    $(document).ready(function() {
+        const CountVideo = async function(data) {
+            try {
+                let response = await fetch('http://localhost/apiApajhv0/public/v1/countVideos', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                if (response.ok) {
+                    let responseCountWord = await response.json()
+                    $('.wordNumber').append(responseCountWord)
+                } else {
+                    console.error('Retour : ', response.status)
+                }
+            } catch (e) {
+                console.log(e)
+            }
+        }
+        CountVideo()
+    });
+    // Nombre de catégories
+    $(document).ready(function() {
+        const CountCat = async function(data) {
+            try {
+                let response = await fetch('http://localhost/apiApajhv0/public/v1/countCat', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                })
+                if (response.ok) {
+                    let responseCountCat = await response.json()
+                    $('.catNumber').append(responseCountCat)
+                } else {
+                    console.error('Retour : ', response.status)
+                }
+            } catch (e) {
+                console.log(e)
+            }
+        }
+        CountCat()
+    });
     //PREMIER SELECT
     $('.catItem').on('change', function(event) {
         $('.catWord').empty()
@@ -14,6 +58,8 @@
                 })
                 if (response.ok) {
                     let responseDataCatId = await response.json()
+                    var index = '<option value="">--Choisissez votre mot--</option>'
+                    $('.catWord').append(index)
                     for (var resp in responseDataCatId) {
                         var display = '<option data-id="' + responseDataCatId[resp].id_content + '" value="' + responseDataCatId[resp].id_content + '">' + responseDataCatId[resp].videoTitle + '</option>'
                         $('.catWord').append(display)
@@ -42,6 +88,8 @@
         $('.hiddenCount').attr('value', '')
         $('.videoDiv').css('visibility', 'visible')
         $('.ldsVideoByCat').attr('src', '')
+        $('.moreThanOne').css('opacity', 1)
+        $('.viewNumber').empty()
         const getVideoById = async function(data) {
             try {
                 let response = await fetch('http://localhost/apiApajhv0/public/v1/videoContent', {
@@ -65,6 +113,14 @@
                     $('.contentLike').attr('value', responseDataId[0].id)
                     $('.hiddenCount').attr('value', countLike)
                     $('.articleLike').attr('data-like', responseDataId[0].id)
+                    $('.wordTitle').attr('data-id', responseDataId[0].id)
+                    if (responseDataId[0].view[0].viewNumber == []) {
+                        $('.viewNumber').html(' 0 vue')
+                    } else if (responseDataId[0].view[0].viewNumber == 1) {
+                        $('.viewNumber').html(' ' + responseDataId[0].view[0].viewNumber + ' vue')
+                    } else {
+                        $('.viewNumber').html(' ' + responseDataId[0].view[0].viewNumber + ' vues')
+                    }
                     var fileName = $('.hiddenFileName').attr('data-fileName')
                     const getVideo = async function() {
                         try {
@@ -86,6 +142,7 @@
                         }
                     }
                     getVideo(fileName)
+
                 } else {
                     console.error('Retour : ', response.status)
                 }
@@ -157,5 +214,37 @@
                 id_content: $(this).val()
             })
         <?php  }  ?>
+    });
+
+    //SELECT pour un nombre de réponses > 6 (sans éffacer .catItem)
+    $('.wordItem').on('change', function(event) {
+        event.preventDefault();
+        $('.moreThanOne').css('opacity', 1)
+        const getVideoByCat = async function(data) {
+            try {
+                let response = await fetch('http://localhost/apiApajhv0/public/v1/videos-cat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                if (response.ok) {
+                    let responseDataCatId = await response.json()
+                    for (var resp in responseDataCatId) {
+                        var display = '<option data-id="' + responseDataCatId[resp].id_content + '" value="' + responseDataCatId[resp].id_content + '">' + responseDataCatId[resp].videoTitle + '</option>'
+                        $('.catWord').append(display)
+                        $('.wordTitle').attr('data-id', responseDataCatId[resp].id_content)
+                    }
+                } else {
+                    console.error('Retour : ', response.status)
+                }
+            } catch (e) {
+                console.log(e)
+            }
+        }
+        getVideoByCat({
+            id_category: $(this).val()
+        })
     });
 </script>

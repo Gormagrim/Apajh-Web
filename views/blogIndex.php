@@ -1,5 +1,9 @@
-
 <div class="container-fuid">
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+            <img class="img-fluid pageSignes" src="./assets/img/page-blog.png" alt="Logo de la page de la langue des signes de l'Apajh à SAINT-QUENTIN">
+        </div>
+    </div>
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
             <h1 class="blog">Bienvenue sur le blog de l'IME la FEUILLAUME de SAINT-QUENTIN</h1>

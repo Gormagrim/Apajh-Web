@@ -6,7 +6,11 @@ $contentController = new ContentController;
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
-            <h1>Mon compte</h1>
+            <img class="img-fluid pageSignes" src="./assets/img/ma-page.png" alt="Logo de ma page sur le site de l'Apajh à SAINT-QUENTIN">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
             <?php if (isset($formErrors['login'])) { ?>
                 <div class="invalid-feedback">
                     <h2><?= $formErrors['login'] ?></h2>
@@ -30,33 +34,44 @@ $contentController = new ContentController;
     <div class="row">
         <div class="offset-1 col-10 offset-sm-2 col-sm-8 offset-md-2 col-md-8 offset-lg-2 col-lg-8 offset-xl-2 col-xl-8 acount">
             <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                    <img class="avatar" src="<?= !empty($_SESSION['photo']) ? $_SESSION['photo'] : 'assets/img/flower.svg' ?>" alt="Photo de profil de <?= $user['firstname'] . ' ' . $user['lastname'] ?>" class="img-thumbnail">
+                    <a class="addPhoto" title="Changer votre photo de profil"><i class="fas fa-camera"></i></a>
+                    <input class="addPhoto" name="file" type="file">
+                </div>
+                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 h1compte text-center">
+                            <h1>Mon compte</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 offset-sm-2 col-sm-8 offset-md-2 col-md-8 offset-lg-2 col-lg-8 offset-xl-2 col-xl-8 text-center mail">
+                            <span class=""><?= isset($_SESSION['mail']) ? $_SESSION['mail'] : '' ?></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                     <button type="button" class="btn-close closer" onclick="history.go(-1)" aria-label="Close"></button>
                 </div>
             </div>
-            <div>
-                <img class="avatar" src="<?= !empty($_SESSION['photo']) ? $_SESSION['photo'] : 'assets/img/flower.svg' ?>" alt="Photo de profil de <?= $user['firstname'] . ' ' . $user['lastname'] ?>" class="img-thumbnail">
-                <a class="addPhoto" title="Changer votre photo de profil"><i class="fas fa-camera"></i></a>
-                <input class="addPhoto" name="file" type="file">
-            </div>
             <div class="row">
-                <div class="col-12 offset-sm-2 col-sm-8 offset-md-2 col-md-8 offset-lg-2 col-lg-8 offset-xl-2 col-xl-8 text-center mail">
-                    <span class=""><?= isset($user['mail']) ? $user['mail'] : '' ?></span>
-                    <form action="/webapp/public/deconnexion" method="post">
-                        <button type="submit" class="btn btn-secondary btn-sm">Déconnexion</button>
-                    </form>
+                <div class="col-12 offset-sm-2 col-sm-4 offset-md-2 col-md-4 offset-lg-2 col-lg-4 offset-xl-2 col-xl-4 text-center">
+                    <a class="btn btn-secondary modification" href="/webapp/public/password">Modifier mon mot de passe</a>
                 </div>
-                <div class="row">
-                    <div class="col-12 offset-sm-2 col-sm-4 offset-md-2 col-md-4 offset-lg-2 col-lg-4 offset-xl-2 col-xl-4 text-center">
-                        <a class="btn btn-secondary modification" href="/webapp/public/password">Modifier mon mot de passe</a>
-                    </div>
-                    <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 text-center">
-                        <?php if (empty($formErrors)) { ?>
-                            <button type="submit" id="modification" class="btn btn-secondary modification" name="modification">Modifier mes informations</button>
-                        <?php } ?>
-                    </div>
+                <div class="col-12 col-sm-4 col-md-4 col-lg-4 col-xl-4 text-center">
+                    <?php if (empty($formErrors)) { ?>
+                        <button type="submit" id="modification" class="btn btn-secondary modification" name="modification">Modifier mes informations</button>
+                    <?php } ?>
                 </div>
             </div>
+            <?php if ($_SESSION['ug'] == 1) { ?>
+                <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+                        <a class="btn btn-secondary admin" href="/webapp/public/admin">panneau ADMIN</a>
+                    </div>
+                </div>
+            <?php } ?>
             <form action="/webapp/public/acount" method="POST">
                 <div class="row civility">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">

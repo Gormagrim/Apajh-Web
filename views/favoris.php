@@ -1,43 +1,64 @@
-<?php
-require_once '../controllers/ContentController.php';
-$contentController = new ContentController;
-?>
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
-            <img class="img-fluid pageSignes" src="./assets/img/page-signes.png" alt="Logo de la page de la langue des signes de l'Apajh à SAINT-QUENTIN">
+            <img class="img-fluid pageSignes" src="./assets/img/ma-page.png" alt="Logo de ma page sur le site de l'Apajh à SAINT-QUENTIN">
         </div>
     </div>
     <div class="row">
-        <div class="col-12 offset-sm-1 col-sm-2 offset-md-1 col-md-2 offset-lg-1 col-lg-2 offset-xl-1 col-xl-2 text-center selectCat">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 h1compte text-center mt-4">
+            <h1>Mes favoris</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 h1compte text-center mt-4">
+            <p>A chaque fois que vous aimez un article ou une vidéo, elle est enregistrée dans vos favoris.</p>
+            <p>Vous pouvez ainsi facilement les retrouver ici !</p>
+            <p class="favorisV">Vos favoris comportent <?= count($likeVideo) ?> vidéos.</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-1 col-10 offset-sm-1 col-sm-1 offset-md-1 col-md-1 offset-lg-1 col-lg-1 offset-xl-1 col-xl-1">
             <div class="row">
-                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                    <h2>Les catégories</h2>
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+                    <div class="connexion favoris">
+                        <span>Articles</span>
+                    </div>
                 </div>
-            </div>
-            <div class="catItem col-12 text-center">
-                <select class="catItem" name="Category">
-                    <option value="">--Choisis une catégorie--</option>
-                    <?php
-                    foreach ($category as $cat) { ?>
-                        <option value="<?= $cat->id ?>" data-catId="<?= $cat->id ?>"><?= $cat->category ?></option>
-                    <?php
-                    } ?>
-                </select>
-                <input class="hiddenFileName" type="hidden" data-fileName="" value="">
-            </div>
-            <div class="col-12 text-center">
-                <select class="catWord" name="catWord" id="catWord">
-                </select>
             </div>
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
-                    <a href="/webapp/public/auditif" class="btn btn-primary otherWord">Autre recherche</a>
+                    <div class="connexion favoris ldsfVideo">
+                        <span>Vidéos LSF</span>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="offset-1 col-10 offset-sm-2 col-sm-4 offset-md-2 col-md-4 offset-lg-2 col-lg-4 offset-xl-2 col-xl-4 text-center videoDiv" id="video_">
+        <div class="offset-1 col-10 offset-sm-1 col-sm-1 offset-md-1 col-md-1 offset-lg-1 col-lg-1 offset-xl-1 col-xl-1 mt-5">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <select class="favoritSelect" name="testFavoris">
+                        <option value="">--Choisis une catégorie--</option>
+                        <?php
+                        $arr = [];
+                        foreach ($likeVideo as $like) {
+                            $arr[] = $like->category;
+                        };
+                        $catList = array_unique($arr);
+                        foreach ($catList as $cat) { ?>
+                            <option value="<?= $cat ?>"><?= $cat ?></option>
+                        <?php
+                        } ?>
+                    </select>
+                    <input class="hiddenFileName" type="hidden" data-fileName="" value="">
+                </div>
+                <div class="col-12 text-center">
+                    <select class="favoritSelectWord">
+                    </select>
+                </div>
+            </div>
 
+        </div>
+        <div class="offset-1 col-10 offset-sm-2 col-sm-4 offset-md-2 col-md-4 offset-lg-2 col-lg-4 offset-xl-2 col-xl-4 text-center videoDiv">
             <div class="wordDiv connexion videoss">
                 <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
@@ -71,12 +92,7 @@ $contentController = new ContentController;
                         <input class="hiddenCount" type="hidden" value="">
                     </div>
                     <div class="row">
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 text-center">
-                            <input type="hidden" class="badgehidden" value="">
-                            <i class="far fa-heart" data-isLike=""></i>
-                            <span class="badge" id="" data-like=""></span>
-                        </div>
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 text-center">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
                             <a class="socialN first" href=""><i class="fab fa-facebook"></i></a>
                             <a class="socialN" href=""><i class="fab fa-facebook-messenger"></i></a>
                             <a class="socialN" href=""><i class="fab fa-instagram"></i></a>
@@ -101,14 +117,6 @@ $contentController = new ContentController;
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="likeItem moreThanOne">
-            <i title="" type="submit" class="far fa-thumbs-up fa-2x articleLike " data-like="" data-isLike=""></i>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-4">
-            <h2 class="auditif-cat">Notre signothèque contient <span class="wordNumber"></span> mots répartis dans <span class="catNumber"></span> catégories.</h2>
         </div>
     </div>
 </div>

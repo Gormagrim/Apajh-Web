@@ -60,19 +60,19 @@ $(video).on('pause',function(){
 });
 $('.speed_100').click(function() {
     video.playbackRate = 1.0;
-    $('.speedBtn').html('Vitesse de lecture')
+    $('.speedBtn').html('<img class="lievre" src="assets/img/lievre-blanc.png" alt=""> x2')
 });
 $('.speed_75').click(function() {
     video.playbackRate = 0.75;
-    $('.speedBtn').html('Vitesse de lecture x 0.75')
+    $('.speedBtn').html('<img class="lievre" src="assets/img/lievre-blanc.png" alt="">')
 });
 $('.speed_50').click(function() {
     video.playbackRate = 0.50;
-    $('.speedBtn').html('Vitesse de lecture x 0.50')
+    $('.speedBtn').html('<img class="tortue" src="assets/img/tortue-blanche.png" alt="">')
 });
 $('.speed_25').click(function() {
     video.playbackRate = 0.25;
-    $('.speedBtn').html('Vitesse de lecture x 0.25')
+    $('.speedBtn').html('<img class="tortue" src="assets/img/tortue-blanche.png" alt=""> x2')
 });
 
 

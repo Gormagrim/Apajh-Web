@@ -11,6 +11,7 @@
             let response = await fetch('http://localhost/apiApajhv0/public/v1/userphoto', {
                 method: 'DELETE',
                 headers: {
+                    'Content-Type': 'multipart/form-data',
                     'Authorization': 'Bearer <?php echo $_SESSION['token']; ?>'
                 },
                 body: formData

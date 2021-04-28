@@ -144,10 +144,10 @@ class UserController
                     $userPhoto = json_decode($req->getBody());
                     ($req->getStatusCode() == 200) ? $src = 'data:' . $userPhoto->type . ';base64,' . $userPhoto->file : $src = '';
                     $_SESSION['photo'] = $src;
-
+                    $_SESSION['ug'] = $register->userGroup;
                     $success['valid'] = 'Vous vous êtes correctement connecté.';
                     // require '../views/connexionValidate.php';
-                    header('refresh:0;url=http://localhost/webapp/public/');
+                    header('Location: http://localhost/webapp/public/');
                 } else {
                     $success['error'] = 'Une erreur est surevenue durant la connexion.';
                 }
@@ -160,11 +160,8 @@ class UserController
     public function logout()
     {
         $this->client->request('POST', 'logout');
-        session_destroy();
-        $success['valid'] = 'Vous vous êtes correctement déconnecté.';
-        //  require '../views/deconnexion.php';
-        header('refresh:0;url=http://localhost/webapp/public/');
-        exit();
+        session_unset();
+        header('Location: http://localhost/webapp/public/');
     }
 
     public function getUserDescription()

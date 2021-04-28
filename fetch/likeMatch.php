@@ -4,6 +4,7 @@
         $('.wordListLi').css('background-color', '#FADCE6')
         $('.wordListLi').css('color', '#000')
         $('.videoDiv').css('visibility', 'visible')
+        $('.moreThanOne').css('opacity', 1)
         const likeMatch = async function(data) {
             try {
                 let response = await fetch('http://localhost/apiApajhv0/public/v1/likematch', {
@@ -16,7 +17,6 @@
                 })
                 if (response.ok) {
                     let responseData = await response.json()
-                    console.log(responseData)
                     $('.wordList').attr('data-isLike', responseData.isLike)
                     $('.articleLike').attr('data-isLike', responseData.isLike);
                     $('.fa-heart').attr('data-isLike', responseData.isLike);
@@ -51,6 +51,8 @@
         var title = $(this).attr('data-contentTitle');
         var text = $(this).attr('data-videoText');
         var like = $(this).attr('data-like');
+        var view = $(this).attr('data-view');
+        console.log($(this).attr('data-view'))
         $('.ldsVideo').attr('src', src);
         $('h2.wordTitle').html(title);
         $('p.wordText').html(text);
@@ -60,6 +62,15 @@
         } else {
             $('.badge').html(like + ' personne aime');
         }
+        if (view == 0) {
+            $('.viewNumber').html(' 0 vue')
+        } else if (view == 1) {
+            $('.viewNumber').html(' ' + view + ' vue')
+        }else {
+            $('.viewNumber').html(' ' + view + ' vues')
+        }
+        
+        $('.wordTitle').attr('data-id', id)
         $('.badge').attr('data-like', like);
         $('.articleLike').attr('data-like', id);
         $('.hiddenId').attr('value', id);
@@ -69,4 +80,60 @@
         $(this).css('background-color', '#677DB7')
         $(this).css('color', '#FFF')
     });
+
+    // Affichage du top 3 des vidéos
+    $(document).ready(function() {
+        const getTopThree = async function(data) {
+            try {
+                let response = await fetch('http://localhost/apiApajhv0/public/v1/likedVideo', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer <?php echo $_SESSION['token']; ?>'
+                    }
+                })
+                if (response.ok) {
+                    let responseTop = await response.json()
+                    var count = 1
+                    for (var resp in responseTop) {
+                        var display = '<div class="top" data-id="' + responseTop[resp].id_content + '" data-topLike="' + responseTop[resp].numLike + '"><span class="position">' + count++ + '- </span><span>' + responseTop[resp].contentTitle + '</span><span class="category"> (' + responseTop[resp].category + ')</span><span class="likeNumber"> ' + responseTop[resp].numLike + ' <i class="fas fa-heart"></i></span>'
+                        '</div>'
+                        $('.topThree').append(display)
+                    }
+                } else {
+                    console.error('Retour : ', response.status)
+                }
+            } catch (e) {
+                console.log(e)
+            }
+        }
+        getTopThree()
+    });
+
 </script>
+<script>
+                $(document).ready(function() {
+                    const videoView = async function(data) {
+                        try {
+                            let response = await fetch('http://localhost/apiApajhv0/public/v1/viewVideo', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(data)
+                            })
+                            if (response.ok) {
+                                let responseVideoview = await response.json()
+                                console.log($('.wordTitle').attr('data-id'))
+                            } else {
+                                console.error('Retour : ', response.status)
+                            }
+                        } catch (e) {
+                            console.log(e)
+                        }
+                    }
+                    videoView({
+                        id_content: <?= $word->id ?>
+                    })
+                });
+            </script>

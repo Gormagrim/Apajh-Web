@@ -1,12 +1,21 @@
  <div class="container-fluid">
      <div class="row">
          <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
-             <h1>Inscription</h1>
+             <img class="img-fluid pageSignes" src="./assets/img/page-inscription.png" alt="Logo de la page d'inscription de l'Apajh à SAINT-QUENTIN">
+         </div>
+     </div>
+     <div class="row">
+         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-4">
              <p>Vous avez déjà un compte ? cliquez <a href="/webapp/public/connexion">ici</a> pour vous connecter.</p>
          </div>
      </div>
      <div class="row">
-         <div class="col-12 offset-sm-3 col-sm-6 offset-md-3 col-md-6 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6 connexion">
+         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+             <h1>Inscription à notre site et à nos applications</h1>
+         </div>
+     </div>
+     <div class="row">
+         <div class="offset-1 col-10 offset-sm-3 col-sm-6 offset-md-3 col-md-6 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6 connexion">
              <div class="row">
                  <div class="offset-1 col-10 offset-sm-2 col-sm-8 offset-md-2 col-md-8 offset-lg-2 col-lg-8 offset-xl-2 col-xl-8 formConnexion">
 

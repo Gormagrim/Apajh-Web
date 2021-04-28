@@ -1,6 +1,10 @@
-
 <div class="container-fluid">
     <div clas="row">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
+                <img class="img-fluid pageSignes" src="./assets/img/page-blog.png" alt="Logo de la page de la langue des signes de l'Apajh à SAINT-QUENTIN">
+            </div>
+        </div>
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <div class="row">
                 <div class="col-12 col-sm-10 col-md-10 col-lg-10 col-xl-10">
