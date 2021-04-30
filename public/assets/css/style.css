@@ -210,6 +210,7 @@ label.condition {
 }
 
 .avatar {
+    overflow:hidden;
     height: 200px;
     width: 200px;
     border-radius: 100px;
@@ -319,6 +320,11 @@ button.btn-close.closer {
 .fas.fa-pen {
     color: #677DB7;
     margin-left: 4vh;
+}
+
+.userPhotoError {
+    color: #CF4D6F;
+    font-size: small;
 }
 
 /* INFORMATION */
@@ -874,6 +880,26 @@ img.tortue {
 .iframe {
     display: table-cell;
     text-align: center;
+}
+
+.top {
+    background-color: rgba(250, 220, 230, 0.8);
+    border-radius: 1vh;
+}
+
+.likeNumber {
+    float: right;
+    margin-right: 1vh;
+}
+
+.position {
+    float: left;
+    margin-left: 1vh;
+}
+
+.bleu {
+    color: #677DB7;
+    font-weight: bold;
 }
 
 /* MODAL DE RECONNEXION */

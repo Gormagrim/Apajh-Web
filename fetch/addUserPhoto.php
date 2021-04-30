@@ -35,8 +35,11 @@
             if (response.ok) {
                 let responseData = await response.json()
                 location.reload();
+                console.log(responseData.file)
             } else {
+                let responseData = await response.json()
                 console.error('Retour : ', response.status)
+                $('.userPhotoError').append(responseData.file)
             }
         } catch (e) {
             console.log(e)

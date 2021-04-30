@@ -56,6 +56,11 @@ $contentController = new ContentController;
                 </div>
             </div>
             <div class="row">
+                <div class="col-12 offset-sm-2 col-sm-8 offset-md-2 col-md-8 offset-lg-2 col-lg-8 offset-xl-2 col-xl-8 text-center">
+                    <span class="userPhotoError"></span>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-12 offset-sm-2 col-sm-4 offset-md-2 col-md-4 offset-lg-2 col-lg-4 offset-xl-2 col-xl-4 text-center">
                     <a class="btn btn-secondary modification" href="/webapp/public/password">Modifier mon mot de passe</a>
                 </div>

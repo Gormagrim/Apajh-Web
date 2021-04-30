@@ -41,6 +41,13 @@ try {
         require '../views/videosLdfAdmin.php';
     });
 
+    $router->map('GET', '/webapp/public/jeux-educatifs', function () {
+        require '../views/games.php';
+    });
+
+    $router->map('GET', '/webapp/public/compter-deposer', function () {
+        require '../views/glisser.php';
+    });
 
     $router->map('GET', '/webapp/public/admin-word', function () {
         require '../views/admin-word.php';

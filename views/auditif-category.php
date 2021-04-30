@@ -48,6 +48,12 @@ $contentController = new ContentController;
                 </div>
                 <hr />
                 <div class="row">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center ">
+                        <i class="far fa-eye"><span class="viewNumber"></span></i>
+                    </div>
+                </div>
+                <hr />
+                <div class="row">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
                         <span class="category cat">catégorie: </span>
                     </div>

@@ -10,8 +10,13 @@
                     }
                 })
                 if (response.ok) {
+                    const REGEX_GROUPS = /(\d)(?=(\d\d\d)+(?!\d))/g
+                    // Le délimiteur FR est le _Narrow No-Break Space_, eh oui !
+                    function useGrouping(int, delimiter = '\u202f') {
+                        return int.toString().replace(REGEX_GROUPS, `$1${delimiter}`)
+                    }
                     let responseCountWord = await response.json()
-                    $('.wordNumber').append(responseCountWord)
+                    $('.wordNumber').append(useGrouping(responseCountWord))
                 } else {
                     console.error('Retour : ', response.status)
                 }
@@ -32,8 +37,13 @@
                     }
                 })
                 if (response.ok) {
+                    const REGEX_GROUPS = /(\d)(?=(\d\d\d)+(?!\d))/g
+                    // Le délimiteur FR est le _Narrow No-Break Space_, eh oui !
+                    function useGrouping(int, delimiter = '\u202f') {
+                        return int.toString().replace(REGEX_GROUPS, `$1${delimiter}`)
+                    }
                     let responseCountCat = await response.json()
-                    $('.catNumber').append(responseCountCat)
+                    $('.catNumber').append(useGrouping(responseCountCat))
                 } else {
                     console.error('Retour : ', response.status)
                 }
@@ -114,12 +124,17 @@
                     $('.hiddenCount').attr('value', countLike)
                     $('.articleLike').attr('data-like', responseDataId[0].id)
                     $('.wordTitle').attr('data-id', responseDataId[0].id)
-                    if (responseDataId[0].view[0].viewNumber == []) {
+                    const REGEX_GROUPS = /(\d)(?=(\d\d\d)+(?!\d))/g
+                    // Le délimiteur FR est le _Narrow No-Break Space_, eh oui !
+                    function useGrouping(int, delimiter = '\u202f') {
+                        return int.toString().replace(REGEX_GROUPS, `$1${delimiter}`)
+                    }
+                    if (responseDataId[0].view[0].viewNumber == [] || responseDataId[0].view[0].viewNumber == 0 || responseDataId[0].view[0].viewNumber == '') {
                         $('.viewNumber').html(' 0 vue')
                     } else if (responseDataId[0].view[0].viewNumber == 1) {
                         $('.viewNumber').html(' ' + responseDataId[0].view[0].viewNumber + ' vue')
                     } else {
-                        $('.viewNumber').html(' ' + responseDataId[0].view[0].viewNumber + ' vues')
+                        $('.viewNumber').html(' ' + useGrouping(responseDataId[0].view[0].viewNumber) + ' vues')
                     }
                     var fileName = $('.hiddenFileName').attr('data-fileName')
                     const getVideo = async function() {
@@ -158,9 +173,13 @@
     $('.catWord').on('change', function(event) {
         event.preventDefault();
         var countLike = $('.hiddenFileName').attr('data-like');
-        console.log(countLike)
+        const REGEX_GROUPS = /(\d)(?=(\d\d\d)+(?!\d))/g
+        // Le délimiteur FR est le _Narrow No-Break Space_, eh oui !
+        function useGrouping(int, delimiter = '\u202f') {
+            return int.toString().replace(REGEX_GROUPS, `$1${delimiter}`)
+        }
         if (countLike > 1) {
-            $('.badge').html(countLike + ' personnes aiment');
+            $('.badge').html(useGrouping(countLike) + ' personnes aiment');
         } else {
             $('.badge').html(countLike + ' personne aime');
         }
@@ -197,12 +216,16 @@
                             $('.articleLike').attr('title', 'Clique pour aimer ! :)');
                         }
                         var countLike = $('.badge').attr('data-like');
+                        const REGEX_GROUPS = /(\d)(?=(\d\d\d)+(?!\d))/g
+                        // Le délimiteur FR est le _Narrow No-Break Space_, eh oui !
+                        function useGrouping(int, delimiter = '\u202f') {
+                            return int.toString().replace(REGEX_GROUPS, `$1${delimiter}`)
+                        }
                         if (countLike > 1) {
-                            $('.badge').html(countLike + ' personnes aiment');
+                            $('.badge').html(useGrouping(countLike) + ' personnes aiment');
                         } else {
                             $('.badge').html(countLike + ' personne aime');
                         }
-                        console.log(countLike)
                     } else {
                         console.error('Retour : ', response.status)
                     }
@@ -215,7 +238,30 @@
             })
         <?php  }  ?>
     });
-
+    $('.catWord').on('change', function(event) {
+        event.preventDefault();
+        const videoView = async function(data) {
+            try {
+                let response = await fetch('http://localhost/apiApajhv0/public/v1/viewVideo', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                if (response.ok) {
+                    let responseVideoview = await response.json()
+                } else {
+                    console.error('Retour : ', response.status)
+                }
+            } catch (e) {
+                console.log(e)
+            }
+        }
+        videoView({
+            id_content: $(this).val()
+        })
+    });
     //SELECT pour un nombre de réponses > 6 (sans éffacer .catItem)
     $('.wordItem').on('change', function(event) {
         event.preventDefault();

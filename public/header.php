@@ -15,8 +15,6 @@ $page = $_SERVER['REQUEST_URI'];
     <script language="JavaScript" type="text/javascript" src="assets/js/jquery-3.6.6.js"></script>
     <link rel="stylesheet" href="assets/css/style.css" />
     <title>Apajh | SAINT-QUENTIN</title>
-    <!-- Balise de desindexation provisoire -->
-    <meta name="robots" content="noindex, nofollow">
 </head>
 
 <body>
@@ -51,7 +49,7 @@ $page = $_SERVER['REQUEST_URI'];
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="#">Divers</a></li>
-                            <li><a class="dropdown-item" href="#">Jeux éducatifs</a></li>
+                            <li><a class="dropdown-item" href="/webapp/public/jeux-educatifs">Jeux éducatifs</a></li>
                         </ul>
                     </li>
                 </ul>
