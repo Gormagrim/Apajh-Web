@@ -13,98 +13,95 @@ label {
     visibility: hidden;
 }
 
-#items img.fruit {
+.items img.fruit {
     width: 50px;
     opacity: 100%;
 }
 
-#items img.fruits {
+.items img.fruits {
     width: 50px;
 }
 
-#items img.vache {
+.items img.vache {
     width: 90px;
 }
 
-#items img.mouton {
+.items img.mouton {
     width: 50px;
 }
 
-#items img.poule {
+.items img.poule {
     width: 50px;
 }
 
-#items img.cheval {
+.items img.cheval {
     width: 90px;
 }
 
-#items img.cochon {
+.items img.cochon {
     width: 70px;
 }
 
-#items img.culotte {
+.items img.culotte {
     width: 70px;
 }
 
-#items img.t-shirt {
+.items img.t-shirt {
     width: 50px;
 }
 
-#items img.pull {
+.items img.pull {
     width: 50px;
 }
 
-#items img.chaussette {
+.items img.chaussette {
     width: 50px;
 }
 
-#items img.pantalon {
+.items img.pantalon {
     width: 100px;
 }
 
-#items img.yahourt {
+.items img.yahourt {
     width: 80px;
 }
 
-#items img.beurre {
+.items img.beurre {
     width: 80px;
 }
 
-#items img.lait {
+.items img.lait {
     width: 80px;
 }
 
-#items img.tomate {
+.items img.tomate {
     width: 80px;
 }
 
-#items img.jus {
+.items img.jus {
     width: 80px;
 }
 
-#items img.crabe {
+.items img.crabe {
     width: 80px;
 }
 
-#items img.poisson {
+.items img.poisson {
     width: 80px;
 }
 
-#items img.pieuvre {
+.items img.pieuvre {
     width: 80px;
 }
 
-#items img.tortue {
+.items img.tortue {
     width: 80px;
 }
 
-#items img.étoile {
+.items img.étoile {
     width: 80px;
 }
 
-div #items {
-    float: left;
-}
 
 #orange img {
     width: 50px;
@@ -122,27 +119,23 @@ div #items {
     width: 50px;
 }
 
-#table img {
-    margin-top: 1em;
-    margin-left: 5em;
-    width: 800px;
-}
-
 div #table {
-    float: left;
-    height: 100vh;
+    float: right;
 }
 
 div #panier {
-    height: 150vh;
+    margin-right: 0;
 }
 
-#table {
-    width: 65%;
+#table img {
+    margin-top: 1em;
+    width: 600px;
+    margin-bottom: 2vh;
 }
 
-#items {
-    width: 35%;
+.table {
+    width: auto;
+    margin: 0 auto;
 }
 
 .title {
@@ -182,7 +175,12 @@ h2.alert {
     background-color: #fff;
 }
 
-.speaker:hover {
+.speakerWin {
+    width: 45px;
+    height: auto;
+}
+
+.speakerWin:hover {
     color: lightcoral;
     cursor: pointer;
 }
@@ -196,4 +194,8 @@ h2.alert {
     background-color: black;
     margin: 2px;
     cursor: pointer;
+}
+
+.glisserD {
+    color: #677DB7;
 }

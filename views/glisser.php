@@ -1,12 +1,12 @@
 <div class="container-fluid glisser">
     <link rel="stylesheet" href="assets/css/styleGames.css" />
     <div class="row forms">
-        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-            <div class="row">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+            <div class="row text-center">
                 <form id="form" required>
-                    <div class="offset-1 col-10 offset-sm-1 col-sm-10 offset-md-1 col-md-10 offset-lg-1 col-lg-10 offset-xl-1 col-xl-10">
-                        <label for="pet-select">Choisies un thème :</label>
-                        <select class="form-control form-control-sm" name="theme" id="theme">
+                    <div class="offset-4 col-4 offset-sm-4 col-sm-4 offset-md-4 col-md-4 offset-lg-4 col-lg-4 offset-xl-4 col-xl-4 theme">
+                        <label class="glisserD" for="pet-select">Choisies un thème :</label>
+                        <select class="form-control form-control-sm catItem" name="theme" id="theme">
                             <option value="">--Sélectionnes un thème--</option>
                             <option value="0">Les fruits</option>
                             <option value="1">Les animaux de la ferme</option>
@@ -16,17 +16,17 @@
                         </select>
                     </div>
                     <div class="row">
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                            <label for="pet-select">Nombre d'objets différents :</label>
-                            <select class="form-control form-control-sm" name="theme" id="itemNumber">
+                        <div class="offset-2 col-3 offset-sm-2 col-sm-3 offset-md-2 col-md-3 offset-lg-2 col-lg-3 offset-xl-2 col-xl-3 objectNumber">
+                            <label class="glisserD" for="pet-select">Nombre d'objets différents :</label>
+                            <select class="form-control form-control-sm catItem" name="theme" id="itemNumber">
                                 <option value="">--Sélectionnes un nombre--</option>
                                 <option value="0">1</option>
                                 <option value="1">2</option>
                             </select>
                         </div>
-                        <div class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-                            <label for="pet-select">Nombre maximum d'objets :</label>
-                            <select class="form-control form-control-sm" name="theme" id="itemMax">
+                        <div class="offset-2 col-3 offset-sm-2 col-sm-3 offset-md-2 col-md-3 offset-lg-2 col-lg-3 offset-xl-2 col-xl-3 maxObject">
+                            <label class="glisserD" for="pet-select">Nombre maximum d'objets :</label>
+                            <select class="form-control form-control-sm catItem" name="theme" id="itemMax">
                                 <option value="">--Sélectionnes un nombre maximum--</option>
                                 <option value="0">1</option>
                                 <option value="1">2</option>
@@ -42,25 +42,66 @@
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center" id="gameRules">
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center button">
-                            <!--   <button type="button" class="btn btn-info" name="button" id="buttonPlay"> Jouer
-                                </button>
-                                <button type="button" class="btn btn-warning" name="button" id="buttonDown"> Effacer
-                                </button> -->
-
                         </div>
                     </div>
                 </form>
             </div>
         </div>
-        <div class="col-9 col-sm-9 col-md-9 col-lg-9 col-xl-9" id="gameRules">
+
+    </div>
+    <img id="draggable1" class="fruit ui-widget-content" src="assets/img/pomme.png" alt="Une jolie pomme rouge">
+    <div class="row">
+        <div class="offset-1 col-10 offset-sm-1 col-sm-10 offset-md-1 col-md-10 offset-lg-1 col-lg-10 offset-xl-1 col-xl-10 text-center connexion">
+            <div class="row text-center">
+                <div id="panier" class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 items text-center">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 table text-center" id="table">
+                </div>
+            </div>
         </div>
     </div>
-    <div id="items">
-        <img id="draggable1" class="fruit ui-widget-content" src="assets/img/pomme.png" alt="Une jolie pomme rouge">
-        <div id="panier">
+
+</div>
+<!-- Modale de victoire -->
+<div class="modal fade" id="winModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center">
+            <div class="modal-header">
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <h2 class="bigWin">C'est gagné !<img class="speakerWin" src="assets/imgGames/speaker.png" alt="Un speaker qui parle"></h2>
+                <img class="win" src="assets/imgGames/gagne.gif" alt="Gagné ! En langue des signes">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn modalBtn" id="modalBtn"><a href="">Rejouer</a></button>
+            </div>
         </div>
     </div>
-    <div class="table" id="table">
+</div>
+<!-- Modale de défaite -->
+<div class="modal fade" id="looseModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content text-center">
+            <div class="modal-header">
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <h2 class="bigLoose"></h2>
+                <img class="loose" src="assets/imgGames/perdu.gif" alt="Gagné ! En langue des signes">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn modalBtn" id="modalBtn"><a href="">Rejouer</a></button>
+            </div>
+        </div>
     </div>
 </div>
