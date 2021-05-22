@@ -31,7 +31,7 @@
                         <div class="form-group">
                             <label for="password" class="form-label">Mot de passe</label>
                             <div class="input-group" id="show_hide_password">
-                                <input type="password" class="form-control <?= isset($formErrors['password']) ? 'is-invalid' : (isset($password) ? 'is-valid' : '') ?>" id="password" value="<?= isset($_POST['password']) ? $_POST['password'] : '' ?>" name="password" placeholder="Votre mot de passe" />
+                                <input type="password" class="form-control <?= isset($formErrors['password']) ? 'is-invalid' : (isset($password) ? 'is-valid' : '') ?>" id="password" value="<?= isset($_POST['password']) ? $_POST['password'] : '' ?>" name="password" placeholder="Votre mot de passe" autocomplete />
                                 <span class="input-group-text" id="basic-addon1"><a class="eye" href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
                             </div>
                             <?php if (isset($formErrors['password'])) { ?>

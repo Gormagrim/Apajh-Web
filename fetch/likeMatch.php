@@ -17,9 +17,6 @@
                 })
                 if (response.ok) {
                     let responseData = await response.json()
-
-
-
                     $('.wordList').attr('data-isLike', responseData.isLike)
                     $('.articleLike').attr('data-isLike', responseData.isLike);
                     $('.fa-heart').attr('data-isLike', responseData.isLike);

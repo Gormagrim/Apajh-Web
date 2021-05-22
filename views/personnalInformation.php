@@ -77,7 +77,7 @@ $contentController = new ContentController;
                     </div>
                 </div>
             <?php } ?>
-            <form action="/webapp/public/acount" method="POST">
+            <form action="/webapp/public/mon-compte" method="POST">
                 <div class="row civility">
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                         <span class="civilityType">Nom :</span>
@@ -123,12 +123,12 @@ $contentController = new ContentController;
                         <?php if (!empty($formErrors)) { ?>
                             <!-- REVOIR LE SELECT DE LA VILLE QUI NE FONCTIONNE PAS BIEN -->
                             <input list="cities" type="text" class="form-control information" data-id="" id="city" name="city" placeholder="Tapez votre code postal" value="" />
-                            <datalist id="cities" class="tata"></datalist>
+                            <datalist id="cities" class="cities"></datalist>
                         <?php } elseif (empty($formErrors)) { ?>
                             <span id="spanCity" class="myCivility"><?= isset($user['city']) ? $user['city'] : '' ?></span>
                         <?php } ?>
                         <input list="cities" type="hidden" class="form-control information" data-id="" id="city" name="city" placeholder="Tapez votre code postal" value="" />
-                        <datalist id="cities" class="tata" value=""></datalist>
+                        <datalist id="cities" class="cities" value=""></datalist>
                         <?php if (isset($formErrors['city'])) { ?>
                             <div class="invalid-feedback">
                                 <p><?= $formErrors['city'] ?></p>

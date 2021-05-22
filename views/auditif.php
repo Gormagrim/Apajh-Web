@@ -17,8 +17,6 @@ $contentController = new ContentController;
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
                 <p>Taper un mot si dessous pour le rechercher.</p>
-                <hr />
-                <p class="cat">Vous pouvez également accéder directement aux <a class="catA" href="/webapp/public/auditif-categories">catégories</a></p>
             </div>
         </div>
         <div class="row">
@@ -36,6 +34,12 @@ $contentController = new ContentController;
                         </form>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-4">
+                <hr />
+                <p class="cat">Vous pouvez également accéder directement aux <a class="catA" href="/webapp/public/auditif-categories">catégories</a></p>
             </div>
         </div>
         <?php } elseif (isset($_POST['contentTitle'])) {
@@ -128,9 +132,13 @@ $contentController = new ContentController;
                             </div>
                         </div>
                     </div>
-                    <div class="likeItem">
-                        <i title="<?= isset($isLike) && $isLike == 1 ? 'Clique pour ne plus aimer :(' : 'Clique pour aimer ! :)' ?>" type="submit" class="<?= isset($isLike) && $isLike == 1 ? 'fas' : 'far' ?> fa-thumbs-up fa-2x articleLike <?= isset($isLike) && $isLike == 1 ? 'like' : 'notLike' ?>" data-like="<?= $word->id ?>" data-isLike="<?= isset($isLike) ? $isLike : 0 ?>"></i>
-                    </div>
+                    <?php
+                    if (!empty($_SESSION['token'])) { ?>
+                        <div class="likeItem">
+                            <i title="<?= isset($isLike) && $isLike == 1 ? 'Clique pour ne plus aimer :(' : 'Clique pour aimer ! :)' ?>" type="submit" class="<?= isset($isLike) && $isLike == 1 ? 'fas' : 'far' ?> fa-thumbs-up fa-2x articleLike <?= isset($isLike) && $isLike == 1 ? 'like' : 'notLike' ?>" data-like="<?= $word->id ?>" data-isLike="<?= isset($isLike) ? $isLike : 0 ?>"></i>
+                        </div>
+                    <?php } ?>
+
                     <div class="row">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center speed">
                             <div class="dropdown text-center">
@@ -281,9 +289,12 @@ $contentController = new ContentController;
                         </div>
                     </div>
                 </div>
-                <div class="likeItem moreThanOne">
-                    <i title="" type="submit" class="far fa-thumbs-up fa-2x articleLike notLiked" data-like="<?= $word->id ?>" data-isLike=""></i>
-                </div>
+                <?php
+                if (!empty($_SESSION['token'])) { ?>
+                    <div class="likeItem moreThanOne">
+                        <i title="" type="submit" class="far fa-thumbs-up fa-2x articleLike notLiked" data-like="<?= $word->id ?>" data-isLike=""></i>
+                    </div>
+                <?php } ?>
             </div>
         <?php
         } else if ($countResult > 6) { ?>
@@ -396,12 +407,21 @@ $contentController = new ContentController;
                         </div>
                     </div>
                 </div>
-                <div class="likeItem moreThanOne">
-                    <i title="" type="submit" class="far fa-thumbs-up fa-2x articleLike " data-like="" data-isLike=""></i>
-                </div>
+                <?php
+                if (!empty($_SESSION['token'])) { ?>
+                    <div class="likeItem moreThanOne">
+                        <i title="" type="submit" class="far fa-thumbs-up fa-2x articleLike " data-like="" data-isLike=""></i>
+                    </div>
+                <?php } ?>
             </div>
     <?php   } // fin du else if countResult
     } ?>
+    <?php
+    if (empty($_SESSION['token'])) { ?>
+        <div class="offset-1 col-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 text-center connexion mt-4">
+            <h2 class="auditif-cat p-2"> <a href="/webapp/public/connexion">Connectez-vous</a> pour profiter des fonctions sociales.</h2>
+        </div>
+    <?php } ?>
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-4">
             <h2 class="auditif-cat">Notre signothèque contient <span class="wordNumber"></span> mots répartis dans <span class="catNumber"></span> catégories.</h2>
@@ -413,6 +433,7 @@ $contentController = new ContentController;
             <div class="offset-1 col-10 offset-sm-1 col-sm-10 topThree text-center">
                 <?php if (empty($_SESSION['token'])) { ?>
                     <p class="bleu">Vous devez être connectés pour voir les classements</p>
+                    <p class="bleu">Cliquez <a href="/webapp/public/connexion">ici</a> pour vous connecter !</p>
                 <?php } ?>
             </div>
         </div>
@@ -421,6 +442,7 @@ $contentController = new ContentController;
             <div class="offset-1 col-10 offset-sm-1 col-sm-10 topThreeView text-center">
                 <?php if (empty($_SESSION['token'])) { ?>
                     <p class="bleu">Vous devez être connectés pour voir les classements</p>
+                    <p class="bleu">Cliquez <a href="/webapp/public/connexion">ici</a> pour vous connecter !</p>
                 <?php } ?>
             </div>
         </div>

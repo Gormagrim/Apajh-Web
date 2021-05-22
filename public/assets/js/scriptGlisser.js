@@ -3,7 +3,7 @@ $(function () {
     // Je rends draggable les items qui auront l'id draggable1
 });
 if ($('.items').val() == "") { // condition qui me permet de faire apparaitre mon boutton jouer
-    $('.button').html('<button type="button" class="btn btn-primary" name="button" id="buttonPlay"> Jouer</button>');
+    $('.button').html('<button type="button" class="btn btn-primary btn-lg" name="button" id="buttonPlay"> Jouer</button>');
 }
 $(function () {
     // je crée un tableau contenant tout les items pour chaque séries, et un second tableau dans un ordre différent, jamais un même objet à la même position
@@ -26,7 +26,7 @@ $(function () {
     var victoryCount = 0; // j'initialise le compteur de victoire à 0 (pour plus tard)
     $('#buttonPlay').click(function () { // fonction au clic de #buttonPlay
         // je fais apparaitre le boutton rejouer et sa fonction reload
-        $('.button').html('<button type="button" class="btn btn-secondary btn-sm" name="button" id="buttonReplay"> Rejouer</button>');
+        $('.button').html('<button type="button" class="btn btn-secondary btn-lg" name="button" id="buttonReplay"> Rejouer</button>');
         $('.theme').css('display', 'none');
         $('.objectNumber').css('display', 'none');
         $('.maxObject').css('display', 'none');
@@ -56,7 +56,7 @@ $(function () {
             });
             if (select == 0) { // si le select thème = 0 c'est les fruits
                 var x = 1;
-                while (x < 2) { // boucle while qui fait apparaitre 10 fruits de chaque comme clonne de l'objet invisible # draggable 1. .draggable({ revert: "invalid" }) permet de faire revenir les objets si ils ne sont pas draggable
+                while (x < 2) { // boucle while qui fait apparaitre 10 fruits de chaque comme clone de l'objet invisible # draggable 1. .draggable({ revert: "invalid" }) permet de faire revenir les objets si ils ne sont pas draggable
                     $('#draggable1').clone().prop('id', 'pomme').prop('class', 'pomme fruits img-fluid').prop('alt', 'une jolie pomme').attr('src', 'assets/imgGames/pomme.png').prependTo("#panier").draggable({ revert: "invalid" });
                     $('#draggable1').clone().prop('id', 'orange').prop('class', 'orange fruits img-fluid').prop('alt', 'une jolie orange').attr('src', 'assets/imgGames/orange.png').prependTo("#panier").draggable({ revert: "invalid" });
                     $('#draggable1').clone().prop('id', 'banane').prop('class', 'banane fruits img-fluid').prop('alt', 'une jolie banane').attr('src', 'assets/imgGames/banane.png').prependTo("#panier").draggable({ revert: "invalid" });
@@ -178,7 +178,7 @@ $(function () {
                 $('#table').append("<img src='assets/imgGames/eau.png' alt='la mer' />")
             }
         }
-        $(".table").droppable({ // permet de rendre la class table droppable, c'est a dire receptive aux objets draggable
+        $('.table').droppable({ // permet de rendre la class table droppable, c'est a dire receptive aux objets draggable
             accept(draggable) {
                 var select = $('#theme').val();
                 var selectedFirstItem = firstItemArray[select];
@@ -212,6 +212,7 @@ $(function () {
                     count++; // j'incrémente mon premier compteur
                     if (count < number) { // si le nombre de premier objet posé est inférieur au nombre requis (number) il ne se passe rien, l'objet retourne à se position d'origine si il ne correspond pas
                         if (select == 0) {
+                            $('#panier').empty()
                             var x = 1;
                             while (x < 2) {
                                 $('#draggable1').clone().prop('id', 'pomme').prop('class', 'pomme fruits img-fluid').prop('alt', 'une jolie pomme').attr('src', 'assets/imgGames/pomme.png').prependTo("#panier").draggable({ revert: "invalid" });
@@ -222,6 +223,7 @@ $(function () {
                                 x++;
                             }
                         } else if (select == 1) {
+                            $('#panier').empty()
                             var x = 1;
                             while (x < 2) {
                                 $('#draggable1').clone().prop('id', 'vache').prop('class', 'vache animals img-fluid').prop('alt', 'une jolie vache').attr('src', 'assets/imgGames/vache.png').prependTo("#panier").draggable({ revert: "invalid" });
@@ -232,6 +234,7 @@ $(function () {
                                 x++;
                             }
                         } else if (select == 2) {
+                            $('#panier').empty()
                             var x = 1;
                             while (x < 2) {
                                 $('#draggable1').clone().prop('id', 'culotte').prop('class', 'culotte clothing img-fluid').prop('alt', 'une petite culotte').attr('src', 'assets/imgGames/culotte.png').prependTo("#panier").draggable({ revert: "invalid" });
@@ -242,6 +245,7 @@ $(function () {
                                 x++;
                             }
                         } else if (select == 3) {
+                            $('#panier').empty()
                             var x = 1;
                             while (x < 2) {
                                 $('#draggable1').clone().prop('id', 'yahourt').prop('class', 'yahourt fridge img-fluid').prop('alt', 'un yahourt à l\'Oréo').attr('src', 'assets/imgGames/yahourt.png').prependTo("#panier").draggable({ revert: "invalid" });
@@ -252,6 +256,7 @@ $(function () {
                                 x++;
                             }
                         } else if (select == 4) {
+                            $('#panier').empty()
                             var x = 1;
                             while (x < 2) {
                                 $('#draggable1').clone().prop('id', 'crabe').prop('class', 'crabe seaAnimals img-fluid').prop('alt', 'un yahourt à l\'Oréo').attr('src', 'assets/imgGames/crabe.png').prependTo("#panier").draggable({ revert: "invalid" });
@@ -288,6 +293,7 @@ $(function () {
                     secondCount++; // j'incrémente mon second compteur
                     if (secondCount < secondNumber) { // si le nombre de second objet posé est inférieur au nombre requis (secondNumber) il ne se passe rien, l'objet retourne à se position d'origine si il ne correspond pas
                         if (select == 0) {
+                            $('#panier').empty()
                             var x = 1;
                             while (x < 2) {
                                 $('#draggable1').clone().prop('id', 'pomme').prop('class', 'pomme fruits img-fluid').prop('alt', 'une jolie pomme').attr('src', 'assets/imgGames/pomme.png').prependTo("#panier").draggable({ revert: "invalid" });
@@ -298,6 +304,7 @@ $(function () {
                                 x++;
                             }
                         } else if (select == 1) {
+                            $('#panier').empty()
                             var x = 1;
                             while (x < 2) {
                                 $('#draggable1').clone().prop('id', 'vache').prop('class', 'vache animals img-fluid').prop('alt', 'une jolie vache').attr('src', 'assets/imgGames/vache.png').prependTo("#panier").draggable({ revert: "invalid" });
@@ -308,6 +315,7 @@ $(function () {
                                 x++;
                             }
                         } else if (select == 2) {
+                            $('#panier').empty()
                             var x = 1;
                             while (x < 2) {
                                 $('#draggable1').clone().prop('id', 'culotte').prop('class', 'culotte clothing img-fluid').prop('alt', 'une petite culotte').attr('src', 'assets/imgGames/culotte.png').prependTo("#panier").draggable({ revert: "invalid" });
@@ -318,6 +326,7 @@ $(function () {
                                 x++;
                             }
                         } else if (select == 3) {
+                            $('#panier').empty()
                             var x = 1;
                             while (x < 2) {
                                 $('#draggable1').clone().prop('id', 'yahourt').prop('class', 'yahourt fridge img-fluid').prop('alt', 'un yahourt à l\'Oréo').attr('src', 'assets/imgGames/yahourt.png').prependTo("#panier").draggable({ revert: "invalid" });
@@ -328,6 +337,7 @@ $(function () {
                                 x++;
                             }
                         } else if (select == 4) {
+                            $('#panier').empty()
                             var x = 1;
                             while (x < 2) {
                                 $('#draggable1').clone().prop('id', 'crabe').prop('class', 'crabe seaAnimals img-fluid').prop('alt', 'un yahourt à l\'Oréo').attr('src', 'assets/imgGames/crabe.png').prependTo("#panier").draggable({ revert: "invalid" });

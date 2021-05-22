@@ -4,9 +4,8 @@
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
             <div class="row text-center">
                 <form id="form" required>
-                    <div class="offset-4 col-4 offset-sm-4 col-sm-4 offset-md-4 col-md-4 offset-lg-4 col-lg-4 offset-xl-4 col-xl-4 theme">
-                        <label class="glisserD" for="pet-select">Choisies un thème :</label>
-                        <select class="form-control form-control-sm catItem" name="theme" id="theme">
+                    <div class="offset-3 col-6 offset-sm-3 col-sm-6 offset-md-3 col-md-6 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6 theme mb-4">
+                        <select class="form-select form-select-lg catItem" name="theme" id="theme">
                             <option value="">--Sélectionnes un thème--</option>
                             <option value="0">Les fruits</option>
                             <option value="1">Les animaux de la ferme</option>
@@ -16,18 +15,18 @@
                         </select>
                     </div>
                     <div class="row">
-                        <div class="offset-2 col-3 offset-sm-2 col-sm-3 offset-md-2 col-md-3 offset-lg-2 col-lg-3 offset-xl-2 col-xl-3 objectNumber">
-                            <label class="glisserD" for="pet-select">Nombre d'objets différents :</label>
-                            <select class="form-control form-control-sm catItem" name="theme" id="itemNumber">
-                                <option value="">--Sélectionnes un nombre--</option>
+                        <div class="offset-3 col-6 offset-sm-3 col-sm-6 offset-md-3 col-md-6 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6 objectNumber mb-4">
+                            <select class="form-select form-select-lg catItem" name="theme" id="itemNumber">
+                                <option value="">--Sélectionnes un nombre d'objets--</option>
                                 <option value="0">1</option>
                                 <option value="1">2</option>
                             </select>
                         </div>
-                        <div class="offset-2 col-3 offset-sm-2 col-sm-3 offset-md-2 col-md-3 offset-lg-2 col-lg-3 offset-xl-2 col-xl-3 maxObject">
-                            <label class="glisserD" for="pet-select">Nombre maximum d'objets :</label>
-                            <select class="form-control form-control-sm catItem" name="theme" id="itemMax">
-                                <option value="">--Sélectionnes un nombre maximum--</option>
+                    </div>
+                    <div class="row">
+                        <div class="offset-3 col-6 offset-sm-3 col-sm-6 offset-md-3 col-md-6 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6 maxObject mb-4">
+                            <select class="form-select form-select-lg catItem" name="theme" id="itemMax">
+                                <option value="">--Sélectionnes un nombre maximum d'objets--</option>
                                 <option value="0">1</option>
                                 <option value="1">2</option>
                                 <option value="2">3</option>

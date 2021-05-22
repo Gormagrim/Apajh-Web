@@ -1,6 +1,6 @@
 <script>
-// A REVOIR
-    $('#toto').on('keyup', function(event) {
+    // A REVOIR
+    $('#city').on('keyup', function(event) {
         event.preventDefault();
         const selectCity = async function(data) {
             try {
@@ -15,12 +15,17 @@
                 if (response.ok) {
                     let responseData = await response.json()
                     console.log(responseData)
-                    $('.tata').empty();
+                    $('.cities').empty();
                     if (responseData.length > 0) {
                         $.each(responseData, function(key, type) {
-                            var display = '<option id="' + type.id + '" value="' + type.id + '">' + type.cities + '</option>'
-                            $('.tata').append(display)
-                            var idCity = $('.itemCity option').val()
+                            var display = '<option id="' + type.id + '" value="' + type.postalCode + '">' + type.cities + '</option><span class="cityId" data-value="' + type.id + '">' + type.id + '</span>'
+                            $('.cities').append(display)
+                            $('.cities').on('click', function(event) {
+                                event.preventDefault();
+                                var idCity = $(this).attr('data-value')
+                                $('#city').val(idCity)
+                                console.log(idCity)
+                            });
                         });
                     }
                 } else {

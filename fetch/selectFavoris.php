@@ -1,11 +1,11 @@
 <script>
     $('.favoris.ldsfVideo').on('click', function(event){
         $('.favoritSelect').css('visibility', 'visible')
-        $('.favoritSelectWord').css('visibility', 'visible')
         $('.favorisV').css('visibility', 'visible')
     })
      $('.favoritSelect').on('change', function(event) {
         $('.favoritSelectWord').empty()
+        $('.favoritSelectWord').css('visibility', 'visible')
         event.preventDefault();
         const getVideoByCatName = async function(data) {
             try {

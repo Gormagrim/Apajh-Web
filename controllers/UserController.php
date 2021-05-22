@@ -52,7 +52,11 @@ class UserController
                 $formErrors['mail'] = 'Une adresse mail est nécessaire à l\'inscription.';
             }
             if (!empty($_POST['password']) && $_POST['password'] === $_POST['password_validation']) {
-                $password = htmlspecialchars($_POST['password']);
+                if (strlen(htmlspecialchars($_POST['password'])) >= 8) {
+                    $password = htmlspecialchars($_POST['password']);
+                } else {
+                    $formErrors['password'] = 'Votre mot de passe doit contenir un minimum 8 caractères.';
+                }
             } else {
                 $formErrors['password'] = 'Un mot de passe est nécessaire à l\'inscription.';
             }
@@ -60,21 +64,44 @@ class UserController
                 $formErrors['password_validation'] = 'Merci de bien vouloir valider votre mot de passe.';
             }
             if ($_POST['password'] != $_POST['password_validation']) {
-                $formErrors['password_validation'] = 'Vos mots de passe ne sont pas identique.';
-                $formErrors['password'] = 'Vos mots de passe ne sont pas identique.';
+                $formErrors['password_validation'] = 'Vos mots de passe ne sont pas identiques.';
+                $formErrors['password'] = 'Vos mots de passe ne sont pas identiques.';
             }
             if (empty($_POST['termsOfUse'])) {
                 $formErrors['termsOfUse'] = true;
             }
             if (empty($formErrors)) {
-                if ($this->client->request('POST', 'register', [
+                if ($register = $this->client->request('POST', 'register', [
                     'form_params' => [
                         'mail' => $mail,
                         'password' => $password
                     ]
                 ])) {
+                    $registered = json_decode($register->getBody());
                     $success['valid'] = 'Votre inscription a bien été prise en compte. Merci de cliquer sur le lien qui vient de vous être envoyé par mail pour la valider.';
                     require '../views/registerValidate.php';
+                    echo "<script type='text/javascript'>setTimeout(function() {
+                        document.location.replace('/webapp/public/connexion');
+                    }, 4000);</script>";
+                    $cle = $registered->user->validationKey;
+                    // Préparation du mail contenant le lien d'activation
+                    $destinataire = $mail;
+                    $sujet = "Activation de votre votre compte";
+                    $entete = "From: contact@apajh.web.fr";
+
+                    // Le lien d'activation est composé du login(log) et de la clé(cle)
+                    $message = 'Bienvenue sur votre site,
+                Pour activer votre compte, veuillez cliquer sur le lien ci dessous
+                ou copier/coller dans votre navigateur internet.
+ 
+                https://apajh.web.jeseb.fr/activation?log=' . urlencode($mail) . '&cle=' . urlencode($cle) . ';
+ 
+ 
+                ---------------
+                Ceci est un mail automatique, Merci de ne pas y répondre.';
+
+
+                    mail($destinataire, $sujet, $message, $entete); // Envoi du mail
                 } else {
                     $success['error'] = 'Une erreur est surevenue durant la création de votre compte.';
                 }
@@ -147,7 +174,8 @@ class UserController
                     $_SESSION['ug'] = $register->userGroup;
                     $success['valid'] = 'Vous vous êtes correctement connecté.';
                     // require '../views/connexionValidate.php';
-                    header('Location: http://localhost/webapp/public/');
+                    echo "<script type='text/javascript'>document.location.replace('http://localhost/webapp/public/');</script>";
+
                 } else {
                     $success['error'] = 'Une erreur est surevenue durant la connexion.';
                 }
@@ -161,7 +189,7 @@ class UserController
     {
         $this->client->request('POST', 'logout');
         session_unset();
-        header('Location: http://localhost/webapp/public/');
+        echo "<script type='text/javascript'>document.location.replace('http://localhost/webapp/public/');</script>";
     }
 
     public function getUserDescription()
@@ -332,8 +360,8 @@ class UserController
                             $formErrors['password'] = 'Votre nouveau mot de passe ne peut pas être identique à l\'ancien.';
                         }
                     } else {
-                        $formErrors['password_confirmation'] = 'Vos nouveaux mots de passe ne sont pas identique.';
-                        $formErrors['password'] = 'Vos nouveaux mots de passe ne sont pas identique.';
+                        $formErrors['password_confirmation'] = 'Vos nouveaux mots de passe ne sont pas identiques.';
+                        $formErrors['password'] = 'Vos nouveaux mots de passe ne sont pas identiques.';
                     }
                 } else {
                     $formErrors['password'] = 'Veuillez saisir votre nouveau mot de passe.';

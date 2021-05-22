@@ -18,8 +18,8 @@ try {
     $router->map('GET', '/webapp/public/connexion', function () {
         require '../views/connexion.php';
     });
-    $router->map('GET', '/webapp/public/acount', 'UserController#getUserDescription');
-    $router->map('POST', '/webapp/public/acount', 'UserController#descriptionUpdate');
+    $router->map('GET', '/webapp/public/mon-compte', 'UserController#getUserDescription');
+    $router->map('POST', '/webapp/public/mon-compte', 'UserController#descriptionUpdate');
 
     $router->map('GET', '/webapp/public/favoris', 'ContentController#getVideosByLike');
 
@@ -39,6 +39,10 @@ try {
     $router->map('GET', '/webapp/public/admin', 'ContentController#getCategory');
     $router->map('GET', '/webapp/public/admin', function () {
         require '../views/videosLdfAdmin.php';
+    });
+
+    $router->map('GET', '/webapp/public/divers', function () {
+        require '../views/divers.php';
     });
 
     $router->map('GET', '/webapp/public/jeux-educatifs', function () {
@@ -62,6 +66,14 @@ try {
     });
     $router->map('GET', '/webapp/public/qui-sommes-nous', function () {
         require '../views/us.php';
+    });
+    $router->map('POST', '/webapp/public/activation-log=[*:log]-cle=[*:cle]', 'UserController#activate');
+    $router->map('GET', '/webapp/public/activation-log=[*:log]-cle=[*:cle]', function () {
+        require '../views/activation.php';
+    });
+
+    $router->map('GET', '/webapp/public/test', function () {
+        require '../test.php';
     });
 } catch (\Exception $e) {
     echo $e->getMessage();

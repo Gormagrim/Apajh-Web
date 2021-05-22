@@ -108,13 +108,40 @@ $contentController = new ContentController;
                 </div>
             </div>
         </div>
-        <div class="likeItem moreThanOne">
-            <i title="" type="submit" class="far fa-thumbs-up fa-2x articleLike " data-like="" data-isLike=""></i>
-        </div>
+        <?php
+        if (!empty($_SESSION['token'])) { ?>
+            <div class="likeItem moreThanOne">
+                <i title="" type="submit" class="far fa-thumbs-up fa-2x articleLike " data-like="" data-isLike=""></i>
+            </div>
+        <?php } ?>
     </div>
+    <?php
+    if (empty($_SESSION['token'])) { ?>
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-4">
+            <h2 class="auditif-cat"> <a href="/webapp/public/connexion">Connectez-vous</a> pour profiter des fonctions sociales.</h2>
+        </div>
+    <?php } ?>
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-4">
             <h2 class="auditif-cat">Notre signothèque contient <span class="wordNumber"></span> mots répartis dans <span class="catNumber"></span> catégories.</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 text-center mt-4">
+            <h3>Top 3 des vidéos les plus likés :</h3>
+            <div class="offset-1 col-10 offset-sm-1 col-sm-10 topThree text-center">
+                <?php if (empty($_SESSION['token'])) { ?>
+                    <p class="bleu">Vous devez être connectés pour voir les classements</p>
+                <?php } ?>
+            </div>
+        </div>
+        <div class="col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 text-center mt-4">
+            <h3>Top 3 des vidéos les plus vues :</h3>
+            <div class="offset-1 col-10 offset-sm-1 col-sm-10 topThreeView text-center">
+                <?php if (empty($_SESSION['token'])) { ?>
+                    <p class="bleu">Vous devez être connectés pour voir les classements</p>
+                <?php } ?>
+            </div>
         </div>
     </div>
 </div>

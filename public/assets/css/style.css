@@ -834,6 +834,11 @@ select.catItem, select.catWord, select.favoritSelect, select.favoritSelectWord, 
     outline: none;
 }
 
+select.catWord {
+    visibility: hidden;
+}
+
+
 select.favoritSelect, select.favoritSelectWord {
     visibility: hidden;
 }

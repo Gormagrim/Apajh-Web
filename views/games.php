@@ -7,5 +7,4 @@
     <div class="row">
         <a href="/webapp/public/compter-deposer">Apprendre à compter</a>
     </div>
-
 </div>

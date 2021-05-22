@@ -56,6 +56,7 @@
     //PREMIER SELECT
     $('.catItem').on('change', function(event) {
         $('.catWord').empty()
+        $('.catWord').css('visibility', 'visible')
         event.preventDefault();
         const getVideoByCat = async function(data) {
             try {
