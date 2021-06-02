@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
-            <img class="img-fluid pageSignes" src="./assets/img/page-connexion.png" alt="Logo de la page de connexion de l'Apajh à SAINT-QUENTIN">
+            <img class="img-fluid pageSignes" src="./assets/img/page-connexion2.png" alt="Logo de la page de connexion de l'Apajh à SAINT-QUENTIN">
         </div>
     </div>
     <div class="row">

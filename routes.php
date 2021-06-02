@@ -58,12 +58,7 @@ try {
     });
 
     $router->map('POST', '/webapp/public/deconnexion', 'UserController#logout');
-    $router->map('GET', '/webapp/public/blog', function () {
-        require '../views/blogIndex.php';
-    });
-    $router->map('GET', '/webapp/public/blog-article', function () {
-        require '../views/article.php';
-    });
+    
     $router->map('GET', '/webapp/public/qui-sommes-nous', function () {
         require '../views/us.php';
     });
@@ -71,7 +66,18 @@ try {
     $router->map('GET', '/webapp/public/activation-log=[*:log]-cle=[*:cle]', function () {
         require '../views/activation.php';
     });
-
+    // BLOG
+    $router->map('GET', '/webapp/public/blog', 'ContentController#getBlogArticleForBlogIndex');
+    $router->map('GET', '/webapp/public/blog', function () {
+        require '../views/blogIndex.php';
+    });
+    $router->map('GET', '/webapp/public/blog-[i:id]-[*:format]?', 'ContentController#getBlogArticleById');
+    
+    $router->map('GET', '/webapp/public/blog-tous-les-articles', 'ContentController#getBlogArticleForBlogIndexNoLimit');
+    $router->map('GET', '/webapp/public/blog-tous-les-articles', function () {
+        require '../views/blogAll.php';
+    });
+    // ZONE DE TEST
     $router->map('GET', '/webapp/public/test', function () {
         require '../test.php';
     });

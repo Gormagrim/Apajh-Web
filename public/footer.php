@@ -68,6 +68,7 @@
 <?php ($page == '/webapp/public/favoris') ? require '../fetch/selectFavoris.php' : '' ?>
 <?php ($page == '/webapp/public/admin') ? require '../fetch/addVideo.php' : '' ?>
 <?php ($page == '/webapp/public/admin-word') ? require '../fetch/word.php' : '' ?>
+<?php ($page == '/webapp/public/blog') ? require '../fetch/articleFetch.php' : '' ?>
 <script type="text/javascript">
     tarteaucitron.user.googleFonts = 'families';
     (tarteaucitron.job = tarteaucitron.job || []).push('googlefonts');
@@ -88,6 +89,15 @@
             $('.login').html('<a href="/webapp/public/connexion" type="button" class="btn btn-primary">Se connecter</a>')
         <?php } ?>
         $('img.addPhoto.headerPhoto').attr('src', '<?= !empty($_SESSION['photo']) ? $_SESSION['photo'] : 'assets/img/flower.svg' ?>')
+    });
+    $(document).ready(function() {
+        var size = $('body').css('font-size')
+        $('.policePlus').on('click', function() {
+            $('body').css('font-size', '120%')
+        })
+        $('.policeMoins').on('click', function() {
+            $('body').css('font-size', '100%')
+        })
     });
 </script>
 

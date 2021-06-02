@@ -6,7 +6,7 @@ $contentController = new ContentController;
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
-            <img class="img-fluid pageSignes" src="./assets/img/ma-page.png" alt="Logo de ma page sur le site de l'Apajh à SAINT-QUENTIN">
+            <img class="img-fluid pageSignes" src="./assets/img/ma-page2.png" alt="Logo de ma page sur le site de l'Apajh à SAINT-QUENTIN">
         </div>
     </div>
     <div class="row">
@@ -121,14 +121,14 @@ $contentController = new ContentController;
                     </div>
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                         <?php if (!empty($formErrors)) { ?>
-                            <!-- REVOIR LE SELECT DE LA VILLE QUI NE FONCTIONNE PAS BIEN -->
-                            <input list="cities" type="text" class="form-control information" data-id="" id="city" name="city" placeholder="Tapez votre code postal" value="" />
-                            <datalist id="cities" class="cities"></datalist>
+                            <input list="cities" type="text" class="form-control information" data-id="" id="city" placeholder="Tapez votre code postal" value="<?= isset($_POST['city']) ? $_POST['city'] : (isset($user['city']) ? $user['city'] : '') ?>" />
+                            <select id="cities" class="cities"></select>
                         <?php } elseif (empty($formErrors)) { ?>
-                            <span id="spanCity" class="myCivility"><?= isset($user['city']) ? $user['city'] : '' ?></span>
+                            <span id="spanCity" class="myCivility"><?= isset($user['newCity']) ? $user['newCity'] : $userInformation->ville->cities ?> (<?= $userInformation->ville->postalCode ?>)</span>
                         <?php } ?>
-                        <input list="cities" type="hidden" class="form-control information" data-id="" id="city" name="city" placeholder="Tapez votre code postal" value="" />
-                        <datalist id="cities" class="cities" value=""></datalist>
+                        <input list="cities" type="hidden" class="form-control information" data-id="" id="city" placeholder="Tapez votre code postal" value="<?= isset($userInformation->ville->cities) ? $userInformation->ville->cities : (isset($user['city']) ? $user['city'] : '') ?>" />
+                        <select id="cities" class="cities" name="city" value=""></select>
+                        <input type="hidden" class="cityId" name="city" value="" data-value="">
                         <?php if (isset($formErrors['city'])) { ?>
                             <div class="invalid-feedback">
                                 <p><?= $formErrors['city'] ?></p>

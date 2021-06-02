@@ -213,6 +213,7 @@ class UserController
                 }
                 if (!empty($userInformation->ville->cities)) {
                     $user['city'] = $userInformation->ville->cities . ' ' . '(' . $userInformation->ville->postalCode . ')';
+                    $user['cityId'] = $userInformation->ville->id ;
                 }
                 if (!empty($userInformation->user_description->job)) {
                     $user['job'] = $userInformation->user_description->job;
@@ -298,7 +299,7 @@ class UserController
                                 $success['valid'] = 'Vos informations ont bien été ajoutés.';
                                 $user['lastname'] = $lastname;
                                 $user['firstname'] = $firstname;
-                                $user['city'] = $city;
+                                $user['newCity'] = $userInformation->ville->cities;
                                 $user['job'] = $job;
                                 require '../views/personnalInformation.php';
                             } else {
@@ -319,7 +320,7 @@ class UserController
                                 $success['valid'] = 'Vos informations ont bien été modifiés.';
                                 $user['lastname'] = $lastname;
                                 $user['firstname'] = $firstname;
-                                $user['city'] = $city;
+                                $user['newCity'] = $userInformation->ville->cities;
                                 $user['job'] = $job;
                                 require '../views/personnalInformation.php';
                             } else {

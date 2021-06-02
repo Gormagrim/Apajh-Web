@@ -75,7 +75,6 @@
                         var display = '<option data-id="' + responseDataCatId[resp].id_content + '" value="' + responseDataCatId[resp].id_content + '">' + responseDataCatId[resp].videoTitle + '</option>'
                         $('.catWord').append(display)
                     }
-
                 } else {
                     console.error('Retour : ', response.status)
                 }
@@ -101,6 +100,8 @@
         $('.ldsVideoByCat').attr('src', '')
         $('.moreThanOne').css('opacity', 1)
         $('.viewNumber').empty()
+        video.playbackRate = 1.0;
+        $('.speedBtn').html('<img class="lievre" src="assets/img/lievre-blanc.png" alt=""> x2')
         const getVideoById = async function(data) {
             try {
                 let response = await fetch('http://localhost/apiApajhv0/public/v1/videoContent', {
@@ -179,7 +180,9 @@
         function useGrouping(int, delimiter = '\u202f') {
             return int.toString().replace(REGEX_GROUPS, `$1${delimiter}`)
         }
-        if (countLike > 1) {
+        if (countLike == 0) {
+            $('.badge').html('Personne n\'aime');
+        }else if (countLike > 1) {
             $('.badge').html(useGrouping(countLike) + ' personnes aiment');
         } else {
             $('.badge').html(countLike + ' personne aime');
@@ -222,11 +225,13 @@
                         function useGrouping(int, delimiter = '\u202f') {
                             return int.toString().replace(REGEX_GROUPS, `$1${delimiter}`)
                         }
-                        if (countLike > 1) {
-                            $('.badge').html(useGrouping(countLike) + ' personnes aiment');
-                        } else {
-                            $('.badge').html(countLike + ' personne aime');
-                        }
+                        if (countLike == 0) {
+            $('.badge').html('Personne n\'aime');
+        }else if (countLike > 1) {
+            $('.badge').html(useGrouping(countLike) + ' personnes aiment');
+        } else {
+            $('.badge').html(countLike + ' personne aime');
+        }
                     } else {
                         console.error('Retour : ', response.status)
                     }

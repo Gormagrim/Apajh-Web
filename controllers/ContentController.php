@@ -100,4 +100,58 @@ class ContentController
             }
         }
     }
+
+    // Début des méthodes du blog
+    public function getBlogArticleForBlogIndex()
+    {
+        try {
+            $request = $this->client->request('GET', 'article', [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $_SESSION['token']
+                ]
+            ]);
+            $blogArticle = json_decode($request->getBody());
+            require '../views/blogIndex.php';
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function getBlogArticleForBlogIndexNoLimit()
+    {
+        try {
+            $request = $this->client->request('GET', 'article', [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $_SESSION['token']
+                ]
+            ]);
+            $blogArticle = json_decode($request->getBody());
+            require '../views/blogAll.php';
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function getPhoto($fileName)
+    {
+        $photo = $this->client->request('GET', 'photo/' . $fileName);
+        $blogPhoto = json_decode($photo->getBody());
+        ($photo->getStatusCode() == 200) ? $src = 'data:' . $blogPhoto->type . ';base64,' . $blogPhoto->file : $src = '';
+        return $src;
+    }
+
+    public function getBlogArticleById($id)
+    {
+        try {
+            $request = $this->client->request('GET', 'article/' . $id['id'], [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $_SESSION['token']
+                ]
+            ]);
+            $articleId = json_decode($request->getBody());
+            require '../views/article.php';
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+    }
 }

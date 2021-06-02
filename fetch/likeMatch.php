@@ -1,7 +1,7 @@
 <script>
     $('.wordListLi').on('click', function(event) {
         event.preventDefault();
-        $('.wordListLi').css('background-color', '#FADCE6')
+        $('.wordListLi').css('background-color', 'rgba(246, 175, 121, 0.8)')
         $('.wordListLi').css('color', '#000')
         $('.videoDiv').css('visibility', 'visible')
         $('.moreThanOne').css('opacity', 1)
@@ -62,7 +62,9 @@
         $('h2.wordTitle').html(title);
         $('p.wordText').html(text);
         $('.badge').attr('id', 'like_' + id);
-        if (like > 1) {
+        if (like == 0) {
+            $('.badge').html('Personne n\'aime');
+        } else if (like > 1) {
             $('.badge').html(like + ' personnes aiment');
         } else {
             $('.badge').html(like + ' personne aime');
@@ -81,8 +83,10 @@
         $('.hiddenCount').attr('value', like);
         $('.wordDiv').attr('data-id', id);
         $('.videoDiv').attr('id', 'video_' + id);
-        $(this).css('background-color', '#677DB7')
-        $(this).css('color', '#FFF')
+        $(this).css('background-color', '#5970B1')
+        $(this).css('color', '#000')
+        video.playbackRate = 1.0;
+        $('.speedBtn').html('<img class="lievre" src="assets/img/lievre-blanc.png" alt=""> x2')
     });
 
     // Affichage du top 3 des likes vidéos

@@ -5,7 +5,7 @@ $contentController = new ContentController;
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
-            <img class="img-fluid pageSignes" src="./assets/img/page-signes.png" alt="Logo de la page de la langue des signes de l'Apajh à SAINT-QUENTIN">
+            <img class="img-fluid pageSignes" src="./assets/img/page-signes2.png" alt="Logo de la page de la langue des signes de l'Apajh à SAINT-QUENTIN">
         </div>
     </div>
     <div class="row">

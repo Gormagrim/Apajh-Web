@@ -1,7 +1,7 @@
 <script>
-    // A REVOIR
     $('#city').on('keyup', function(event) {
         event.preventDefault();
+        $('#cities').css('visibility', 'visible')
         const selectCity = async function(data) {
             try {
                 let response = await fetch('http://localhost/apiApajhv0/public/v1/city', {
@@ -18,14 +18,9 @@
                     $('.cities').empty();
                     if (responseData.length > 0) {
                         $.each(responseData, function(key, type) {
-                            var display = '<option id="' + type.id + '" value="' + type.postalCode + '">' + type.cities + '</option><span class="cityId" data-value="' + type.id + '">' + type.id + '</span>'
+                            var display = '<option class="cityOption" data-value="' + key + '" id="' + type.id + '" value="' + type.id + '">' + type.cities + '</option>'
                             $('.cities').append(display)
-                            $('.cities').on('click', function(event) {
-                                event.preventDefault();
-                                var idCity = $(this).attr('data-value')
-                                $('#city').val(idCity)
-                                console.log(idCity)
-                            });
+
                         });
                     }
                 } else {
@@ -38,5 +33,11 @@
         selectCity({
             postalCode: $(this).val()
         })
+    });
+    $('#cities').on('change', function(event) {
+        event.preventDefault();
+        var idCity = $(this).val()
+        console.log(idCity)
+        $('.cityId').val(idCity)
     });
 </script>

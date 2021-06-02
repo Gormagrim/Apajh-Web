@@ -5,7 +5,7 @@ $contentController = new ContentController;
 <div class="container-fluid">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
-            <img class="img-fluid pageSignes" src="./assets/img/page-signes.png" alt="Logo de la page de la langue des signes de l'Apajh à SAINT-QUENTIN">
+            <img class="img-fluid pageSignes" src="./assets/img/page-signes2.png" alt="Logo de la page de la langue des signes de l'Apajh à SAINT-QUENTIN">
         </div>
     </div>
     <?php if (!isset($_POST['contentTitle'])) { ?>
@@ -121,7 +121,7 @@ $contentController = new ContentController;
                             </div>
                             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 text-center">
                                 <i class="<?= isset($isLike) && $isLike == 1 ? 'fas' : 'far' ?> fa-heart <?= isset($isLike) && $isLike == 1 ? 'like' : 'notLike' ?>" data-isLike="<?= $isLike ?>"></i>
-                                <span class="badge <?= isset($isLike) && $isLike == 1 ? 'like' : 'notLike' ?>" id="like_<?= $word->id ?>" data-like="<?= $countLike ?>"><?= $countLike  ?> <?= $countLike > 1 ? 'personnes aiment' : 'personne aime' ?></span>
+                                <span class="badge <?= isset($isLike) && $isLike == 1 ? 'like' : 'notLike' ?>" id="like_<?= $word->id ?>" data-like="<?= $countLike ?>"><?= $countLike == 0 ? 'personne n\'aime' : ($countLike > 1 ? $countLike . ' personnes aiment' : $countLike . ' personne aime') ?></span>
                             </div>
                             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 text-center">
                                 <a class="socialN first" href=""><i class="fab fa-facebook"></i></a>
@@ -312,7 +312,7 @@ $contentController = new ContentController;
                         </div>
                     </div>
                     <div class="wordItem col-12 text-center">
-                        <select class="catWord" name="Category">
+                        <select class="catWord moreThanSix" name="Category">
                             <option value="">--Sélectionne ton mot--</option>
                             <?php
                             foreach ($video as $word) { ?>

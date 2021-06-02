@@ -33,7 +33,7 @@ $page = $_SERVER['REQUEST_URI'];
     <link rel="stylesheet" href="assets/css/style.css" />
     <?php
     if ($page == '/') { ?>
-    <title>L'Apajh Web | SAINT-QUENTIN</title>
+        <title>L'Apajh Web | SAINT-QUENTIN</title>
         <meta name="description" content="L'Apajh Web est le site internet de la fédération des Apajh de Saint Quentin. Venez utiliser notre vidéothèque de la langue des signes française !" />
     <?php } else if ($page == '/webapp/public/qui-sommes-nous') { ?>
         <title>L'Apajh Web | L'Apajh de présentation | SAINT-QUENTIN</title>
@@ -138,7 +138,7 @@ $page = $_SERVER['REQUEST_URI'];
     </script>
     <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/webapp/public"><img class="logo" src="assets/img/logo4.png" alt="Logo de l'Apajh"></a>
+            <a class="navbar-brand" href="/webapp/public"><img class="logo" src="assets/img/page-num2.png" alt="Logo de l'Apajh"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -160,6 +160,15 @@ $page = $_SERVER['REQUEST_URI'];
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li><a class="dropdown-item" href="/webapp/public/divers">Divers</a></li>
                             <li><a class="dropdown-item" href="/webapp/public/jeux-educatifs">Jeux éducatifs</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle access" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Accessibilité
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li>Taille de police <button class="policeMoins">-</button><button class="policePlus">+</button></li>
+                            <li>Mode nuit</li>
                         </ul>
                     </li>
                 </ul>

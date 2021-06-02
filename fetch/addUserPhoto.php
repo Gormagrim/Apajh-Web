@@ -7,23 +7,25 @@
         const formData = new FormData();
         const file = event.target.files[0];
         formData.set('file', file);
-        try {
-            let response = await fetch('http://localhost/apiApajhv0/public/v1/userphoto', {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'Authorization': 'Bearer <?php echo $_SESSION['token']; ?>'
-                },
-                body: formData
-            })
-            if (response.ok) {
-                let responseData = await response.json()
-            } else {
-                console.error('Retour : ', response.status)
-            }
-        } catch (e) {
-            console.log(e)
-        }
+        <?php
+            if (!empty($_SESSION['photo'])) { ?>
+                try {
+                    let response = await fetch('http://localhost/apiApajhv0/public/v1/userphoto', {
+                        method: 'DELETE',
+                        headers: {
+                            'Authorization': 'Bearer <?php echo $_SESSION['token']; ?>'
+                        },
+                        body: formData
+                    })
+                    if (response.ok) {
+                        let responseData = await response.json()
+                    } else {
+                        console.error('Retour : ', response.status)
+                    }
+                } catch (e) {
+                    console.log(e)
+                }
+           <?php } ?>
         try {
             let response = await fetch('http://localhost/apiApajhv0/public/v1/userphoto', {
                 method: 'POST',
