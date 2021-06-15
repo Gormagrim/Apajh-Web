@@ -6,11 +6,11 @@
                     <p class="networks mb-0 font-weight-bold">Rejoignez-nous sur les réseaux sociaux !</p>
                 </div>
                 <div class="col-lg-6">
-                    <a class="socialN first" href="https://www.facebook.com"><i class="fab fa-facebook"></i></a>
-                    <a class="socialN" href="https://www.messenger.com"><i class="fab fa-facebook-messenger"></i></a>
-                    <a class="socialN" href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
-                    <a class="socialN" href="https://www.linkedin.com"><i class="fab fa-linkedin"></i></a>
-                    <a class="socialN" href="https://www.twitter.com"><i class="fab fa-twitter"></i></a>
+                    <a class="socialN first" href="https://www.facebook.com"><i class="fab fa-facebook fa-2x"></i></a>
+                    <a class="socialN" href="https://www.messenger.com"><i class="fab fa-facebook-messenger fa-2x"></i></a>
+                    <a class="socialN" href="https://www.instagram.com"><i class="fab fa-instagram fa-2x"></i></a>
+                    <a class="socialN" href="https://www.linkedin.com"><i class="fab fa-linkedin fa-2x"></i></a>
+                    <a class="socialN" href="https://www.twitter.com"><i class="fab fa-twitter fa-2x"></i></a>
                 </div>
             </div>
         </div>
@@ -84,7 +84,7 @@
         <?php }
         } ?>
         <?php if (!empty($_SESSION['token'])) { ?>
-            $('.login').html('<div class="btn-group dropstart"><button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><img class="addPhoto headerPhoto" src="" alt=""></button><ul class="dropdown-menu"><li><a class="dropdown-item text-center" href="/webapp/public/mon-compte">Mon compte</a></li><li><a class="dropdown-item text-center" href="/webapp/public/favoris">Mes favoris</a></li><li><a class="dropdown-item text-center" href="#">Mon Apajh</a></li><li><form class="text-center" action="/webapp/public/deconnexion" method="post"><button type="submit" class="btn btn-secondary btn-sm">Déconnexion</button></form></li></ul></div>')
+            $('.login').html('<div class="btn-group dropstart"><button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><img class="addPhoto headerPhoto <?= ($_SESSION['ug'] == 1) ? 'admin' : (($_SESSION['ug'] == 2) ? 'direction' : (($_SESSION['ug'] == 3 || $_SESSION['ug'] == 4 || $_SESSION['ug'] == 5) ? 'service' : (($_SESSION['ug'] == 6) ? 'famille' : (($_SESSION['ug'] == 7) ? 'inscrit' : '')))) ?>" src="" alt=""></button><ul class="dropdown-menu"><li><a class="dropdown-item text-center" href="/webapp/public/mon-compte">Mon compte</a></li><li><a class="dropdown-item text-center" href="/webapp/public/favoris">Mes favoris</a></li><li><a class="dropdown-item text-center" href="#">Mon Apajh</a></li><li><form class="text-center" action="/webapp/public/deconnexion" method="post"><button type="submit" class="btn btn-secondary btn-sm">Déconnexion</button></form></li></ul></div>')
         <?php } else { ?>
             $('.login').html('<a href="/webapp/public/connexion" type="button" class="btn btn-primary">Se connecter</a>')
         <?php } ?>

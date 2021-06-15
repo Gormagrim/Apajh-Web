@@ -47,8 +47,8 @@ $contentController = new ContentController;
                                         <?php setlocale(LC_TIME, "fr_FR", "French"); ?>
                                         <p class="sign">Écrit le <span class="date"><?= strftime("%A %d %B %G", strtotime($article->contentDate)) ?></span> par <span class="autor"><?= $article->user_description->firstname . ' ' . mb_strtoupper($article->user_description->lastname) ?></span>.</p>
                                         <p class="firstPara"><?= substr($article->paragraph[0]->text, 0, 250) ?>...</p>
-                                        <a href="/webapp/public/blog-<?= $article->id . '-' . str_replace('\'', '', str_replace('@', 'a', str_replace('^', '', strtolower(iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', str_replace(' ', '-', $article->contentTitle)))))) ?>" class="btn btn-info plus mt-2" data-id="<?= $article->id ?>">Voir plus</a>
-                                        <button type="button" class="btn btn-primary like mt-2">
+                                        <a href="/webapp/public/blog-<?= $article->id . '-' . str_replace('\'', '', str_replace('@', 'a', str_replace('^', '', strtolower(iconv('UTF-8', 'ASCII//TRANSLIT//IGNORE', str_replace(' ', '-', $article->contentTitle)))))) ?>" class="btn btn-info plus mt-2 mb-2" data-id="<?= $article->id ?>">Voir plus</a>
+                                        <button type="button" class="btn btn-primary like mt-2 mb-2">
                                             Like <span class="badge bg-secondary"><?= count($article->like) ?></span>
                                         </button>
                                         <!-- <i class="fas fa-heart fa-2x like"></i> -->

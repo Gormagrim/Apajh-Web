@@ -35,12 +35,29 @@
                                  <input type="password" class="form-control <?= isset($formErrors['password']) ? 'is-invalid' : (isset($password) ? 'is-valid' : '') ?>" id="password" value="<?= isset($_POST['password']) ? $_POST['password'] : '' ?>" name="password" placeholder="Votre mot de passe" />
                                  <span class="input-group-text" id="basic-addon1"><a class="eye" href=""><i class="fa fa-eye-slash" aria-hidden="true"></i></a></span>
                              </div>
+                             <span id="msg"></span>
                              <?php if (isset($formErrors['password'])) { ?>
                                  <div class="invalid-feedback">
                                      <p><?= $formErrors['password'] ?></p>
                                  </div>
                              <?php } ?>
                          </div>
+                         <script>
+                             $('#password').on('keyup', function(event) {
+                                 var msg;
+                                 var str = $('#password').val();
+                                 if (str.match(/[0-9]/g) &&
+                                     str.match(/[A-Z]/g) &&
+                                     str.match(/[a-z]/g) &&
+                                     str.match(/[^a-zA-Z\d]/g) &&
+                                     str.length >= 8) {
+                                     msg = "<p style='color:green'>Mot de passe fort.</p>";
+                                 } else {
+                                     msg = "<p style='color:red'>Mot de passe faible.</p>";
+                                 }
+                                 $('#msg').html(msg);
+                             });
+                         </script>
                          <div class="form-group">
                              <label for="password_validation" class="form-label">Valider votre mot de passe</label>
                              <div class="input-group" id="show_hide_password_verification">

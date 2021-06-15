@@ -35,7 +35,7 @@ $contentController = new ContentController;
         <div class="offset-1 col-10 offset-sm-2 col-sm-8 offset-md-2 col-md-8 offset-lg-2 col-lg-8 offset-xl-2 col-xl-8 acount">
             <div class="row">
                 <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                    <img class="avatar" src="<?= !empty($_SESSION['photo']) ? $_SESSION['photo'] : 'assets/img/flower.svg' ?>" alt="Photo de profil de <?= $user['firstname'] . ' ' . $user['lastname'] ?>" class="img-thumbnail">
+                    <img class="avatar <?= ($_SESSION['ug'] == 1) ? 'admin' : (($_SESSION['ug'] == 2) ? 'direction' : (($_SESSION['ug'] == 3 || $_SESSION['ug'] == 4 || $_SESSION['ug'] == 5) ? 'service' : (($_SESSION['ug'] == 6) ? 'famille' : (($_SESSION['ug'] == 7) ? 'inscrit' : '')))) ?>" src="<?= !empty($_SESSION['photo']) ? $_SESSION['photo'] : 'assets/img/flower.svg' ?>" alt="Photo de profil de <?= $user['firstname'] . ' ' . $user['lastname'] ?>" class="img-thumbnail">
                     <a class="addPhoto" title="Changer votre photo de profil"><i class="fas fa-camera"></i></a>
                     <input class="addPhoto" name="file" type="file">
                 </div>

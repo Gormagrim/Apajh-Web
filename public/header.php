@@ -67,8 +67,6 @@ $page = $_SERVER['REQUEST_URI'];
         <meta name="description" content="L'Apajh des favoris concentre tous les articles ou vidéos que vous avez aimés. En un simple clic vous pouvez les retrouver sans chercher." />
     <?php }
     ?>
-
-
 </head>
 <script type="text/javascript" src="/tarteaucitron/tarteaucitron.js"></script>
 <script type="text/javascript">
@@ -126,7 +124,6 @@ $page = $_SERVER['REQUEST_URI'];
         /* Show a message about mandatory cookies */
     });
 </script>
-
 <body>
     <div id="loader">
 

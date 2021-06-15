@@ -26,7 +26,7 @@ $contentController = new ContentController;
         <div class="row">
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 oneArticle">
                 <div class="row">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-4 text-center">
                         <img class="ArticlePhoto img-fluid" src="<?= $photoB ?>" alt="<?= $article->photo[0]->photoText ?>">
                     </div>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-8 articleText">

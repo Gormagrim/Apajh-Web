@@ -37,7 +37,6 @@
     $('#cities').on('change', function(event) {
         event.preventDefault();
         var idCity = $(this).val()
-        console.log(idCity)
         $('.cityId').val(idCity)
     });
 </script>

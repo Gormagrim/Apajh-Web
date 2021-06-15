@@ -20,7 +20,7 @@
         <div class="offset-1 col-10 offset-sm-1 col-sm-1 offset-md-1 col-md-1 offset-lg-1 col-lg-1 offset-xl-1 col-xl-1">
             <div class="row">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
-                    <div class="connexion favoris">
+                    <div class="connexion favoris blogArticle">
                         <span>Articles</span>
                     </div>
                 </div>

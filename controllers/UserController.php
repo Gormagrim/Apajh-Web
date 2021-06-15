@@ -175,7 +175,6 @@ class UserController
                     $success['valid'] = 'Vous vous êtes correctement connecté.';
                     // require '../views/connexionValidate.php';
                     echo "<script type='text/javascript'>document.location.replace('http://localhost/webapp/public/');</script>";
-
                 } else {
                     $success['error'] = 'Une erreur est surevenue durant la connexion.';
                 }
@@ -213,7 +212,7 @@ class UserController
                 }
                 if (!empty($userInformation->ville->cities)) {
                     $user['city'] = $userInformation->ville->cities . ' ' . '(' . $userInformation->ville->postalCode . ')';
-                    $user['cityId'] = $userInformation->ville->id ;
+                    $user['cityId'] = $userInformation->ville->id;
                 }
                 if (!empty($userInformation->user_description->job)) {
                     $user['job'] = $userInformation->user_description->job;
@@ -340,29 +339,33 @@ class UserController
         if (!empty($_SESSION['token'])) {
             if (count($_POST) > 0) {
                 if (!empty($_POST['current_password']) || !empty($_POST['password']) || !empty($_POST['password_confirmation'])) {
-                    if ($_POST['password'] === $_POST['password_confirmation']) {
-                        if ($_POST['current_password'] != $_POST['password']) {
-                            $request = $this->client->request('POST', 'checkPassword', [
-                                'form_params' => [
-                                    'password' => $_POST['current_password'],
-                                    'mail' => $_SESSION['mail']
-                                ]
-                            ]);
-                            $checkPassword = json_decode($request->getBody());
-                            if ($checkPassword->message === 1) {
-                                $password = htmlspecialchars($_POST['password']);
-                                $current_password = htmlspecialchars($_POST['current_password']);
-                                $password_confirmation = htmlspecialchars($_POST['password_confirmation']);
+                    if (strlen(htmlspecialchars($_POST['password'])) >= 8) {
+                        if ($_POST['password'] === $_POST['password_confirmation']) {
+                            if ($_POST['current_password'] != $_POST['password']) {
+                                $request = $this->client->request('POST', 'checkPassword', [
+                                    'form_params' => [
+                                        'password' => $_POST['current_password'],
+                                        'mail' => $_SESSION['mail']
+                                    ]
+                                ]);
+                                $checkPassword = json_decode($request->getBody());
+                                if ($checkPassword->message === 1) {
+                                    $password = htmlspecialchars($_POST['password']);
+                                    $current_password = htmlspecialchars($_POST['current_password']);
+                                    $password_confirmation = htmlspecialchars($_POST['password_confirmation']);
+                                } else {
+                                    $formErrors['current_password'] = 'Veuillez saisir votre mot de passe actuel.';
+                                }
                             } else {
-                                $formErrors['current_password'] = 'Veuillez saisir votre mot de passe actuel.';
+                                $formErrors['current_password'] = 'Votre nouveau mot de passe ne peut pas être identique à l\'ancien.';
+                                $formErrors['password'] = 'Votre nouveau mot de passe ne peut pas être identique à l\'ancien.';
                             }
                         } else {
-                            $formErrors['current_password'] = 'Votre nouveau mot de passe ne peut pas être identique à l\'ancien.';
-                            $formErrors['password'] = 'Votre nouveau mot de passe ne peut pas être identique à l\'ancien.';
+                            $formErrors['password_confirmation'] = 'Vos nouveaux mots de passe ne sont pas identiques.';
+                            $formErrors['password'] = 'Vos nouveaux mots de passe ne sont pas identiques.';
                         }
                     } else {
-                        $formErrors['password_confirmation'] = 'Vos nouveaux mots de passe ne sont pas identiques.';
-                        $formErrors['password'] = 'Vos nouveaux mots de passe ne sont pas identiques.';
+                        $formErrors['password'] = 'Votre mot de passe doit contenir un minimum 8 caractères.';
                     }
                 } else {
                     $formErrors['password'] = 'Veuillez saisir votre nouveau mot de passe.';

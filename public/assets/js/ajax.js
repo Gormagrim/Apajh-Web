@@ -11,7 +11,6 @@ $('.articleLike').on('click', function (event) {
 $('.articleLike').on('click', function (event) {
     event.preventDefault();
     var isLike = $(this).attr('data-isLike');
-    console.log(isLike);
     if (isLike == 1) {
         var countt = $('.hiddenCount').val();
         if (countt > 0) {
@@ -35,7 +34,6 @@ $('.articleLike').on('click', function (event) {
         $('.fa-thumbs-up').removeClass('fas');
         $('.fa-thumbs-up').addClass('far');
     } else if (isLike == 0) {
-        console.log(isLike);
         var countt = $('.hiddenCount').val();
         $('.articleLike').attr('data-isLike', 1);
         $('.articleLike').removeClass('notLike');
