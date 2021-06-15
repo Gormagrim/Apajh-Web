@@ -957,7 +957,7 @@ select.favoritSelect, select.favoritSelectWord {
 }
 
 .favorisV {
-    visibility: hidden;
+    display: none;
 }
 
 h2.h2cat {
@@ -1062,6 +1062,21 @@ button.modalBtn a {
 
 .favoris {
     cursor: pointer;
+}
+
+.allVideos {
+    display: none;
+}
+
+.allBlogArticle {
+    display: none;
+}
+span.sign {
+    font-style: italic;
+}
+
+.blogLink {
+    color: #5970B1;
 }
 
 /* ADMIN */

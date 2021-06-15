@@ -1,9 +1,22 @@
 <script>
-    $('.favoris.ldsfVideo').on('click', function(event){
+    $('.favoris.ldsfVideo').on('click', function(event) {
+        $(this).css('background-color', '#5970B1')
+        $('.favoris.blogArticle').css('background-color', '#F8C095')
         $('.favoritSelect').css('visibility', 'visible')
-        $('.favorisV').css('visibility', 'visible')
+        $('.favorisV').css('display', 'block')
+        $('.allVideos').css('display', 'block')
+        $('.allBlogArticle').css('display', 'none')
+        $('.favorisB').css('display', 'none')
     })
-     $('.favoritSelect').on('change', function(event) {
+    $('.favoris.blogArticle').on('click', function(event) {
+        $(this).css('background-color', '#5970B1')
+        $('.favoris.ldsfVideo').css('background-color', '#F8C095')
+        $('.allVideos').css('display', 'none')
+        $('.allBlogArticle').css('display', 'block')
+        $('.favorisV').css('display', 'none')
+        $('.favorisB').css('display', 'block')
+    })
+    $('.favoritSelect').on('change', function(event) {
         $('.favoritSelectWord').empty()
         $('.favoritSelectWord').css('visibility', 'visible')
         event.preventDefault();
@@ -92,5 +105,45 @@
         getVideoById({
             id: $(this).val()
         })
+    });
+    $(document).ready(function() {
+        const getFavoriteArticle = async function(data) {
+            try {
+                let response = await fetch('http://localhost/apiApajhv0/public/v1/favoriteArticle', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer <?php echo $_SESSION['token']; ?>'
+                    },
+                    body: JSON.stringify(data)
+                })
+                if (response.ok) {
+                    let responseData = await response.json()
+                    for (var resp in responseData) {
+                        var articleName = responseData[resp].contentTitle
+                        var articleConca = articleName.replace(/ /g, '-')
+                        var articleConcaAp = articleConca.replace(/\'/gi, '')
+                        var articleConcaApé = articleConcaAp.replace(/é|è|ê/gi, 'e')
+                        var articleConcaApéà = articleConcaApé.replace(/á|à|ã|â|@/gi, 'a')
+                        var articleConcaApéàî = articleConcaApéà.replace(/í|ì|î/gi, 'i')
+                        var articleConcaApéàîô = articleConcaApéàî.replace(/õ|ó|ò|ô/gi, 'o')
+                        var articleConcaApéàîôû = articleConcaApéàîô.replace(/ú|ù|û/gi, 'u')
+                        var articleConcaApéàîôûa = articleConcaApéàîô.replace(/^/gi, '')
+                        var articleUrl = articleConcaApéàîôûa.toLowerCase()
+                        var display = '<p><a class="blogLink" href="/webapp/public/blog-' + responseData[resp].id_content + '-' + articleUrl + '">' + responseData[resp].contentTitle + '</a> <span class="sign">Ecrit le </span><span class="date">' + responseData[resp].contentDate + '</span><span class="sign"> par </span><span class="autor">' + responseData[resp].firstname + ' ' + responseData[resp].lastname + '</span></p>'
+                        $('.favoriteArticle').append(display)
+                    }
+                    $('.favoris.blogArticle').on('click', function() {
+                        var blogCount = responseData.length
+                        $('.favorisB').html('Vos favoris contiennent <span class="bleu">' + blogCount + '</span> articles.')
+                    });
+                } else {
+                    console.error('Retour : ', response.status)
+                }
+            } catch (e) {
+                console.log(e)
+            }
+        }
+        getFavoriteArticle()
     });
 </script>
