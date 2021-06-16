@@ -109,7 +109,7 @@
                         return int.toString().replace(REGEX_GROUPS, `$1${delimiter}`)
                     }
                     for (var resp in responseTop) {
-                        var display = '<div class="top mb-2" data-id="' + responseTop[resp].id_content + '" data-topLike="' + responseTop[resp].numLike + '"><span class="position">' + count++ + '- </span><span>' + responseTop[resp].contentTitle + '</span><span class="category"> (' + responseTop[resp].category + ')</span><span class="likeNumber"> ' + useGrouping(responseTop[resp].numLike) + ' <i class="fas fa-heart"></i></span>'
+                        var display = '<div class="top mb-2" data-id="' + responseTop[resp].id_content + '" data-topLike="' + responseTop[resp].numLike + '"><span class="position">' + count++ + '- </span><span class="topName" data-value="' + responseTop[resp].contentTitle + '">' + responseTop[resp].contentTitle + '</span><span class="category"> (' + responseTop[resp].category + ')</span><span class="likeNumber"> ' + useGrouping(responseTop[resp].numLike) + ' <i class="fas fa-heart"></i></span>'
                         '</div>'
                         $('.topThree').append(display)
                     }
@@ -143,10 +143,36 @@
                         return int.toString().replace(REGEX_GROUPS, `$1${delimiter}`)
                     }
                     for (var resp in responseTopView) {
-                        var display = '<div class="top mb-2" data-id="' + responseTopView[resp].id_content + '" data-topLike="' + responseTopView[resp].numLike + '"><span class="position">' + count++ + '- </span><span>' + responseTopView[resp].contentTitle + '</span><span class="category"> (' + responseTopView[resp].category + ')</span><span class="likeNumber"> ' + useGrouping(responseTopView[resp].viewNumber) + ' <i class="far fa-eye"></span>'
+                        var display = '<div class="top mb-2" data-id="' + responseTopView[resp].id_content + '" data-topLike="' + responseTopView[resp].numLike + '"><span class="position">' + count++ + '- </span><span class="topName" data-value="' + responseTopView[resp].contentTitle + '">' + responseTopView[resp].contentTitle + '</span><span class="category"> (' + responseTopView[resp].category + ')</span><span class="likeNumber"> ' + useGrouping(responseTopView[resp].viewNumber) + ' <i class="far fa-eye"></span>'
                         '</div>'
                         $('.topThreeView').append(display)
                     }
+                    // Recherche de mots au click
+                    $('.topName').on('click', function() {
+                        var word = $(this).attr('data-value')
+                        const searchTopThree = async function(data) {
+                            try {
+                                let response = await fetch('http://localhost/apiApajhv0/public/v1/rechercheVideo', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify(data)
+                                })
+                                if (response.ok) {
+                                    let searchTop = await response.json()
+                                    $('.form-control.me-2').val(word)
+                                } else {
+                                    console.error('Retour : ', response.status)
+                                }
+                            } catch (e) {
+                                console.log(e)
+                            }
+                        }
+                        searchTopThree({
+                            contentTitle: $(this).attr('data-value')
+                        })
+                    })
                 } else {
                     console.error('Retour : ', response.status)
                 }

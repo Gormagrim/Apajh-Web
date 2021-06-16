@@ -1020,6 +1020,12 @@ img.tortue {
     font-weight: bold;
 }
 
+.topName {
+    cursor: pointer;
+    color: #5970B1;
+    font-weight: bold;
+}
+
 /* MODAL DE RECONNEXION */
 
 button.modalBtn {
