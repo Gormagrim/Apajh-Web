@@ -15,30 +15,16 @@
             </div>
         </div>
     </div>
-    <!-- Liens -->
     <div class="container text-center text-lg-left mt-5">
         <div class="row">
-            <!-- Liens part1 -->
-            <div class="footerPart1 col-md-4 col-lg-4 mx-auto mb-1">
+            <div class="footerPart1 col-md-6 col-lg-6 mx-auto mb-1">
                 <p class="title mb-4 text-uppercase font-weight-bold ">À propos de nous</p>
                 <ul>
-                    <li class="mb-4"><a href="">Mentions légales</a></li>
-                    <li class="mb-4"><a href="">Confidentialité et Cookies</a></li>
-                    <li><a href="#!">Conditions générales</a></li>
+                    <li class="mb-4"><a href="/webapp/public/mentions-legales">Mentions légales</a></li>
+                    <li class="mb-4"><a href="/webapp/public/mentions-legales#myCookies">Confidentialité et Cookies</a></li>
                 </ul>
             </div>
-            <!-- Fin des liens part1 -->
-            <!-- Liens part2 -->
-            <div class="footerPart2 col-md-4 col-lg-4 mx-auto mb-4">
-                <p class="title mb-4 text-uppercase font-weight-bold">Aide</p>
-                <ul>
-                    <li class="mb-4"><a href="">F.A.Q</a></li>
-                    <li><a href="#!">Aide</a></li>
-                </ul>
-            </div>
-            <!-- Fin des liens part2 -->
-            <!-- Liens part3 -->
-            <div class="col-md-4 col-lg-4 mx-auto mb-4">
+            <div class="col-md-6 col-lg-6 mx-auto mb-4">
                 <p class="title mb-4 text-uppercase font-weight-bold">Contact</p>
                 <ul class="contact">
                     <li class="mb-4"><i class="fas fa-home mr-3"></i> Rue Charles Linné, 02100 Saint-Quentin</li>
@@ -46,19 +32,17 @@
                     <li><i class="fas fa-phone mr-3"></i><a href="tel:+33323671513"> 03 23 67 15 13</a></li>
                 </ul>
             </div>
-            <!-- Fin des liens part3 -->
         </div>
     </div>
-    <!-- Fin des liens -->
-    <!-- Copyright -->
     <div class="footerCopyright text-center py-3">©<?= date('Y') ?> Apajh Web</div>
-    <!-- Fin de copyright -->
 </footer>
 <script language="JavaScript" type="text/javascript" src="assets/js/jquery-3.6.6.js"></script>
 <script script language="JavaScript" type="text/javascript" src="assets/js/jquery-ui.min.js"></script>
 <!-- <script language="JavaScript" type="text/javascript" src="assets/js/draganddrop.js"></script> -->
 <script language="JavaScript" type="text/javascript" src="assets/js/scriptGlisser.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<script language="JavaScript" type="text/javascript" src="assets/js/jeuDeCartes.js"></script>
+<script language="JavaScript" type="text/javascript" src="assets/js/codeMemory.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <script language="JavaScript" type="text/javascript" src="assets/js/script.js"></script>
 <script language="JavaScript" type="text/javascript" src="assets/js/ajax.js"></script>
 <?php ($page == '/webapp/public/auditif' || $page == '/webapp/public/auditif-categories') ? require '../fetch/likeMatch.php' : '' ?>
@@ -69,6 +53,7 @@
 <?php ($page == '/webapp/public/admin') ? require '../fetch/addVideo.php' : '' ?>
 <?php ($page == '/webapp/public/admin-word') ? require '../fetch/word.php' : '' ?>
 <?php ($page == '/webapp/public/blog') ? require '../fetch/articleFetch.php' : '' ?>
+<?php ($page == '/webapp/public/404') ? require '../fetch/p404.php' : '' ?>
 <script type="text/javascript">
     tarteaucitron.user.googleFonts = 'families';
     (tarteaucitron.job = tarteaucitron.job || []).push('googlefonts');
@@ -90,17 +75,61 @@
         <?php } ?>
         $('img.addPhoto.headerPhoto').attr('src', '<?= !empty($_SESSION['photo']) ? $_SESSION['photo'] : 'assets/img/flower.svg' ?>')
     });
+</script>
+<script>
     $(document).ready(function() {
-        var size = $('body').css('font-size')
+        <?php
+        if ($_SESSION['isActive'] == 0) { ?>
+            $('#isActiveModal').modal('show')
+        <?php  }
+        ?>
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        var bigger = 1
+        console.log(localStorage.getItem('font-size'))
+        console.log($('body').css('font-size'))
+        $('body').css('font-size', localStorage.getItem('font-size') + 'em')
+        if (localStorage.getItem('href') == null) {
+           $('.styleCss').attr('href', 'assets/css/style.css')
+        } else {
+           $('.styleCss').attr('href', localStorage.getItem('href'))
+        }
+        if ($('.styleCss').attr('href') == 'assets/css/style.css' ) {
+            $('.darkMode').html('Mode nuit')
+        } else if ($('.styleCss').attr('href') == 'assets/css/style_dark.css') {
+            $('.darkMode').html('Mode jour')
+        }
         $('.policePlus').on('click', function() {
-            $('body').css('font-size', '120%')
+            if (bigger <= 1.8 || localStorage.getItem('font-size') <= 1.8) {
+                bigger += 0.1
+                $('body').css('font-size', bigger + 'em')
+                console.log(bigger)
+                localStorage.setItem('font-size', bigger)
+            }
         })
         $('.policeMoins').on('click', function() {
-            $('body').css('font-size', '100%')
+            if (bigger >= 1.1 || localStorage.getItem('font-size') >= 1.1) {
+                bigger -= 0.1
+                $('body').css('font-size', bigger + 'em')
+                console.log(bigger)
+                localStorage.setItem('font-size', bigger)
+            }
+        })
+        $('.darkMode').on('click', function() {
+            if ($('.styleCss').attr('href') == 'assets/css/style.css' ) {
+                $('.darkMode').html('Mode jour')
+                $('.styleCss').attr('href' , 'assets/css/style_dark.css')
+                localStorage.setItem('href', 'assets/css/style_dark.css')
+            } else if ($('.styleCss').attr('href') == 'assets/css/style_dark.css') {
+                $('.darkMode').html('Mode nuit')
+                $('.styleCss').attr('href' , 'assets/css/style.css')
+                localStorage.setItem('href', 'assets/css/style.css')
+            }
         })
     });
 </script>
-
 </body>
 
 </html>

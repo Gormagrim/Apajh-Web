@@ -13,4 +13,12 @@
             </h1>
         </div>
     </div>
+    <script>
+        $('.tel').on('mouseover', function(event) {
+            $('.tel').removeClass('animate__jello')
+        })
+        $('.tel').on('mouseout', function(event) {
+            $('.tel').addClass('animate__jello')
+        })
+    </script>
 </div>

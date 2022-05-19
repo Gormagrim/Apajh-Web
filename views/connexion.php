@@ -43,7 +43,7 @@
                         <button type="submit" name="login" class="btn btn-primary connexionButton">Valider</button>
                     </form>
                     <div>
-                        <span class="smallText"><a href="/">Mot de pass oublié ?</a></span>
+                        <span class="smallText"><a href="/webapp/public/mot-de-passe-perdu">Mot de pass oublié ?</a></span>
                     </div>
                 </div>
             </div>

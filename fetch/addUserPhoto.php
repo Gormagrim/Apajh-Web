@@ -10,7 +10,7 @@
         <?php
             if (!empty($_SESSION['photo'])) { ?>
                 try {
-                    let response = await fetch('http://localhost/apiApajhv0/public/v1/userphoto', {
+                    let response = await fetch('http://www.api.apajh-num-et-rik.fr/public/v1/userphoto', {
                         method: 'DELETE',
                         headers: {
                             'Authorization': 'Bearer <?php echo $_SESSION['token']; ?>'
@@ -27,7 +27,7 @@
                 }
            <?php } ?>
         try {
-            let response = await fetch('http://localhost/apiApajhv0/public/v1/userphoto', {
+            let response = await fetch('http://www.api.apajh-num-et-rik.fr/public/v1/userphoto', {
                 method: 'POST',
                 headers: {
                     'Authorization': 'Bearer <?php echo $_SESSION['token']; ?>'

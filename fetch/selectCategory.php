@@ -3,7 +3,7 @@
     $(document).ready(function() {
         const CountVideo = async function(data) {
             try {
-                let response = await fetch('http://localhost/apiApajhv0/public/v1/countVideos', {
+                let response = await fetch('http://www.api.apajh-num-et-rik.fr/public/v1/countVideos', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
@@ -30,7 +30,7 @@
     $(document).ready(function() {
         const CountCat = async function(data) {
             try {
-                let response = await fetch('http://localhost/apiApajhv0/public/v1/countCat', {
+                let response = await fetch('http://www.api.apajh-num-et-rik.fr/public/v1/countCat', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
@@ -60,7 +60,7 @@
         event.preventDefault();
         const getVideoByCat = async function(data) {
             try {
-                let response = await fetch('http://localhost/apiApajhv0/public/v1/videos-cat', {
+                let response = await fetch('http://www.api.apajh-num-et-rik.fr/public/v1/videos-cat', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -104,7 +104,7 @@
         $('.speedBtn').html('<img class="lievre" src="assets/img/lievre-blanc.png" alt=""> x2')
         const getVideoById = async function(data) {
             try {
-                let response = await fetch('http://localhost/apiApajhv0/public/v1/videoContent', {
+                let response = await fetch('http://www.api.apajh-num-et-rik.fr/public/v1/videoContent', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -142,7 +142,7 @@
                     const getVideo = async function() {
                         try {
 
-                            let response = await fetch('http://localhost/apiApajhv0/public/v1/video/' + fileName, {
+                            let response = await fetch('http://www.api.apajh-num-et-rik.fr/public/v1/video/' + fileName, {
                                 method: 'GET',
                                 headers: {
                                     'Content-Type': 'application/json'
@@ -182,7 +182,7 @@
         }
         if (countLike == 0) {
             $('.badge').html('Personne n\'aime');
-        }else if (countLike > 1) {
+        } else if (countLike > 1) {
             $('.badge').html(useGrouping(countLike) + ' personnes aiment');
         } else {
             $('.badge').html(countLike + ' personne aime');
@@ -190,7 +190,7 @@
         <?php if (!empty($_SESSION['token'])) { ?>
             const likeMatch = async function(data) {
                 try {
-                    let response = await fetch('http://localhost/apiApajhv0/public/v1/likematch', {
+                    let response = await fetch('http://www.api.apajh-num-et-rik.fr/public/v1/likematch', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -226,12 +226,12 @@
                             return int.toString().replace(REGEX_GROUPS, `$1${delimiter}`)
                         }
                         if (countLike == 0) {
-            $('.badge').html('Personne n\'aime');
-        }else if (countLike > 1) {
-            $('.badge').html(useGrouping(countLike) + ' personnes aiment');
-        } else {
-            $('.badge').html(countLike + ' personne aime');
-        }
+                            $('.badge').html('Personne n\'aime');
+                        } else if (countLike > 1) {
+                            $('.badge').html(useGrouping(countLike) + ' personnes aiment');
+                        } else {
+                            $('.badge').html(countLike + ' personne aime');
+                        }
                     } else {
                         console.error('Retour : ', response.status)
                     }
@@ -248,7 +248,7 @@
         event.preventDefault();
         const videoView = async function(data) {
             try {
-                let response = await fetch('http://localhost/apiApajhv0/public/v1/viewVideo', {
+                let response = await fetch('http://www.api.apajh-num-et-rik.fr/public/v1/viewVideo', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -274,7 +274,7 @@
         $('.moreThanOne').css('opacity', 1)
         const getVideoByCat = async function(data) {
             try {
-                let response = await fetch('http://localhost/apiApajhv0/public/v1/videos-cat', {
+                let response = await fetch('http://www.api.apajh-num-et-rik.fr/public/v1/videos-cat', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

@@ -13,7 +13,7 @@ class ContentController
     public function __construct()
     {
         $this->client = new Client([
-            'base_uri' => 'http://localhost/apiApajhv0/public/v1/',
+            'base_uri' => 'https://www.api.apajh-num-et-rik.fr/public/v1/',
             'http_errors' => false
         ]);
     }
@@ -83,7 +83,9 @@ class ContentController
         $formErrors = array();
         if (count($_POST) > 0) {
             if (!empty($_POST['contentTitle'])) {
-                $title = htmlspecialchars($_POST['contentTitle']);
+                
+                $toto = htmlspecialchars($_POST['contentTitle']);
+                $title = htmlentities($toto);
             } else {
                 $formErrors['search'] = 'Merci de bien vouloir saisir le mot que vous voulez rechercher.';
             }
@@ -154,4 +156,89 @@ class ContentController
             echo $e->getMessage();
         }
     }
+
+    public function getBlogArticleByIdd($id)
+    {
+        try {
+            $request = $this->client->request('GET', 'article/' . $id, [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $_SESSION['token']
+                ]
+            ]);
+            $articleId = json_decode($request->getBody());
+            require '../views/article.php';
+        } catch (\Exception $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function sendAdmissionMail()
+    {
+        $formErrors = array();
+        $formSuccess = array();
+        if (count($_POST) > 0) {
+            if (!empty($_POST['civilite'])) {
+                $civilite = htmlspecialchars($_POST['civilite']);
+            } else {
+                $formErrors['civilite'] = 'Vous devez choisir votre civilité.';
+            }
+            if (!empty($_POST['nom'])) {
+                $nom = htmlspecialchars($_POST['nom']);
+            } else {
+                $formErrors['nom'] = 'Vous devez saisir votre nom.';
+            }
+            if (!empty($_POST['prenom'])) {
+                $prenom = htmlspecialchars($_POST['prenom']);
+            } else {
+                $formErrors['prenom'] = 'Vous devez saisir votre prénom.';
+            }
+            $patternPhone = '/^([0][1-79]){1}(?:[\s.-]*\d{2}){4}$/';
+            if (!empty($_POST['tel'])) {
+                if (preg_match($patternPhone, $_POST['tel'])) {
+                    $tel = htmlspecialchars($_POST['tel']);
+                } else {
+                    $formErrors['tel'] = 'Vous devez saisir un numéro de téléphone valide.';
+                }
+            } else {
+                $formErrors['tel'] = 'Vous devez saisir votre numéro de téléphone.';
+            }
+            if (!empty($_POST['mail'])) {
+                if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
+                    $mail = htmlspecialchars($_POST['mail']);
+                } else {
+                    $formErrors['mail'] = 'Vous devez saisir une adresse mail valide.';
+                }
+            } else {
+                $formErrors['mail'] = 'Vous devez saisir votre adresse mail.';
+            }
+            if (!empty($_POST['you'])) {
+                $you = htmlspecialchars($_POST['you']);
+            } else {
+                $formErrors['you'] = 'Vous devez préciser qui vous êtes.';
+            }
+            if ($_POST['you'] == 'Autre') {
+                if (!empty($_POST['autre'])) {
+                    $you = htmlspecialchars($_POST['you']);
+                } else {
+                    $formErrors['you'] = 'Vous devez préciser qui vous êtes.';
+                }
+            }
+            if (!empty($_POST['message'])) {
+                $message = htmlspecialchars($_POST['message']);
+            } else {
+                $formErrors['message'] = 'Vous devez saisir un message.';
+            }
+            if (empty($formErrors)) {
+                require '../views/admission.php';
+                $destinataire = 's.larrivee@apajh.asso.fr';
+                $sujet = 'Mail de contact de' . $civilite . ' ' . $nom . ' ' . $prenom;
+                $entete = 'Son numéro de téléphine est le ' . $tel . ', son mail est : ' . $mail . '. Cette personne est ' . $you . ' ' . (!empty($autre) ? '(' . $autre . ')' : '');
+                $text = $message;
+                mail($destinataire, $sujet, $text, $entete);
+            } else {
+                require '../views/admission.php';
+            }
+        }
+    }
+    
 }

@@ -1,13 +1,19 @@
 <script>
     $('.wordListLi').on('click', function(event) {
         event.preventDefault();
-        $('.wordListLi').css('background-color', 'rgba(246, 175, 121, 0.8)')
-        $('.wordListLi').css('color', '#000')
+        if ($('body').css('color') == 'rgb(245, 245, 245)') {
+            $('.wordListLi').css('background-color', '#525252')
+            $('.wordList').css('color', '#f5f5f5')
+            $('.wordListLi').css('color', '#f5f5f5')
+        } else {
+            $('.wordListLi').css('background-color', 'rgba(246, 175, 121, 0.8)')
+            $('.wordListLi').css('color', '#f5f5f5')
+        }
         $('.videoDiv').css('visibility', 'visible')
         $('.moreThanOne').css('opacity', 1)
         const likeMatch = async function(data) {
             try {
-                let response = await fetch('http://localhost/apiApajhv0/public/v1/likematch', {
+                let response = await fetch('http://www.api.apajh-num-et-rik.fr/public/v1/likematch', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -93,7 +99,7 @@
     $(document).ready(function() {
         const getTopThree = async function(data) {
             try {
-                let response = await fetch('http://localhost/apiApajhv0/public/v1/likedVideo', {
+                let response = await fetch('http://www.api.apajh-num-et-rik.fr/public/v1/likedVideo', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -127,7 +133,7 @@
     $(document).ready(function() {
         const getViewTopThree = async function(data) {
             try {
-                let response = await fetch('http://localhost/apiApajhv0/public/v1/viewedVideo', {
+                let response = await fetch('http://www.api.apajh-num-et-rik.fr/public/v1/viewedVideo', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -152,7 +158,7 @@
                         var word = $(this).attr('data-value')
                         const searchTopThree = async function(data) {
                             try {
-                                let response = await fetch('http://localhost/apiApajhv0/public/v1/rechercheVideo', {
+                                let response = await fetch('http://www.api.apajh-num-et-rik.fr/public/v1/rechercheVideo', {
                                     method: 'POST',
                                     headers: {
                                         'Content-Type': 'application/json'
@@ -188,7 +194,7 @@
         event.preventDefault();
         const videoView = async function(data) {
             try {
-                let response = await fetch('http://localhost/apiApajhv0/public/v1/viewVideo', {
+                let response = await fetch('http://www.api.apajh-num-et-rik.fr/public/v1/viewVideo', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

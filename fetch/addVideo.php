@@ -39,7 +39,7 @@
     $(document).ready(function() {
         const getCategory = async function(data) {
             try {
-                let response = await fetch('http://localhost/apiApajhv0/public/v1/videos', {
+                let response = await fetch('http://www.api.apajh-num-et-rik.fr/public/v1/videos', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
@@ -65,7 +65,7 @@
     $(document).ready(function() {
         const getCategory = async function(data) {
             try {
-                let response = await fetch('http://localhost/apiApajhv0/public/v1/videos', {
+                let response = await fetch('http://www.api.apajh-num-et-rik.fr/public/v1/videos', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
@@ -91,7 +91,7 @@
         event.preventDefault();
         const addCategory = async function(data) {
             try {
-                let response = await fetch('http://localhost/apiApajhv0/public/v1/addCategory', {
+                let response = await fetch('http://www.api.apajh-num-et-rik.fr/public/v1/addCategory', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -118,7 +118,7 @@
         event.preventDefault();
         const addVideoContent = async function(data) {
             try {
-                let response = await fetch('http://localhost/apiApajhv0/public/v1/article', {
+                let response = await fetch('http://www.api.apajh-num-et-rik.fr/public/v1/article', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -162,7 +162,7 @@
             formData.set('id_content', $('.id_content').val())
             formData.set('id_category', $('.catId').val())
             try {
-                let response = await fetch('http://localhost/apiApajhv0/public/v1/video', {
+                let response = await fetch('http://www.api.apajh-num-et-rik.fr/public/v1/video', {
                     method: 'POST',
                     headers: {
                         'Accept': 'application/json',
@@ -190,7 +190,7 @@
     $(document).ready(function() {
         const offlineNumber = async function(data) {
             try {
-                let response = await fetch('http://localhost/apiApajhv0/public/v1/countOfflineVideos', {
+                let response = await fetch('http://www.api.apajh-num-et-rik.fr/public/v1/countOfflineVideos', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',

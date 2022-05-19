@@ -1,6 +1,7 @@
 <?php
 require_once '../controllers/ContentController.php';
 $contentController = new ContentController;
+$page = $_SERVER['REQUEST_URI'];
 ?>
 <div class="container-fluid">
     <div clas="row">
@@ -15,9 +16,24 @@ $contentController = new ContentController;
                     <!-- DEBUT DES ARTICLES -->
                     <div class="row">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center mt-4 mb-4">
-                            <h1 class="articleContent"><?= $articleId->contentTitle ?></h1>
+                            <h1 class="articleContent"><?= $articleId->contentTitle ?> <i class="fas fa-volume-up speak"></i></h1>
                         </div>
                     </div>
+                    <div class="voiceDiv" hidden></div>
+                    <script>
+                        $('.speak').on('click', function() {
+                            var synth = window.speechSynthesis;
+                            var toto = $('.voiceDiv').html()
+                            synth.cancel()
+                            const words = toto.split(/[.,]+/);
+                            words.forEach((item) => {
+                                let voice = new SpeechSynthesisUtterance(item);
+                                voice.voiceURI = 'native';
+                                voice.lang = 'fr-FR';
+                                synth.speak(voice);
+                            })
+                        })
+                    </script>
                     <div class="row">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 text-center">
                             <?php if (isset($articleId->photo)) {
@@ -29,7 +45,7 @@ $contentController = new ContentController;
                     </div>
                     <div class="row">
                         <div class="offset-1 col-10 offset-sm-1 col-sm-10 offset-md-1 col-md-10 offset-lg-1 col-lg-10 offset-xl-1 col-xl-10 text-center chapo mb-4 articleContent">
-                            <h2><?= $articleId->paragraph[0]->text ?></h2>
+                            <h2 class="firstPara"><?= $articleId->paragraph[0]->text ?></h2>
                         </div>
                     </div>
                     <div class="row">
@@ -40,9 +56,14 @@ $contentController = new ContentController;
                     </div>
                     <div class="row">
                         <div class="col-12 offset-sm-1 col-sm-10 offset-md-1 col-md-10 offset-lg-1 col-lg-10 offset-xl-1 col-xl-10">
-                            <button type="button" class="btn btn-primary articleLike">
-                                Like <span class="badge bg-secondary" data-count="<?= count($articleId->like) ?>"></span>
-                            </button>
+                            <div class="like">
+                                <div class="coeur text-center">
+                                    <i class="fas fa-heart fa-2x"></i>
+                                </div>
+                                <div class="nb text-center">
+                                    <span class="badge bg-secondary like" data-count="<?= count($articleId->like) ?>"><?= number_format(count($articleId->like), 0, ',', ' '); ?></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -52,14 +73,13 @@ $contentController = new ContentController;
                     </div>
                     <div class="row">
                         <div class="col-12 offset-sm-1 col-sm-10 offset-md-1 col-md-10 offset-lg-1 col-lg-10 offset-xl-1 col-xl-10 text-center mb-4">
-                            <a class="socialN first" href=""><i class="fab fa-facebook blog fa-2x"></i></a>
-                            <a class="socialN" href=""><i class="fab fa-facebook-messenger blog fa-2x"></i></a>
-                            <a class="socialN" href=""><i class="fab fa-instagram blog fa-2x"></i></a>
-                            <a class="socialN" href=""><i class="fab fa-linkedin blog fa-2x"></i></a>
-                            <a class="socialN" href=""><i class="fab fa-twitter blog fa-2x"></i></a>
+                            <a class="socialN first" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;" href="https://www.facebook.com/sharer.php?u=https://www.apajh.web.jeseb.fr<?= $page ?>&t=<?= $articleId->contentTitle ?>"><i class="fab fa-facebook blog fa-2x"></i></a>
+                            <a class="socialN" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;" href=""><i class="fab fa-facebook-messenger blog fa-2x"></i></a>
+                            <a class="socialN" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;" href=""><i class="fab fa-instagram blog fa-2x"></i></a>
+                            <a class="socialN" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;" href="https://www.linkedin.com/shareArticle?mini=true&url=https://www.apajh.web.jeseb.fr<?= $page ?>&title=<?= $articleId->contentTitle ?>"><i class="fab fa-linkedin blog fa-2x"></i></a>
+                            <a class="socialN" onclick="javascript:window.open(this.href, '', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=500,width=700');return false;" href="https://twitter.com/share?url=https://www.apajh.web.jeseb.fr<?= $page ?>&text=<?= $articleId->contentTitle ?>"><i class="fab fa-twitter blog fa-2x"></i></a>
                         </div>
                     </div>
-
                     <?php
                     foreach ($articleId->paragraph as $article) { ?>
                         <div class="row">
@@ -70,28 +90,60 @@ $contentController = new ContentController;
                             </div>
                         </div>
                         <?php
-                        if (!empty($articleId->paragraph_photos) && $articleId->paragraph_photos[0]->id_paragraph == $article->id) {
-                            $photoP = $contentController->getPhoto($articleId->paragraph_photos[0]->fileName);
+                        foreach ($articleId->paragraph_photos as $paraPhoto) {
+                        if (!empty($articleId->paragraph_photos) && $paraPhoto->id_paragraph == $article->id) {
+                            $photoP = $contentController->getPhoto($paraPhoto->fileName);
                         ?>
                             <div class="row semiParent">
                                 <div class="offset-1 col-10 offset-sm-1 col-sm-5 offset-md-1 col-md-5 offset-lg-1 col-lg-5 offset-xl-1 col-xl-5 text-center">
-                                    <img class="semiImg img-fluid" src="<?= $photoP ?>" alt="<?= $articleId->paragraph_photos[0]->photoTitle ?>">
-                                    <p class="smallText articleContent"><?= $articleId->paragraph_photos[0]->photoTitle ?></p>
+                                    <img class="semiImg img-fluid" src="<?= $photoP ?>" alt="<?= $paraPhoto->photoTitle ?>">
+                                    <p class="smallText articleContent"><?= $paraPhoto->photoTitle ?></p>
                                 </div>
                                 <div class="offset-1 col-10 col-sm-5 col-md-5 col-lg-5 col-xl-5 text-center paragraphe semi justify-content-center articleContent">
                                     <p><?= $article->text ?></p>
                                 </div>
                             </div>
-                            <?php  } else {
-                            if ($article->text != $articleId->paragraph[0]->text) { ?>
+                            <?php  }
+                            if ($article->id != $paraPhoto->id_paragraph) { ?>
                                 <div class="row">
                                     <div class="offset-1 col-10 offset-sm-1 col-sm-10 offset-md-1 col-md-10 offset-lg-1 col-lg-10 offset-xl-1 col-xl-10 paragraphe text-center articleContent">
-                                        <p><?= $article->text ?></p>
+                                        <p class="voicePara"><?= $article->text ?></p>
                                     </div>
                                 </div>
                         <?php }
-                        } ?>
+                    } ?>
                     <?php } ?>
+
+                    <script>
+                        $(document).ready(function() {
+                            const getArticleForVoice = async function(data) {
+                                try {
+                                    let response = await fetch('http://localhost/apiApajhv0/public/v1/article/<?= $articleId->id ?>', {
+                                        method: 'GET',
+                                        headers: {
+                                            'Content-Type': 'application/json',
+                                            'Authorization': 'Bearer <?php echo $_SESSION['token']; ?>'
+                                        }
+                                    })
+                                    if (response.ok) {
+                                        let articleRps = await response.json()
+                                        for (var resp in articleRps.paragraph) {
+                                            if (articleRps.paragraph[resp].title != null) {
+                                                $('.voiceDiv').append(articleRps.paragraph[resp].title)
+                                            }
+                                            $('.voiceDiv').append(articleRps.paragraph[resp].text)
+                                        }
+                                    } else {
+                                        console.error('Retour : ', response.status)
+                                    }
+                                } catch (e) {
+                                    console.log(e)
+                                }
+                            }
+                            getArticleForVoice()
+                        });
+                    </script>
+                    <?php if($articleId->carousel == 1) { ?>
                     <div class="row">
                         <div class="offset-1 col-10 offset-sm-3 col-sm-6 offset-md-3 col-md-6 offset-lg-3 col-lg-6 offset-xl-3 col-xl-6 text-center mb-4">
                             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -109,40 +161,48 @@ $contentController = new ContentController;
                                         </div>
                                     <?php } ?>
                                 </div>
-                                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-bs-slide="prev">
+                                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-bs-slide="prev">
                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Previous</span>
                                 </a>
-                                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-bs-slide="next">
+                                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-bs-slide="next">
                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                     <span class="visually-hidden">Next</span>
                                 </a>
                             </div>
                         </div>
                     </div>
+                    <?php } ?>
                     <div class="row">
                         <div class="col-12 offset-sm-1 col-sm-10 offset-md-1 col-md-10 offset-lg-1 col-lg-10 offset-xl-1 col-xl-10">
-                            <p>Vous aimez cet article ? N'hésitez pas à le liker.</p><button type="button" class="btn btn-primary articleLike">
-                                Like <span class="badge bg-secondary" data-count="<?= count($articleId->like) ?>"></span>
-                            </button>
+                            <p>Vous aimez cet article ? N'hésitez pas à le liker.</p>
+                            <div class="like">
+                                <?php
+                                if (!empty($_SESSION['id'])) {
+                                    foreach ($articleId->like as $like) {
+                                        $id = $_SESSION['id'];
+                                        if (!empty($like)) {
+                                            if ($like->id_users == $id) {
+                                                $isLike = 1;
+                                            } else {
+                                                $isLike = 0;
+                                            }
+                                        } else {
+                                            $isLike = 0;
+                                        }
+                                    }
+                                }
+                                ?>
+                                <div class="coeur text-center">
+                                    <i class="<?= isset($isLike) && $isLike == 1 ? 'fas ' : 'far ' ?>fa-heart fa-2x"></i>
+                                </div>
+                                <div class="nb text-center">
+                                    <span class="badge bg-secondary like" data-count="<?= count($articleId->like) ?>"><?= number_format(count($articleId->like), 0, ',', ' '); ?></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <?php
-                    if (!empty($_SESSION['id'])) {
-                        foreach ($articleId->like as $like) {
-                            $id = $_SESSION['id'];
-                            if (!empty($like)) {
-                                if ($like->id_users == $id) {
-                                    $isLike = 1;
-                                } else {
-                                    $isLike = 0;
-                                }
-                            } else {
-                                $isLike = 0;
-                            }
-                        }
-                    }
-                    ?>
+
                     <div class="likeItem blogLike">
                         <i title="" type="submit" class="far fa-thumbs-up fa-2x articleBlogLike" data-like="" data-isLike="<?= isset($isLike) ? $isLike : 0 ?>" data-id="<?= $articleId->id ?>" title="J'aime !"></i>
                     </div>
@@ -151,6 +211,8 @@ $contentController = new ContentController;
                         $('.articleBlogLike').on('click', function() {
                             var isLike = $('.articleBlogLike').attr('data-isLike');
                             if (isLike == 1) {
+                                $('.fa-heart.fa-2x').removeClass('fas')
+                                $('.fa-heart.fa-2x').addClass('far')
                                 var like = $('.badge').attr('data-count')
                                 like--
                                 $('.badge').html(like)
@@ -177,6 +239,9 @@ $contentController = new ContentController;
                                     id_content: $(this).attr('data-id')
                                 })
                             } else {
+                                $('.fa-heart.fa-2x').addClass('fas')
+                                $('.fa-heart.fa-2x').removeClass('far')
+                                $('.fa-heart.fa-2x').addClass('animate__heartBeat');
                                 var like = $('.badge').attr('data-count')
                                 $('.badge').html(like)
                                 const articleLike = async function(data) {
@@ -264,10 +329,11 @@ $contentController = new ContentController;
                         </div>
                     </div>
                     <script>
+                        // liste de l'équipe du blog
                         $(document).ready(function() {
                             const getProUsers = async function(data) {
                                 try {
-                                    let response = await fetch('http://localhost/apiApajhv0/public/v1/proUsers', {
+                                    let response = await fetch('http://localhost/apiApajhv0/public/v1/article', {
                                         method: 'GET',
                                         headers: {
                                             'Content-Type': 'application/json',
@@ -279,7 +345,9 @@ $contentController = new ContentController;
                                         for (var resp in responseGetUser) {
                                             var src = responseGetUser[resp].user_photo == null ? 'assets/img/flower2.png' : 'http://localhost/apiApajhv0/public/upload/user/' + responseGetUser[resp].user_photo.fileName
                                             var pro = '<div class="row ourTeam"><div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 text-center"><img class="team" src="' + src + '" alt="Fleur de l\'Apajh" class="img-thumbnail"></div><div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6 teamName text-center"><span>' + responseGetUser[resp].user_description.firstname + ' ' + responseGetUser[resp].user_description.lastname.toUpperCase() + '</span><br /><span class="job">' + responseGetUser[resp].user_description.job + '</span></div></div>'
-                                            $('.somePro').append(pro)
+                                            if (responseGetUser[resp].user_description != null) {
+                                                $('.somePro').append(pro)
+                                            }
                                         }
                                     } else {
                                         console.error('Retour : ', response.status)
@@ -300,3 +368,9 @@ $contentController = new ContentController;
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    (tarteaucitron.job = tarteaucitron.job || []).push('facebook');
+</script>
+<script type="text/javascript">
+    (tarteaucitron.job = tarteaucitron.job || []).push('instagram');
+</script>

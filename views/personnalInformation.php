@@ -36,8 +36,8 @@ $contentController = new ContentController;
             <div class="row">
                 <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                     <img class="avatar <?= ($_SESSION['ug'] == 1) ? 'admin' : (($_SESSION['ug'] == 2) ? 'direction' : (($_SESSION['ug'] == 3 || $_SESSION['ug'] == 4 || $_SESSION['ug'] == 5) ? 'service' : (($_SESSION['ug'] == 6) ? 'famille' : (($_SESSION['ug'] == 7) ? 'inscrit' : '')))) ?>" src="<?= !empty($_SESSION['photo']) ? $_SESSION['photo'] : 'assets/img/flower.svg' ?>" alt="Photo de profil de <?= $user['firstname'] . ' ' . $user['lastname'] ?>" class="img-thumbnail">
-                    <a class="addPhoto" title="Changer votre photo de profil"><i class="fas fa-camera"></i></a>
-                    <input class="addPhoto" name="file" type="file">
+                    <label for="file" class="label-file"><a class="addPhoto" title="Changer votre photo de profil"><i class="fas fa-camera"></i></a></label>
+                    <input class="addPhoto" id="file" name="file" type="file">
                 </div>
                 <div class="col-4 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                     <div class="row">
@@ -82,7 +82,7 @@ $contentController = new ContentController;
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                         <span class="civilityType">Nom :</span>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="offset-1 col-10 col-sm-10 col-md-4 col-lg-4 col-xl-4">
                         <?php if (!empty($formErrors)) { ?>
                             <input type="text" class="form-control information" id="lastname" name="lastname" placeholder="Votre nom" value="<?= isset($_POST['lastname']) ? $_POST['lastname'] : '' ?>" />
                         <?php } else { ?>
@@ -101,7 +101,7 @@ $contentController = new ContentController;
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                         <span class="civilityType">Prénom :</span>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="offset-1 col-10 col-sm-10 col-md-4 col-lg-4 col-xl-4">
                         <?php if (!empty($formErrors)) { ?>
                             <input type="text" class="form-control information" id="firstname" name="firstname" placeholder="Votre prénom" value="<?= isset($user['firstname']) ? $user['firstname'] : (isset($_POST['firstname']) ? $_POST['firstname'] : '') ?>" />
                         <?php } else { ?>
@@ -119,7 +119,7 @@ $contentController = new ContentController;
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                         <span class="civilityType">Ville :</span>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="offset-1 col-10 col-sm-10 col-md-4 col-lg-4 col-xl-4">
                         <?php if (!empty($formErrors)) { ?>
                             <input list="cities" type="text" class="form-control information" data-id="" id="city" placeholder="Tapez votre code postal" value="<?= isset($_POST['city']) ? $_POST['city'] : (isset($user['city']) ? $user['city'] : '') ?>" />
                             <select id="cities" class="cities"></select>
@@ -140,7 +140,7 @@ $contentController = new ContentController;
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                         <span class="civilityType">Fonction :</span>
                     </div>
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+                    <div class="offset-1 col-10 col-sm-10 col-md-4 col-lg-4 col-xl-4">
                         <?php if (!empty($formErrors)) { ?>
                             <input type="text" class="form-control information" id="job" name="job" placeholder="Votre fonction" value="<?= isset($user['job']) ? $user['job'] : (isset($_POST['job']) ? $_POST['job'] : '') ?>" />
                         <?php } else { ?>

@@ -13,7 +13,7 @@ class LikeMatchController
     public function __construct()
     {
         $this->client = new Client([
-            'base_uri' => 'http://localhost/apiApajhv0/public/v1/',
+            'base_uri' => 'https://www.api.apajh-num-et-rik.fr/public/v1/',
             'http_errors' => false
         ]);
     }

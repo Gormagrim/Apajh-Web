@@ -4,3 +4,4 @@ RewriteRule . index.php [L]
 <IfModule mod_headers.c>
     Header set Connection Keep-Alive
 </IfModule>
+ErrorDocument 404 /404.php?code=404

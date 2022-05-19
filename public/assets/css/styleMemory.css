@@ -1,0 +1,93 @@
+body {
+	background-image: url(../img/background_apajh3.svg);
+	background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.entete {
+	padding: 0px;
+	text-align: center;
+}
+
+.timer {
+	font-size: 20px;
+}
+
+.Gtime {
+	color: #5970B1;
+}
+
+.Gtime.left {
+	background-color: rgba(251, 221, 197, 0.8);
+	border-radius: 1vh;
+	border: 1px solid #5970B1;
+}
+
+.sec {
+	font-weight: bold;
+}
+
+#jeu {
+	text-align: center;
+}
+
+.plan {
+	text-align: center;
+}
+
+img { border: 0px; }
+
+/* Bordure et fond du jeu */
+
+
+.fondTapis {
+	background-color: rgba(251, 221, 197, 0.8);
+    border-radius: 1vh;
+	padding: 2vh;
+}
+
+/* Bordure et fond de l'aide */
+
+#score {
+	font-size: 14px;
+	font-weight: bold;
+	color: #5970B1;
+	text-align: center;
+}
+
+#console {
+	padding: 5px;
+	font-size: 16px;
+	font-style: italic;
+	color: #5970B1;
+}
+
+.radio {
+	font-size: 14px;
+	font-weight: bold;
+	color: #5970B1;
+}
+
+.Style2 {
+	font-size: 14px;
+	color: #5970B1;
+}
+
+.bleu { color: #360; }
+.rouge { color: #CA000F; }
+.gras { font-weight: bold; }
+.italique { font-style: italic; }
+
+/* Style de l'aide */
+#aide {
+	position: absolute;
+}
+
+.aide {
+	padding: 5px;
+	font-size: 14px;
+	color: #5970B1;
+	background-color: rgba(251, 221, 197, 0.8);
+}
+
+.invisible { display: none; }

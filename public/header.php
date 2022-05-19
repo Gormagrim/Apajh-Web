@@ -1,5 +1,6 @@
 <?php
 $page = $_SERVER['REQUEST_URI'];
+require '../vendor/autoload.php';
 ?>
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
@@ -7,7 +8,7 @@ $page = $_SERVER['REQUEST_URI'];
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, user-scalable=no" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css" integrity="sha384-vSIIfh2YWi9wW0r9iZe7RJPrKwp6bG+s9QZMoITbCckVJqGCCRhc+ccxNcdpHuYu" crossorigin="anonymous" />
@@ -30,9 +31,14 @@ $page = $_SERVER['REQUEST_URI'];
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-    <link rel="stylesheet" href="assets/css/style.css" />
+    <link class="styleCss" rel="stylesheet" href="assets/css/style.css" />
+    <script src="https://www.google.com/recaptcha/enterprise.js" async defer></script>
     <?php
-    if ($page == '/') { ?>
+    $patternArticle = '/^(\/)([a-z]+)(\/)([a-z]+)(\/)([a-z]+)-([1-9]+)-([a-z]+)([-]{1}[a-z]+){0,10}$/';
+    if (preg_match($patternArticle, $page)) {
+        include '../views/tests.php';
+    }
+    if ($page == '/webapp/public/') { ?>
         <title>L'Apajh Web | SAINT-QUENTIN</title>
         <meta name="description" content="L'Apajh Web est le site internet de la fédération des Apajh de Saint Quentin. Venez utiliser notre vidéothèque de la langue des signes française !" />
     <?php } else if ($page == '/webapp/public/qui-sommes-nous') { ?>
@@ -91,7 +97,7 @@ $page = $_SERVER['REQUEST_URI'];
 
         "showIcon": true,
         /* Show cookie icon to manage cookies */
-        //"iconSrc": "", /* Optionnal: URL or base64 encoded image */
+        // "iconSrc": "http://localhost/webapp/public/assets/img/flower2.png", /* Optionnal: URL or base64 encoded image */
         "iconPosition": "BottomRight",
         /* BottomRight, BottomLeft, TopRight and TopLeft */
 
@@ -124,6 +130,7 @@ $page = $_SERVER['REQUEST_URI'];
         /* Show a message about mandatory cookies */
     });
 </script>
+
 <body>
     <div id="loader">
 
@@ -141,8 +148,16 @@ $page = $_SERVER['REQUEST_URI'];
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/webapp/public/qui-sommes-nous">Qui sommes-nous ?</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Qui sommes nous ?
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/webapp/public/qui-sommes-nous">SESSAD Sensoriel</a></li>
+                            <li><a class="dropdown-item" href="/webapp/public/qui-sommes-nous">IME La Feuillaume</a></li>
+                            <li><a class="dropdown-item" href="/webapp/public/qui-sommes-nous">SESSAD La Feuillaume</a></li>
+                            <li><a class="dropdown-item" href="/webapp/public/formulaire-pre-admission">EMAS</a></li>
+                        </ul>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/webapp/public/blog">Le blog</a>
@@ -155,17 +170,18 @@ $page = $_SERVER['REQUEST_URI'];
                             Ressources
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/webapp/public/contes-lpc">Contes LPC</a></li>
                             <li><a class="dropdown-item" href="/webapp/public/divers">Divers</a></li>
                             <li><a class="dropdown-item" href="/webapp/public/jeux-educatifs">Jeux éducatifs</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle access" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle access" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false">
                             Accessibilité
                         </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                             <li>Taille de police <button class="policeMoins">-</button><button class="policePlus">+</button></li>
-                            <li>Mode nuit</li>
+                            <li class="darkMode">Mode nuit</li>
                         </ul>
                     </li>
                 </ul>
@@ -174,6 +190,89 @@ $page = $_SERVER['REQUEST_URI'];
             </div>
         </div>
     </nav>
+    <!-- Début ENT -->
+    <div class="row ent-infos fixed-top">
+        <div class="col-3 ent-left">Mon Espace <img class="litleNumRik" src="assets/img/page-num2-white.png" alt=""> de Travail</div>
+        <div class="col-6 ent-info"></div>
+        <div class="col-3 ent-right">
+            <div class="row">
+                <div class="col-3 cdt"><a href="" title="Votre cahier de texte à l'IME" data-bs-toggle="modal" data-bs-target="#cDt"><i class="fas fa-book fa-2x"></i><br />
+                        <p class="smallExp">Cahier de texte</p>
+                    </a></div>
+                <div class="col-3 msg"><a href="" title="Messagerie instantanée"><i class="fas fa-envelope fa-2x"></i><br />
+                        <p class="smallExp">Messagerie</p>
+                    </a></div>
+                <div class="col-3 app"><a href="" title="Mes apllications"><i class="fas fa-mobile-alt fa-2x"></i><br />
+                        <p class="smallExp">Applications</p>
+                    </a></div>
+                <div class="col-3"><a href="" title="Ma vie à l'IME"><i class="far fa-grin-alt fa-2x"></i><br />
+                        <p class="smallExp">Vie à l'IME</p>
+                    </a></div>
+            </div>
+        </div>
+    </div>
+    <!-- Cahier de texte -->
+    <div class="modal fade" id="cDt" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+            aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl modal-dialog-scrollable">
+                <div class="modal-content text-center">
+                    <div class="modal-header mt-4">
+                        <h2 class="modal-title"><i class="fas fa-book"></i> Votre cahier de texte</h2>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center">
+                        <div class="row">
+                            <div class="col-4"></div>
+                            <div class="col-8"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer text-center">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Fermer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php if (!empty($_SESSION['ug']) && $_SESSION['ug'] == '6') { ?>
+        <script>
+            $(document).ready(function() {
+                $('.ent-infos').css('visibility', 'visible')
+                console.log($('.ent-infos').css('visibility'))
+                if ($('.ent-infos').css('visibility') == 'visible') {
+                    $('body').css('padding-top', '200px')
+                }
+                const getAllArticles = async function(data) {
+                    try {
+                        let response = await fetch('https://www.api.apajh.jeseb.fr/public/v1/articles/860', {
+                            method: 'GET',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Authorization': 'Bearer <?= $_SESSION['token']; ?>'
+                            }
+                        })
+                        if (response.ok) {
+                            let responseData = await response.json()
+                            console.log(responseData)
+                            var textareaModif = responseData.paragraph[0].text
+                            console.log(textareaModif)
+                            if (responseData.paragraph[0].text != '<p><br data-cke-filler="true"></p>') {
+                                $('.ent-info').append('<i class="fas fa-bullhorn fa-2x"></i>' + textareaModif)
+                            } else {
+                                $('.ent-info').append('')
+                                $('.ent-info').css('background-color', '#5970B1')
+                            }
+                        } else {
+                            console.error('Retour : ', response.status)
+                        }
+                    } catch (e) {
+                        console.log(e)
+                    }
+                }
+                getAllArticles()
+            })
+        </script>
+    <?php }  ?>
+
+    <!-- Fin ENT -->
     <div class="modal fade" id="myModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content text-center">
@@ -187,6 +286,19 @@ $page = $_SERVER['REQUEST_URI'];
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn modalBtn" id="modalBtn"><a href="/webapp/public/connexion">Se connecter</a></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="isActiveModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-body">
+                    <h2 class="modal-title" id="exampleModalLabel">Session non active</h2>
+                    Merci de cliquer sur le lien qui vous a été envoyé par mail pour activer votre compte.
+                </div>
+                <div class="modal-footer">
+                    <form class="text-center" action="/webapp/public/deconnexion" method="post"><button type="submit" class="btn btn-secondary btn-sm">Déconnexion</button></form>
                 </div>
             </div>
         </div>

@@ -5,13 +5,14 @@
 }
 
 body {
-    background-image: url(../img/background_apajh3.svg); /* url(../img/background_apajh2.svg) */
+    background-image: url(../img/background_apajh3.svg);
+    /* url(../img/background_apajh_black.svg) */
     background-repeat: no-repeat;
     background-size: cover;
     background-position-x: 1.6vh;
     background-attachment: fixed;
     padding-top: 100px;
-    font-size: 100%;
+    font-size: 1em;
 }
 
 body, html {
@@ -28,6 +29,7 @@ body, html {
     margin: 0;
     position: relative;
     padding: 0;
+    z-index: 1 !important;
 }
 
 .btn-primary {
@@ -317,7 +319,6 @@ img.addPhoto {
 }
 
 input.addPhoto {
-    margin-left: -5vh;
     width: 40px;
     line-height: 30px;
     height: 40px;
@@ -403,7 +404,7 @@ button.btn-close.closer {
 /* INFORMATION */
 
 .form-control.information {
-    width: 70%;
+    width: 100%;
 }
 
 @media screen and (max-width: 769px) and (max-height: 916px) {
@@ -416,15 +417,19 @@ button.btn-close.closer {
         padding-top: 100px;
         min-height: 100vh;
     }
+
     .civility {
         text-align: center;
     }
+
     span.civilityType, span.myCivility {
         text-align: center;
     }
+
     .civilityType {
         margin: 0;
     }
+
     .avatar {
         height: 120px;
         width: 120px;
@@ -433,6 +438,7 @@ button.btn-close.closer {
         margin-left: -3vh;
         border: 8px solid rgba(251, 221, 197, 0.8);
     }
+
     a.addPhoto i {
         text-align: center;
         margin-left: -5vh;
@@ -444,10 +450,17 @@ button.btn-close.closer {
         border-radius: 20px;
         background-color: #fff;
     }
+
     div.mail {
         margin-top: 0vh;
         margin-bottom: 0vh;
     }
+
+    iframe {
+        width: 300px;
+        height: auto;
+    }
+
 }
 
 #modificationValidation {
@@ -455,6 +468,13 @@ button.btn-close.closer {
 }
 
 /* BLOG */
+
+.ime {
+    background-color: #5970B1;
+    color: #fff;
+    border-top-left-radius: 2vh;
+    border-top-right-radius: 2vh;
+}
 
 h1.blog {
     margin: 4vh 0;
@@ -494,6 +514,20 @@ img.ArticlePhoto {
     text-align: center;
 }
 
+img.allArticlePhoto {
+    height: 220px;
+    width: auto;
+    max-width: 300px;
+    margin-bottom: 5px;
+    text-align: center;
+    margin: 1em;
+}
+
+.allTitle {
+    font-weight: bold;
+}
+
+
 .articleText {
     padding: 5px 20px;
     text-align: justify;
@@ -514,7 +548,7 @@ img.ArticlePhoto {
     color: #000;
 }
 
-.miniPara p{
+.miniPara p {
     text-align: justify;
 }
 
@@ -551,7 +585,7 @@ span.date, span.autor {
 }
 
 .far.fa-heart.like, .fas.fa-heart.like {
-    color: red;
+    color: #F4B5CA;
 }
 
 span.redSmalltext {
@@ -560,19 +594,16 @@ span.redSmalltext {
     margin-left: 20px;
 }
 
-.btn.btn-primary.like {
-    height: 38px;
+div.like {
     float: left;
-    margin-top: -20px;
-    margin-right: 5px;
-    box-shadow: 5px 5px 5px grey;
-    background-color: #5970B1;
-    border-color: #5970B1;
 }
 
-.btn.btn-primary.like:hover {
-    background-color: #84a0ec;
-    border-color: #84a0ec;
+div.nb {
+    margin-top: -7px;
+}
+
+.bg-secondary {
+    background-color: #F4B5CA !important;
 }
 
 .ourTeam {
@@ -582,9 +613,7 @@ span.redSmalltext {
 
 /* ARTICLES */
 
-.articleContent {
-    background-color: rgba(255, 255, 255, 0.4);
-}
+
 
 .firstPara {
     text-align: justify;
@@ -1077,6 +1106,7 @@ button.modalBtn a {
 .allBlogArticle {
     display: none;
 }
+
 span.sign {
     font-style: italic;
 }
@@ -1120,4 +1150,191 @@ div.voirCat, div.creatCat, div.creatContent, div.creatVideoContent {
 
 #cities {
     visibility: hidden;
+}
+
+/* LOST PASSWORD */
+
+.invalidity {
+    font-size: .875em;
+    color: #dc3545;
+}
+
+/* MENTIONS LEAGLES */
+
+.boldTitle {
+    font-weight: bold;
+}
+
+.text-justify {
+    text-align: justify;
+}
+
+.myCookies {
+    cursor: pointer;
+    color: #4A58CC;
+    text-decoration: underline;
+}
+
+/* APPAREILS */
+
+img.appareil {
+    width: 500px;
+    height: auto;
+}
+
+p.appareil {
+    text-align: justify;
+    width: 500px;
+    height: auto;
+}
+
+img.semi-appareil {
+    width: 150px;
+    height: auto;
+}
+
+img.small-appareil {
+    width: 250px;
+    height: auto;
+}
+
+h2.appareil {
+    color: #F4B5CA;
+}
+
+hr.appareil {
+    margin-top: 5vh;
+    margin-bottom: 2vh;
+    border-top: 3px double #FAEC55;
+    box-shadow: none;
+}
+
+/* JEUX */
+
+.fas.fa-dice {
+    color: #84A0EC;
+}
+
+.error404 {
+    color: #F49F5C;
+}
+
+/* FORM CONTACT */
+
+.radio {
+    margin-top: 0;
+}
+
+.g-recaptcha {
+    margin: 0 auto;
+    width: 304px;
+}
+
+/* jeu langue des signes */
+
+.choice_0, .choice_1, .choice_2, .choice_3 {
+    background-color: #5970B1;
+    color: #fff;
+    border: 1px solid #fff;
+    cursor: pointer;
+    display: none;
+}
+
+.choice_0:hover, .choice_1:hover, .choice_2:hover, .choice_3:hover {
+    color: #000;
+}
+
+.choice_0 {
+    border-bottom-left-radius: 20px;
+}
+
+.choice_3 {
+    border-bottom-right-radius: 20px;
+}
+
+.gameDisplay, .displayDifficulty {
+    display: none;
+}
+
+@media (max-width: 575px) {
+    .choice_0 {
+        border-bottom-left-radius: 0px;
+    }
+    .choice_3 {
+        border-bottom-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
+    img.loose, img.win {
+        height: 250px;
+        width: auto;
+    }
+}
+
+/* AJOUT ENT 28/04/2022 */
+
+.ent-infos {
+   z-index: 100;
+    text-align: center;
+    margin-top: 90px;
+    visibility: hidden;
+    margin-bottom: 1vh;
+}
+
+.fa-book, .fa-envelope, .fa-mobile-alt, .fa-grin-alt {
+    color: #fff;
+    margin-top: 15px;
+}
+
+.cdt, .msg, .app {
+    border-right: 1px solid #fff;
+}
+
+.ent-left {
+    color: #fff;
+    padding-top: 25px;
+    background-color: #5970B1;
+}
+
+.ent-right {
+    background-color: #5970B1;
+}
+
+.show {
+    z-index: 999;
+}
+
+.litleNumRik {
+    width: 60px;
+    height: auto;
+}
+
+.smallExp {
+    color: #fff;
+    font-size: 12px;
+    margin-top: 5px;
+}
+.ent-info {
+    padding-top: 15px;
+    color: #5970B1;
+    border: 1px solid #5970B1;
+    background-color: #fff;
+    overflow-y: scroll;
+    max-height: 88px;
+}
+
+.fa-bullhorn {
+    color: red;
+}
+
+.modal {
+    z-index: 1001;
+}
+
+#cDt {
+    padding-top: 200px;
+    text-align: center;
+}
+
+.modal-title {
+    margin: 0 auto;
 }

@@ -2,7 +2,7 @@
     $(document).ready(function() {
         const getWordList = async function(data) {
             try {
-                let response = await fetch('http://localhost/apiApajhv0/public/v1/getVideos', {
+                let response = await fetch('http://www.api.apajh-num-et-rik.fr/public/v1/getVideos', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -39,7 +39,7 @@
         $(this).html('Online')
         const ContentIsOnline = async function(data) {
             try {
-                let response = await fetch('http://localhost/apiApajhv0/public/v1/online', {
+                let response = await fetch('http://www.api.apajh-num-et-rik.fr/public/v1/online', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
@@ -70,7 +70,7 @@
         $(this).html('Offline')
         const ContentIsOffline = async function(data) {
             try {
-                let response = await fetch('http://localhost/apiApajhv0/public/v1/offline', {
+                let response = await fetch('http://www.api.apajh-num-et-rik.fr/public/v1/offline', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',

@@ -13,7 +13,7 @@ class UserController
     public function __construct()
     {
         $this->client = new Client([
-            'base_uri' => 'http://localhost/apiApajhv0/public/v1/',
+            'base_uri' => 'https://www.api.apajh-num-et-rik.fr/public/v1/',
             'http_errors' => false
         ]);
     }
@@ -172,6 +172,7 @@ class UserController
                     ($req->getStatusCode() == 200) ? $src = 'data:' . $userPhoto->type . ';base64,' . $userPhoto->file : $src = '';
                     $_SESSION['photo'] = $src;
                     $_SESSION['ug'] = $register->userGroup;
+                    $_SESSION['isActive'] = $register->isActive;
                     $success['valid'] = 'Vous vous êtes correctement connecté.';
                     // require '../views/connexionValidate.php';
                     echo "<script type='text/javascript'>document.location.replace('http://localhost/webapp/public/');</script>";
@@ -180,6 +181,111 @@ class UserController
                 }
             } else {
                 require '../views/connexion.php';
+            }
+        }
+    }
+
+    public function lostPasswordMail()
+    {
+        $formErrors = array();
+        $success = array();
+        if (count($_POST) > 0) {
+            if (!empty($_POST['mail'])) {
+                if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
+                    $mail = htmlspecialchars($_POST['mail']);
+                } else {
+                    $formErrors['mail'] = 'Une adresse mail valide est nécessaire pour se connecter.';
+                }
+            } else {
+                $formErrors['mail'] = 'Une adresse mail est nécessaire pour se connecter.';
+            }
+            if (empty($formErrors)) {
+                if ($response = $this->client->request('POST', 'lostMail', [
+                    'form_params' => [
+                        'mail' => $mail
+                    ]
+                ])) {
+                    $lostPass = json_decode($response->getBody());
+                    $success['mail'] = 'Un mail vient de vous êtes envoyé sur votre adresse mail. Merci de cliquer sur le lien pour réinitialiser votre mot de passe.';
+                    $cle = $lostPass->cle[0]->validationKey;
+                    // Préparation du mail contenant le lien d'activation
+                    $destinataire = $mail;
+                    $sujet = "Modification de votre mot de passe.";
+                    $entete = "From: contact@apajh.web.fr";
+
+                    // Le lien d'activation est composé du login(log) et de la clé(cle)
+                    $message = 'Bonjour,
+                Si vous recevez ce message, c\'est que vous avez soliciter la modification de votre mot de passe suite à la perte ou à l\'oubli de ce dernier.
+                Si vous n\'êtes pas à l\'origine de cette demande, veuillez ne pas tenir compte de ce message.
+ 
+                https://www.apajh.web.jeseb.fr/mot-de-passe-perdu-log=' . urlencode($mail) . '-cle=' . urlencode($cle) . ';
+ 
+ 
+                ---------------
+                Ceci est un mail automatique, Merci de ne pas y répondre.';
+
+
+                    mail($destinataire, $sujet, $message, $entete); // Envoi du mail
+                    require '../views/lost.php';
+                } else {
+                    $success['error'] = 'Une erreur est surevenue durant la connexion.';
+                }
+            } else {
+                require '../views/lost.php';
+            }
+        }
+    }
+
+    public function lostPassword()
+    {
+        $formErrors = array();
+        $success = array();
+        if (count($_POST) > 0) {
+            if (!empty($_POST['mail']) && !empty($_POST['validationKey'])) {
+                if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
+                    $mail = htmlspecialchars($_POST['mail']);
+                } else {
+                    $formErrors['mail'] = 'Une partie du lien que vous avez reçu par mail a été modifié.';
+                }
+                if (strlen(htmlspecialchars($_POST['validationKey'])) == 32) {
+                    $validationKey = htmlspecialchars($_POST['validationKey']);
+                } else {
+                    $formErrors['validationKey'] = 'Une partie du lien que vous avez reçu par mail a été modifié.';
+                }
+            } else {
+                $formErrors['link'] = 'Merci de vérifier que vous avez bien cliqué sur le lien que vous avez reçu par mail.';
+            }
+            if (!empty($_POST['password']) && !empty($_POST['password_confirmation']) && $_POST['password'] === $_POST['password_confirmation']) {
+                if (strlen(htmlspecialchars($_POST['password'])) >= 8) {
+                    $password = htmlspecialchars($_POST['password']);
+                    $password_confirmation = htmlspecialchars($_POST['password_confirmation']);
+                } else {
+                    $formErrors['password'] = 'Votre mot de passe doit contenir un minimum 8 caractères.';
+                }
+            } else {
+                $formErrors['password'] = 'Un mot de passe est nécessaire à l\'inscription.';
+            }
+            if (empty($formErrors)) {
+                if ($response = $this->client->request('POST', 'lostPassword', [
+                    'form_params' => [
+                        'mail' => $mail,
+                        'validationKey' => $validationKey,
+                        'password' => $password,
+                        'password_confirmation' => $password_confirmation
+                    ]
+                ])) {
+                    $register = json_decode($response->getBody());
+                    if ($register->test == null) {
+                        $formErrors['test'] = 'Les éléments en notre pocession ne nous permettent pas de récupérer votre mot de passe. Merci de contacter l\'administrateur du site.';
+                    } else {
+                        $success['valid'] = 'Votre mot de passe a été modifié avec succés.';
+                    }
+                    echo "<script type='text/javascript'>document.location.replace('http://localhost/webapp/public/');</script>";
+                } else {
+                    $success['error'] = 'Une erreur est surevenue durant la modification de votre mot de passe.';
+                }
+            } else {
+                require '../views/passwordLost.php';
             }
         }
     }
@@ -385,6 +491,7 @@ class UserController
                     ])) {
                         $success['valid'] = 'Votre mot de passe a bien été modifié.';
                         require '../views/passwordModification.php';
+                        echo "<script type='text/javascript'>setTimeout(function () { window.location.href = '/webapp/public/mon-compte'; }, 2000);</script>";
                     }
                 } else {
                     require '../views/passwordModification.php';
